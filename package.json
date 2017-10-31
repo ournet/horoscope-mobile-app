@@ -8,13 +8,21 @@
 		"android": "tsc && react-native run-android"
 	},
 	"dependencies": {
+		"cross-fetch": "^1.0.0",
+		"immutable": "^3.8.2",
+		"node-fetch": "^1.7.3",
 		"react": "16.0.0-beta.5",
-		"react-native": "0.49.3"
+		"react-native": "0.49.3",
+		"react-redux": "^5.0.6",
+		"redux": "^3.7.2",
+		"redux-loop-symbol-ponyfill": "^2.2.2",
+		"redux-saga": "^0.16.0"
 	},
 	"devDependencies": {
 		"@types/jest": "^21.1.5",
 		"@types/react": "^16.0.18",
 		"@types/react-native": "^0.49.3",
+		"@types/react-redux": "^5.0.12",
 		"@types/react-test-renderer": "^16.0.0",
 		"babel-jest": "21.2.0",
 		"babel-preset-react-native": "4.0.0",

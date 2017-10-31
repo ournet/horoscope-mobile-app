@@ -2,7 +2,8 @@
     "compilerOptions": {
         "module": "commonjs",
         "target": "es6",
-        "noImplicitAny": false,
+        "noImplicitAny": true,
+        "noUnusedLocals": true,
         "sourceMap": true,
         "pretty": true,
         "outDir": "./lib",
