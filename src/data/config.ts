@@ -1,6 +1,7 @@
 
 export type ConfigType = {
     ApiHost: string
+    ApiClient: string
 }
 
 let Config: ConfigType = null;

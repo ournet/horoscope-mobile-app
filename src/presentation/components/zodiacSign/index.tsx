@@ -1,14 +1,14 @@
 
 import * as React from 'react';
 import { View, Text } from 'react-native'
-import { AppState } from '../../../data';
+import { State } from '../../../data';
 import { ZodiacSignViewData } from './ZodiacSignViewData';
 
 interface ZodiacSignProps {
     sign: ZodiacSignViewData
 }
 
-export default class ZodiacSign extends React.PureComponent<ZodiacSignProps, AppState> {
+export default class ZodiacSign extends React.PureComponent<ZodiacSignProps, State> {
     render() {
         const { sign } = this.props;
 

@@ -10,9 +10,9 @@ type ConfigType = {
 
 export const Config: ConfigType = {
     ApiClient: 'com.ournet.horoscope',
-    DefaultLang: 'en',
+    DefaultLang: 'ro',
     SupportedLangs: ['ro', 'ru', 'en'],
-    ApiHost: 'https://horoscop.ournet/api',
+    ApiHost: 'https://horoscop.ournet.ro/api',
 
     get CurrentDate() {
         return new Date();

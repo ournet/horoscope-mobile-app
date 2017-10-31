@@ -14,11 +14,10 @@ import { init } from '../data/config';
 
 init(Config);
 
-import HomePage from './pages/HomePage';
 import { configureStore } from './store';
-
 const store = configureStore();
-store.dispatch({ type: 'GET_REPORTS_REQUESTED' });
+
+import HomePage from './pages/HomePage';
 
 export default class App extends React.Component<{}> {
   render() {
@@ -29,6 +28,10 @@ export default class App extends React.Component<{}> {
     );
   }
 }
+
+store.dispatch({ type: 'GET_REPORTS_REQUESTED' });
+
+// throw new Error(JSON.stringify(store.getState()))
 
 // const styles = StyleSheet.create({
 //   container: {

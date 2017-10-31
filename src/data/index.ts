@@ -4,4 +4,4 @@ import saga from './saga';
 
 export { reducer, saga };
 export { init } from './config';
-export { AppState } from './state';
+export { State, AppState } from './state';

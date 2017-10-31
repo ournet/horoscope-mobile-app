@@ -1,9 +1,9 @@
 
 import { combineReducers } from 'redux';
 import { reportsReducer } from './reports/reducers';
-import { AppState } from './state';
+import { State } from './state';
 
-export default combineReducers<AppState>({
-    language: (state: AppState) => ({ language: 'ro' }),
+export default combineReducers<State>({
+    app: (state: State) => state || null,
     reports: reportsReducer
 });
