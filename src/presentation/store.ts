@@ -1,10 +1,13 @@
 
 import { createStore, applyMiddleware } from 'redux'
-import { reducer, saga, init, State, AppState } from '../data';
+import { init } from '../data/config';
 import { Config } from '../Config';
-import createSagaMiddleware from 'redux-saga'
+import createSagaMiddleware from 'redux-saga';
+import { AsyncStorage } from 'react-native';
 
-init(Config);
+init({ ApiClient: Config.ApiClient, ApiHost: Config.ApiHost, Storage: AsyncStorage });
+
+import { reducer, saga, State, AppState } from '../data';
 
 const sagaMiddleware = createSagaMiddleware();
 

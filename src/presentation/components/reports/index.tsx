@@ -5,13 +5,36 @@ import { State } from '../../../data';
 import { ReportsViewData } from './ReportsViewData';
 import ReportItem from '../reportItem';
 
-// interface ReportsProps {
-//     items: ReportsViewData
-// }
+interface ReportsProps {
+    data: ReportsViewData
+}
 
-export default class Reports extends React.PureComponent<ReportsViewData, State> {
+export default class Reports extends React.PureComponent<ReportsProps, State> {
     render() {
-        const { items } = this.props;
+        const { items, error, isLoading } = this.props.data;
+        if (error) {
+            return (
+                <View>
+                    <Text>Error: {error}</Text>
+                </View>
+            );
+        }
+
+        if (isLoading) {
+            return (
+                <View>
+                    <Text>Loading</Text>
+                </View>
+            );
+        }
+
+        if (!items || !items.length) {
+            return (
+                <View>
+                    <Text>No reports</Text>
+                </View>
+            );
+        }
 
         return (
             <View>

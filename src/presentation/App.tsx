@@ -9,11 +9,6 @@ import * as React from 'react';
 //   View
 // } from 'react-native';
 
-import { Config } from '../Config';
-import { init } from '../data/config';
-
-init(Config);
-
 import { configureStore } from './store';
 const store = configureStore();
 

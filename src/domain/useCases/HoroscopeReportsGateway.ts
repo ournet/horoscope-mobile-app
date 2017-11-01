@@ -8,5 +8,7 @@ export type HoroscopeReportsGetProps = {
 }
 
 export interface HoroscopeReportsGateway {
-    get(props: HoroscopeReportsGetProps): Promise<HoroscopeReports>
+    getFromApi(props: HoroscopeReportsGetProps): Promise<HoroscopeReports>
+    getFromCache(key: string): Promise<HoroscopeReports>
+    saveToCache(key: string, data: HoroscopeReports): Promise<HoroscopeReports>
 }

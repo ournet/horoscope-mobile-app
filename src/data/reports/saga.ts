@@ -1,24 +1,26 @@
 
-import { HoroscopeReports, HoroscopeReportsGetProps } from '../../domain';
+import { HoroscopeReports, createHoroscopeReportsInteractor, convertDateToNumber } from '../../domain';
 import { call, put, fork, takeLatest, select } from 'redux-saga/effects';
 import { createHoroscopeReportsGateway } from './HoroscopeReportsGateway';
-import { getReportsError, getReportsSuccess, ReportsActionTypes, GetReportsAction } from './actions';
+import { getReportsError, getReportsSuccess, ReportsActionTypes, GetReportsAction, ReportsActionProps } from './actions';
 import { getConfig } from '../config';
 import { AppState, State } from '../state';
 
 const Config = getConfig();
 
-const horoscopeReportsGateway = createHoroscopeReportsGateway({
+const reportsGateway = createHoroscopeReportsGateway({
     host: Config.ApiHost,
     client: Config.ApiClient
 });
 
+const reportsInteractor = createHoroscopeReportsInteractor(reportsGateway);
+
 function* fetchReports(action: GetReportsAction) {
     const appState = yield select<State>(state => state.app);
-    const props: HoroscopeReportsGetProps = { lang: appState.language, ...action.props };
+    const props: ReportsActionProps = { lang: appState.language, date: convertDateToNumber(new Date()), ...action.props };
 
     try {
-        const reports: HoroscopeReports = yield call(horoscopeReportsGateway.get, props);
+        const reports: HoroscopeReports = yield call(reportsInteractor.get, props);
         yield put(getReportsSuccess(props, reports));
     } catch (e) {
         yield put(getReportsError(props, e));

@@ -11,8 +11,13 @@ export interface ReportsAction {
     type: ReportsActionTypes
 }
 
+export type ReportsActionProps = {
+    lang?: string
+    date?: number
+}
+
 export interface GetReportsAction extends ReportsAction {
-    props: HoroscopeReportsGetProps
+    props: ReportsActionProps
 }
 
 export interface GetReportsErrorAction extends GetReportsAction {
@@ -25,7 +30,7 @@ export interface GetReportsSuccessAction extends GetReportsAction {
 
 export type GetReportsActionType = GetReportsAction | GetReportsErrorAction | GetReportsSuccessAction;
 
-export function getReports(props: HoroscopeReportsGetProps)
+export function getReports(props: ReportsActionProps)
     : GetReportsAction {
     return {
         type: ReportsActionTypes.GET_REPORTS_REQUESTED,
@@ -33,7 +38,7 @@ export function getReports(props: HoroscopeReportsGetProps)
     };
 }
 
-export function getReportsError(props: HoroscopeReportsGetProps, error: Error)
+export function getReportsError(props: ReportsActionProps, error: Error)
     : GetReportsErrorAction {
     return {
         type: ReportsActionTypes.GET_REPORTS_ERRORED,
@@ -42,7 +47,7 @@ export function getReportsError(props: HoroscopeReportsGetProps, error: Error)
     };
 }
 
-export function getReportsSuccess(props: HoroscopeReportsGetProps, reports: HoroscopeReports)
+export function getReportsSuccess(props: ReportsActionProps, reports: HoroscopeReports)
     : GetReportsSuccessAction {
     return {
         type: ReportsActionTypes.GET_REPORTS_SUCCESSED,

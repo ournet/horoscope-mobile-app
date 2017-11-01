@@ -1,14 +1,9 @@
 
-import { ZodiacSign } from '../../../domain';
+import { ZodiacSign as ZodiacSignId } from '../../../domain';
+import { ZodiacSign, createZodiacSign } from '../../entities';
 
-export interface ZodiacSignViewData {
-    id: number
-    name: string
-}
+export interface ZodiacSignViewData extends ZodiacSign { }
 
-export function createZodiacSignViewData(sign: ZodiacSign): ZodiacSignViewData {
-    return {
-        id: sign,
-        name: 'name ' + sign
-    };
+export function createZodiacSignViewData(sign: ZodiacSignId): ZodiacSignViewData {
+    return createZodiacSign(sign);
 }

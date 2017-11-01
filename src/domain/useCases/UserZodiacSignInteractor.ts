@@ -4,13 +4,17 @@ import { UserZodiacSignGateway } from './UserZodiacSignGateway';
 
 export interface UserZodiacSignInteractor {
     save(sign: ZodiacSign): Promise<ZodiacSign>
+    get(): Promise<ZodiacSign>
 }
 
-export function createUserZodiacSignInteractor(userZodiacSignGateway: UserZodiacSignGateway)
+export function createUserZodiacSignInteractor(gateway: UserZodiacSignGateway)
     : UserZodiacSignInteractor {
     return {
         save(sign: ZodiacSign) {
-            return userZodiacSignGateway.save(sign);
+            return gateway.save(sign);
+        },
+        get() {
+            return gateway.get();
         }
     };
 }
