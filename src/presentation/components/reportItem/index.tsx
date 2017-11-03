@@ -20,7 +20,7 @@ export default class ReportItem extends React.PureComponent<ReportItemProps, Sta
                     <ZodiacSignIcon sign={report.sign} />
                     <Text style={styles.iconTitle}>{report.sign.name}</Text>
                 </View>
-                <Text style={styles.icon}>{report.text}</Text>
+                <Text style={styles.text}>{report.text}</Text>
             </View>
         );
     }
@@ -29,7 +29,7 @@ export default class ReportItem extends React.PureComponent<ReportItemProps, Sta
 const styles = StyleSheet.create({
     container: {
         flexDirection: 'row',
-        // alignItems: 'flex-start',
+        justifyContent: 'flex-start',
         padding: Styles.paddingSize,
         backgroundColor: Styles.whiteColor,
         borderBottomWidth: 1,
@@ -42,10 +42,13 @@ const styles = StyleSheet.create({
         alignItems: 'center'
     },
     iconTitle: {
-        color: Styles.textColor
+        paddingTop: Styles.paddingSize,
+        color: Styles.textColor,
+        fontWeight: 'bold'
     },
     text: {
         color: Styles.textColor,
-        flex: 1
+        flex: 1,
+        fontSize: 16
     }
 });

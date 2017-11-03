@@ -11,7 +11,7 @@ export interface ReportItemViewData {
 export function createReportItemViewData(report: HoroscopeReport): ReportItemViewData {
     return {
         id: report.id,
-        text: report.text,
+        text: report.text.split(/\n/g)[0].trim(),
         sign: createZodiacSign(report.sign)
     }
 }

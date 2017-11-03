@@ -26,7 +26,7 @@ export default class ZodiacSignIcon extends React.PureComponent<ZodiacSignProps,
         const paths = imageInfo.svg.paths.map((item, i) => <Path key={i} d={item} fill={color}/>);
 
         return (
-            <Svg x="0" y="0" height={height} width={width} viewBox="0 0 32 32">
+            <Svg x="0" y="0" height={height} width={width} viewBox="0 0 34 34">
                 {paths}
             </Svg>
         );
