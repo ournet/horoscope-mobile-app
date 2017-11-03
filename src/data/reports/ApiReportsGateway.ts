@@ -1,25 +1,31 @@
 
 import { HoroscopeReportsGateway, HoroscopeReports, HoroscopeReportsGetProps } from '../../domain';
-// import fetch from 'node-fetch';
 import 'cross-fetch/polyfill';
-import { Cache, CacheInstance } from '../CacheStorage';
+import { CacheStorage } from '../CacheStorage';
 const ms = require('ms');
 
-export function createHoroscopeReportsGateway(api: { host: string, client: string }, cache?: Cache): HoroscopeReportsGateway {
-    cache = cache || CacheInstance;
+function formatKey(lang: string, date: number) {
+    return `reports:${lang.trim().toLowerCase()}:${date.toString()}`;
+}
+
+export function createApiReportsGateway(apiConfig: { host: string, client: string }, cache: CacheStorage): HoroscopeReportsGateway {
 
     return {
-        getFromApi(props: HoroscopeReportsGetProps) {
-            return getFromApi(api, props);
-        },
-        getFromCache(key: string) {
-            return cache.get<HoroscopeReports>(key);
-        },
-        saveToCache(key: string, data: HoroscopeReports) {
-            return cache.put(key, data, ms('2d'));
+        get(props: HoroscopeReportsGetProps) {
+            const key = formatKey(props.lang, props.date);
+
+            return cache.get<HoroscopeReports>(key)
+                .then(data => {
+                    if (data) {
+                        return data;
+                    }
+                    return getFromApi(apiConfig, props)
+                        .then(apiData => cache.put(key, apiData, ms('2d')));
+                });
         }
-    };
+    }
 }
+
 
 function getFromApi(api: { host: string, client: string }, props: HoroscopeReportsGetProps): Promise<HoroscopeReports> {
     if (!props || !props.date || !props.lang) {

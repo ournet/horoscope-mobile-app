@@ -1,13 +1,12 @@
 
 const Storage = require('react-native-storage').default;
-import { getConfig } from './config';
 
-export interface Cache {
+export interface CacheStorage {
     put<T>(key: string, data: T, ttl: number): Promise<T>
     get<T>(key: string): Promise<T>
 }
 
-function createInstance(storageBackend: any, props?: { size?: number, defaultExpires?: number }): Cache {
+export function createCacheStorage(storageBackend: any, props?: { size?: number, defaultExpires?: number }): CacheStorage {
     const storage = new Storage({ ...props, storageBackend });
 
     return {
@@ -21,5 +20,3 @@ function createInstance(storageBackend: any, props?: { size?: number, defaultExp
         }
     }
 }
-
-export const CacheInstance = createInstance(getConfig().Storage);

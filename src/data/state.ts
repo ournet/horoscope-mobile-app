@@ -1,11 +1,8 @@
 
 import { ReportsState } from './reports/state';
-
-export interface AppState {
-    language: string
-}
+import { UserState } from './user/state';
 
 export interface State {
-    app?: AppState
+    user?: UserState
     reports?: ReportsState
 }

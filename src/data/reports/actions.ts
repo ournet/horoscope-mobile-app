@@ -1,5 +1,5 @@
 
-import { HoroscopeReportsGetProps, HoroscopeReports } from '../../domain';
+import { HoroscopeReports } from '../../domain';
 
 export enum ReportsActionTypes {
     GET_REPORTS_REQUESTED = 'GET_REPORTS_REQUESTED',

@@ -10,20 +10,7 @@ export function createHoroscopeReportsInteractor(gateway: HoroscopeReportsGatewa
     : HoroscopeReportsInteractor {
     return {
         get(props: HoroscopeReportsGetProps) {
-            const key = formatKey(props.lang, props.date);
-            
-            return gateway.getFromCache(key)
-                .then(data => {
-                    if (data) {
-                        return data;
-                    }
-                    return gateway.getFromApi(props)
-                        .then(apiData => gateway.saveToCache(key, apiData));
-                });
+            return gateway.get(props);
         }
     };
-}
-
-function formatKey(lang: string, date: number) {
-    return `reports:${lang.trim().toLowerCase()}:${date.toString()}`;
 }

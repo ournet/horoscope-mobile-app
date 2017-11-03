@@ -1,17 +1,17 @@
 
-import { ZodiacSignViewData, createZodiacSignViewData } from '../zodiacSign/ZodiacSignViewData';
+import { createZodiacSign, ZodiacSign } from '../../entities';
 import { HoroscopeReport } from '../../../domain';
 
 export interface ReportItemViewData {
     id: string
     text: string
-    sign: ZodiacSignViewData
+    sign: ZodiacSign
 }
 
 export function createReportItemViewData(report: HoroscopeReport): ReportItemViewData {
     return {
         id: report.id,
         text: report.text,
-        sign: createZodiacSignViewData(report.sign)
+        sign: createZodiacSign(report.sign)
     }
 }
