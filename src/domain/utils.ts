@@ -12,6 +12,11 @@ export function convertDateToNumber(date: Date, format: 'D' | 'M' = 'D') {
     return parseInt(number);
 }
 
+export function convertNumberToDate(num: number): Date {
+    const snum = num.toString();
+    return new Date(parseInt(snum.substr(0, 4)), parseInt(snum.substr(4, 2)), parseInt(snum.substr(6, 2)));
+}
+
 /** Utility function to create a K:V from a list of strings */
 export function createEnum<T extends string>(o: Array<T>): {[K in T]: K} {
     return o.reduce((res, key) => {

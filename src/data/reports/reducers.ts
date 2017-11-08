@@ -12,6 +12,7 @@ export function reportsReducer<A extends GetReportsActionType>(state: ReportsSta
         case ReportsActionTypes.GET_REPORTS_REQUESTED:
             return {
                 ...state,
+                date: (<GetReportsSuccessAction>action).props.date,
                 isLoading: true
             };
         case ReportsActionTypes.GET_REPORTS_ERRORED:
@@ -24,6 +25,7 @@ export function reportsReducer<A extends GetReportsActionType>(state: ReportsSta
             return {
                 ...state,
                 isLoading: false,
+                // date: (<GetReportsSuccessAction>action).props.date,
                 data: (<GetReportsSuccessAction>action).reports
             };
         default:

@@ -6,6 +6,7 @@ import { State } from '../../data';
 // import { ReportsViewData, createReportsViewData } from '../components/reports/ReportsViewData';
 // import { UserReportViewData, createUserReportViewData } from '../components/userReport/UserReportViewData';
 import Header from '../components/header';
+import ReportsHeader from '../components/reportsHeader';
 import Reports from '../components/reports';
 // import UserReport from '../components/userReport';
 // import ZodiacSignSelector from '../components/zodiacSignSelector';
@@ -33,6 +34,7 @@ class HomePage extends React.Component<HomePageProps, State> {
             <View style={styles.container}>
                 <Header title="Horoscope" />
                 <View style={styles.content}>
+                    <ReportsHeader title="Horoscopul zilei" />
                     <Reports />
                 </View>
             </View>
@@ -51,10 +53,8 @@ const styles = StyleSheet.create({
     },
     content: {
         flex: 1,
-        padding: Styles.paddingSize
-        // justifyContent: 'center',
-        // alignItems: 'center',
-        // backgroundColor: '#374046'
+        paddingLeft: Styles.paddingSize,
+        paddingRight: Styles.paddingSize,
     },
     tabBar: {
         flexDirection: 'row',

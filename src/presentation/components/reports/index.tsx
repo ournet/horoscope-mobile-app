@@ -51,8 +51,7 @@ class Reports extends React.PureComponent<ReportsProps, State> {
         }
 
         return (
-            <View>
-                <Text>Reports</Text>
+            <View style={styles.container}>
                 <ScrollView>
                     {items.map(item => <ReportItem key={item.id} report={item} />)}
                 </ScrollView>
@@ -62,3 +61,10 @@ class Reports extends React.PureComponent<ReportsProps, State> {
 }
 
 export default connect<Partial<ReportsProps>>(mapStateToProps)(Reports);
+
+const styles = StyleSheet.create({
+    container: {
+        // paddingTop: Styles.paddingSize,
+        // paddingBottom: Styles.paddingSize,
+    }
+})

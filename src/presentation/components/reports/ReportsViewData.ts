@@ -6,6 +6,7 @@ export interface ReportsViewData {
     items: ReportItemViewData[]
     isLoading: boolean
     error?: string
+    date?: number
 }
 
 export function createReportsViewData(state: ReportsState): ReportsViewData {
@@ -15,6 +16,7 @@ export function createReportsViewData(state: ReportsState): ReportsViewData {
     }
     else if (state.data && state.data.reports) {
         viewData.items = state.data.reports.map(createReportItemViewData)
+        viewData.date = state.data.date;
     }
     return viewData;
 }
