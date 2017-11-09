@@ -1,0 +1,19 @@
+{
+    "ro": {
+        "horoscope": "Horoscop",
+        "daily_horoscope": "Horoscop zilnic",
+        "today_horoscope": "Horoscopul zilei",
+        "sign_1": "Berbec",
+        "sign_2": "Taur",
+        "sign_3": "Gemeni",
+        "sign_4": "Rac",
+        "sign_5": "Leu",
+        "sign_6": "Fecioară",
+        "sign_7": "Balanță",
+        "sign_8": "Scorpion",
+        "sign_9": "Săgetător",
+        "sign_10": "Capricorn",
+        "sign_11": "Vărsător",
+        "sign_12": "Pești"
+    }
+}

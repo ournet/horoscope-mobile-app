@@ -1,5 +1,6 @@
 
 import { ZodiacSign as ZodiacSignId } from '../domain';
+import { Locales } from './locales';
 
 export interface ZodiacSign {
     id: ZodiacSignId
@@ -9,6 +10,6 @@ export interface ZodiacSign {
 export function createZodiacSign(id: ZodiacSignId): ZodiacSign {
     return {
         id,
-        name: 'Name ' + id
+        name: Locales.signName(id)
     }
 }

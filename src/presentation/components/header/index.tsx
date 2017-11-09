@@ -15,9 +15,9 @@ export default class Header extends React.PureComponent<Props, State> {
 
         return (
             <View style={styles.container}>
-                <Text style={styles.button}>Back</Text>
+                <Text style={styles.button}></Text>
                 <Text style={styles.title}>{title}</Text>
-                <Text style={styles.button}>More</Text>
+                <Text style={styles.button}></Text>
             </View>
         );
     }

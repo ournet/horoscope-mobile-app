@@ -12,6 +12,7 @@ import Reports from '../components/reports';
 // import ZodiacSignSelector from '../components/zodiacSignSelector';
 import { Interactors } from '../interactors';
 import { Styles } from '../resources';
+import { Locales } from '../locales';
 
 interface HomePageProps {
     // reports?: ReportsViewData
@@ -32,9 +33,9 @@ class HomePage extends React.Component<HomePageProps, State> {
         // const { interactors } = this.props;
         return (
             <View style={styles.container}>
-                <Header title="Horoscope" />
+                <Header title={Locales.get('horoscope')} />
                 <View style={styles.content}>
-                    <ReportsHeader title="Horoscopul zilei" />
+                    <ReportsHeader title={Locales.get('today_horoscope')} />
                     <Reports />
                 </View>
             </View>

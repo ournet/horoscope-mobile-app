@@ -5,7 +5,7 @@ import { NetInfo } from 'react-native';
 
 import { convertDateToNumber } from '../domain';
 
-import { Config } from '../Config';
+import { Config } from './Config';
 
 import { configureStore } from './store';
 const store = configureStore();

@@ -1,6 +1,6 @@
 
 import { AsyncStorage } from 'react-native';
-import { Config } from '../Config';
+import { Config } from './Config';
 import { Store } from 'redux';
 import { createHoroscopeReportsInteractor, HoroscopeReportsInteractor, createUserInteractor, UserInteractor } from '../domain';
 import { createReduxReportsGateway, State, createCacheStorage, createReduxUserGateway } from '../data';
