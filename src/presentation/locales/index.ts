@@ -1,6 +1,5 @@
 
 import { LocalesClass } from './LocalesClass';
+import { Config, ValidLanguage } from '../Config';
 
-export const SupportedLanguages = ['ro'];
-
-export const Locales = new LocalesClass<'ro'>('ro');
+export const Locales = new LocalesClass<ValidLanguage>(Config.CurrentLanguage);
