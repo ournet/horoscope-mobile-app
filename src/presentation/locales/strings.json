@@ -3,6 +3,8 @@
         "horoscope": "Horoscop",
         "daily_horoscope": "Horoscop zilnic",
         "today_horoscope": "Horoscopul zilei",
+        "loading": "Se încarcă...",
+        "no_data_error": "Nu sunt date. Verificați conecțiunea la internet.",
         "sign_1": "Berbec",
         "sign_2": "Taur",
         "sign_3": "Gemeni",

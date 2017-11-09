@@ -59,10 +59,10 @@ const styles = StyleSheet.create({
     date: {
         backgroundColor: Styles.primaryColor,
         borderRadius: Styles.borderRadius,
-        paddingTop: Styles.paddingSize,
-        paddingBottom: Styles.paddingSize,
-        paddingLeft: Styles.paddingSize * 2,
-        paddingRight: Styles.paddingSize * 2,
+        paddingTop: 4,
+        paddingBottom: 4,
+        paddingLeft: Styles.paddingSize,
+        paddingRight: Styles.paddingSize,
     },
     title: {
         flex: 1,

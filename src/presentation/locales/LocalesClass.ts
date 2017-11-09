@@ -3,6 +3,8 @@ type KEYS =
     'horoscope' |
     'daily_horoscop' |
     'today_horoscope' |
+    'loading' |
+    'no_data_error' |
     'sign_1' |
     'sign_2' |
     'sign_3' |

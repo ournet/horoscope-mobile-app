@@ -19,7 +19,7 @@ interface ZodiacSignProps {
 export default class ZodiacSignIcon extends React.PureComponent<ZodiacSignProps, State> {
     render() {
         let { width, height, color, sign } = this.props;
-        width = width || 85;
+        width = width || 60;
         height = height || width;
         color = color || Styles.accentColor;
         const imageInfo = Images.ZodiacSignImages.one(sign.id);

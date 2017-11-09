@@ -7,6 +7,7 @@ import { ReportsViewData, createReportsViewData } from './ReportsViewData';
 import ReportItem from '../reportItem';
 import { Interactors } from '../../interactors';
 import { Styles } from '../../resources';
+import { Locales } from '../../locales';
 
 interface ReportsProps {
     data?: ReportsViewData
@@ -26,26 +27,26 @@ class Reports extends React.PureComponent<ReportsProps, State> {
             return null;
         }
         const { items, error, isLoading } = this.props.data;
-        if (error) {
-            return (
-                <View>
-                    <Text>Error: {error}</Text>
-                </View>
-            );
-        }
+        // if (error) {
+        //     return (
+        //         <View>
+        //             <Text>Error: {error}</Text>
+        //         </View>
+        //     );
+        // }
 
         if (isLoading) {
             return (
-                <View>
-                    <Text>Loading</Text>
+                <View style={styles.loading}>
+                    <Text style={styles.loading_text}>{Locales.get('loading')}</Text>
                 </View>
             );
         }
 
-        if (!items || !items.length) {
+        if (!items || !items.length || error) {
             return (
-                <View>
-                    <Text>No reports</Text>
+                <View style={styles.no_data}>
+                    <Text style={styles.no_data_text}>{Locales.get('no_data_error')}</Text>
                 </View>
             );
         }
@@ -64,7 +65,32 @@ export default connect<Partial<ReportsProps>>(mapStateToProps)(Reports);
 
 const styles = StyleSheet.create({
     container: {
+        flex: 1,
         // paddingTop: Styles.paddingSize,
         // paddingBottom: Styles.paddingSize,
-    }
+    },
+    no_data: {
+        margin: Styles.paddingSize * 2,
+        backgroundColor: Styles.dangerColor,
+        padding: Styles.paddingSize,
+        borderRadius: Styles.borderRadius,
+        alignItems: 'center',
+    },
+    no_data_text: {
+        color: Styles.whiteColor,
+        fontWeight: 'bold',
+        textAlign: 'center',
+    },
+    loading: {
+        margin: Styles.paddingSize * 2,
+        backgroundColor: Styles.darkLayoutColor,
+        padding: Styles.paddingSize,
+        borderRadius: Styles.borderRadius,
+        alignItems: 'center',
+    },
+    loading_text: {
+        color: Styles.accentColor,
+        fontWeight: 'bold',
+        textAlign: 'center',
+    },
 })
