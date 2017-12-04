@@ -2,16 +2,21 @@
 import * as React from 'react';
 import { View, Text, StyleSheet } from 'react-native'
 import { State } from '../../../data';
-import ZodiacSignIcon from '../zodiacSignIcon';
-import { Styles } from '../../resources';
+import { Styles, Images } from '../../resources';
+const SVG = require('react-native-svg');
+const Svg = SVG.Svg;
+const Path = SVG.Path;
 
 interface Props {
     title: string
+    date: string
 }
 
 export default class Header extends React.PureComponent<Props, State> {
     render() {
-        const { title } = this.props;
+        const { title, date } = this.props;
+
+        const logoPaths = Images.OurnetLogo.paths.map((item, i) => <Path key={i} d={item.d} fill={item.fill} />);
 
         return (
             <View style={styles.container}>
@@ -25,11 +30,17 @@ export default class Header extends React.PureComponent<Props, State> {
                     <View style={[styles.toplineItem, styles.line7]} />
                     <View style={[styles.toplineItem, styles.line8]} />
                 </View>
-                {/* <View style={styles.header}>
-                    <Text style={styles.button}></Text>
+                <View style={styles.header}>
+                    <View style={styles.logo}>
+                        <Svg x="0" y="0" height="40" width="40" viewBox={Images.OurnetLogo.viewBox}>
+                            {logoPaths}
+                        </Svg>
+                    </View>
                     <Text style={styles.title}>{title}</Text>
-                    <Text style={styles.button}></Text>
-                </View> */}
+                    <View style={styles.date}>
+                        <Text style={styles.dateLabel}>{date || '...'}</Text>
+                    </View>
+                </View>
             </View>
         );
     }
@@ -37,11 +48,11 @@ export default class Header extends React.PureComponent<Props, State> {
 
 const styles = StyleSheet.create({
     container: {
-
+        // height: 60
     },
     topline: {
         flexDirection: 'row',
-        height: 10
+        height: 7
     },
     toplineItem: {
         flex: 1
@@ -73,19 +84,36 @@ const styles = StyleSheet.create({
     header: {
         flexDirection: 'row',
         // paddingTop: 30,
-        height: 44,
+        // height: 40,
         alignItems: 'center',
-        backgroundColor: Styles.primaryColor
+        paddingLeft: Styles.paddingSize,
+        paddingRight: Styles.paddingSize,
+        paddingTop: Styles.paddingSize * 2,
+        paddingBottom: Styles.paddingSize * 2,
+        // backgroundColor: Styles.primaryColor
     },
-    button: {
+    logo: {
+        // textAlign: 'center',
+        // width: 60,
+        paddingRight: Styles.paddingSize
+    },
+    dateLabel: {
         color: '#FFFFFF',
-        textAlign: 'center',
-        // width: 44
+        textAlign: 'center'
+    },
+    date: {
+        backgroundColor: Styles.primaryColor,
+        borderRadius: Styles.borderRadius,
+        paddingTop: 4,
+        paddingBottom: 4,
+        paddingLeft: Styles.paddingSize,
+        paddingRight: Styles.paddingSize,
     },
     title: {
         flex: 1,
-        color: '#FFFFFF',
+        color: Styles.textColor,
         fontWeight: 'bold',
-        textAlign: 'center'
+        textAlign: 'center',
+        fontSize: 20
     },
 });

@@ -4,7 +4,7 @@
         "target": "es6",
         "noImplicitAny": true,
         "noUnusedLocals": false,
-        "sourceMap": true,
+        "sourceMap": false,
         "pretty": true,
         "outDir": "./lib",
         "jsx": "react"
