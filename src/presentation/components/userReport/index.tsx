@@ -1,6 +1,6 @@
 
 import * as React from 'react';
-import { connect } from 'react-redux';
+// import { connect } from 'react-redux';
 // import { View, Text, Button } from 'react-native'
 // import { UserInteractor } from '../../../domain';
 import { State } from '../../../data';
@@ -10,20 +10,19 @@ import ReportItem from '../reportItem';
 // temp solution
 // import { Instance as interactors } from '../../interactors';
 
-interface UserReportProps {
-    data?: UserReportViewData
-    // interactors: Interactors
+interface UserReportProps extends UserReportViewData {
+
 }
 
-const mapStateToProps = (state: State, props: UserReportProps): Partial<UserReportProps> => {
-    return {
-        data: props.data || state && createUserReportViewData(state)
-    };
-};
+// const mapStateToProps = (state: State, props: UserReportProps): Partial<UserReportProps> => {
+//     return {
+//         data: props.data || state && createUserReportViewData(state)
+//     };
+// };
 
-class UserReport extends React.PureComponent<UserReportProps, State> {
+export default class UserReport extends React.PureComponent<UserReportProps, State> {
     render() {
-        const { report } = this.props.data;
+        const { report } = this.props;
         // const userInteractor = this.props.interactors.user;
 
         // function onSelected() {
@@ -32,7 +31,7 @@ class UserReport extends React.PureComponent<UserReportProps, State> {
 
         if (report) {
             return (
-                <ReportItem key={report.id} report={report} />
+                <ReportItem report={report} />
             );
         }
 
@@ -40,4 +39,4 @@ class UserReport extends React.PureComponent<UserReportProps, State> {
     }
 }
 
-export default connect<Partial<UserReportProps>>(mapStateToProps)(UserReport);
+// export default connect<Partial<UserReportProps>>(mapStateToProps)(UserReport);

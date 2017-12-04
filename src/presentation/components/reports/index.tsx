@@ -9,24 +9,19 @@ import { Interactors } from '../../interactors';
 import { Styles } from '../../resources';
 import { Locales } from '../../locales';
 
-interface ReportsProps {
-    data?: ReportsViewData
-    interactors?: Interactors
+interface ReportsProps extends ReportsViewData {
 }
 
-const mapStateToProps = (state: State, props: ReportsProps): Partial<ReportsProps> => {
-    return {
-        data: props.data || state && state.reports && createReportsViewData(state.reports),
-        interactors: props.interactors
-    };
-};
+// const mapStateToProps = (state: State, props: ReportsProps): Partial<ReportsProps> => {
+//     return {
+//         data: props.data || state && state.reports && createReportsViewData(state.reports),
+//         interactors: props.interactors
+//     };
+// };
 
-class Reports extends React.PureComponent<ReportsProps, State> {
+export default class Reports extends React.PureComponent<ReportsProps, State> {
     render() {
-        if (!this.props.data) {
-            return null;
-        }
-        const { items, error, isLoading } = this.props.data;
+        const { items, error, isLoading } = this.props;
         // if (error) {
         //     return (
         //         <View>
@@ -61,7 +56,7 @@ class Reports extends React.PureComponent<ReportsProps, State> {
     }
 }
 
-export default connect<Partial<ReportsProps>>(mapStateToProps)(Reports);
+// export default connect<Partial<ReportsProps>>(mapStateToProps)(Reports);
 
 const styles = StyleSheet.create({
     container: {

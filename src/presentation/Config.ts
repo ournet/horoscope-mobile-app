@@ -8,6 +8,7 @@ type ConfigType = {
     readonly ApiHost: string
     readonly CurrentDate: Date
     readonly CurrentLanguage: ValidLanguage
+    readonly GoogleAnalyticsId: string
 }
 
 export const Config: ConfigType = {
@@ -15,6 +16,7 @@ export const Config: ConfigType = {
     DefaultLang: 'ro',
     SupportedLangs: ['ro'],
     ApiHost: 'https://horoscop.ournet.ro/api',
+    GoogleAnalyticsId: 'UA-110586923-1',
 
     get CurrentDate() {
         return new Date();

@@ -1,9 +1,9 @@
 
 import * as React from 'react';
-// import { connect } from 'react-redux';
+import { connect } from 'react-redux';
 import { Text, View, StyleSheet } from 'react-native';
 import { State } from '../../data';
-// import { ReportsViewData, createReportsViewData } from '../components/reports/ReportsViewData';
+import { ReportsViewData, createReportsViewData } from '../components/reports/ReportsViewData';
 // import { UserReportViewData, createUserReportViewData } from '../components/userReport/UserReportViewData';
 import Header from '../components/header';
 import ReportsHeader from '../components/reportsHeader';
@@ -13,39 +13,43 @@ import Reports from '../components/reports';
 import { Interactors } from '../interactors';
 import { Styles } from '../resources';
 import { Locales } from '../locales';
+import { convertNumberToDate } from '../../domain';
+import { momentDate } from '../utils';
 
 interface HomePageProps {
-    // reports?: ReportsViewData
+    reports?: ReportsViewData
     // userReport?: UserReportViewData
     interactors: Interactors
 }
 
-// const mapStateToProps = (state: State, props: HomePageProps): Partial<HomePageProps> => {
-//     return {
-//         reports: state && state.reports && createReportsViewData(state.reports),
-//         userReport: state && createUserReportViewData(state),
-//         interactors: props.interactors
-//     };
-// };
+const mapStateToProps = (state: State, props: HomePageProps): Partial<HomePageProps> => {
+    return {
+        reports: state && state.reports && createReportsViewData(state.reports),
+        // userReport: state && createUserReportViewData(state),
+        interactors: props.interactors
+    };
+};
 
 class HomePage extends React.Component<HomePageProps, State> {
     render() {
-        // const { interactors } = this.props;
+        const { interactors, reports } = this.props;
+        const reportsView = reports && <Reports items={reports.items} isLoading={reports.isLoading} error={reports.error} /> || null;
+
+        const headerDate = reports && reports.date && momentDate(convertNumberToDate(reports.date)).format('ll');
+
         return (
             <View style={styles.container}>
                 <Header title={Locales.get('horoscope')} />
                 <View style={styles.content}>
-                    <ReportsHeader title={Locales.get('today_horoscope')} />
-                    <Reports />
+                    <ReportsHeader title={Locales.get('today_horoscope')} date={headerDate} />
+                    {reportsView}
                 </View>
             </View>
         );
     }
 }
 
-export default HomePage;
-
-// export default connect<Partial<HomePageProps>>(mapStateToProps)(HomePage);
+export default connect<Partial<HomePageProps>>(mapStateToProps)(HomePage) as any;
 
 const styles = StyleSheet.create({
     container: {

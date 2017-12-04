@@ -10,7 +10,11 @@ export interface Interactors {
     readonly user: UserInteractor
 }
 
-export let Instance: Interactors;
+let Instance: Interactors;
+
+export function getInstance() {
+    return Instance;
+}
 
 export function configureInteractors(store: Store<State>) {
 
