@@ -6,7 +6,6 @@ import { NetInfo } from 'react-native';
 import { convertDateToNumber } from '../domain';
 
 import { Config } from './Config';
-import { Analytics } from './analytics';
 import { configureStore } from './store';
 const store = configureStore();
 import { configureInteractors } from './interactors';
@@ -15,11 +14,6 @@ const interactors = configureInteractors(store);
 import HomePage from './pages/HomePage';
 
 export default class App extends React.Component<{}> {
-  constructor(props?: any, context?: any) {
-    super(props, context);
-
-    Analytics.trackPageView('Home');
-  }
   render() {
     return (
       <Provider store={store}>
@@ -53,4 +47,4 @@ function init() {
     });
 }
 
-init().catch((e: Error) => Analytics.trackException(e.message, true));
+init();
