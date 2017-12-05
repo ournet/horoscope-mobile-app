@@ -5,6 +5,7 @@ type KEYS =
     'today_horoscope' |
     'loading' |
     'no_data_error' |
+    'today' |
     'sign_1' |
     'sign_2' |
     'sign_3' |

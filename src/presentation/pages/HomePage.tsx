@@ -35,11 +35,11 @@ class HomePage extends React.Component<HomePageProps, State> {
         const { interactors, reports } = this.props;
         const reportsView = reports && <Reports items={reports.items} isLoading={reports.isLoading} error={reports.error} /> || null;
 
-        const headerDate = reports && reports.date && momentDate(convertNumberToDate(reports.date)).format('ll');
+        const headerDate = reports && reports.date && Locales.get('today'); //momentDate(convertNumberToDate(reports.date)).format('ll');
 
         return (
             <View style={styles.container}>
-                <Header title={Locales.get('today_horoscope')} date={headerDate} />
+                <Header title={Locales.get('horoscope')} date={headerDate} />
                 <View style={styles.content}>
                     {/* <ReportsHeader title={Locales.get('today_horoscope')} date={headerDate} /> */}
                     {reportsView}

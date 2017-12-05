@@ -52,7 +52,7 @@ const styles = StyleSheet.create({
     },
     topline: {
         flexDirection: 'row',
-        height: 7
+        height: 5
     },
     toplineItem: {
         flex: 1
@@ -95,14 +95,14 @@ const styles = StyleSheet.create({
     logo: {
         // textAlign: 'center',
         // width: 60,
-        paddingRight: Styles.paddingSize
+        paddingLeft: Styles.paddingSize * 2
     },
     dateLabel: {
-        color: '#FFFFFF',
+        color: Styles.textColor,
         textAlign: 'center'
     },
     date: {
-        backgroundColor: Styles.primaryColor,
+        backgroundColor: Styles.darkLayoutColor,
         borderRadius: Styles.borderRadius,
         paddingTop: 4,
         paddingBottom: 4,
