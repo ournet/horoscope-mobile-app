@@ -16,7 +16,7 @@ export default class Header extends React.PureComponent<Props, State> {
     render() {
         const { title, date } = this.props;
 
-        const logoPaths = Images.OurnetLogo.paths.map((item, i) => <Path key={i} d={item.d} fill={item.fill} />);
+        const logoPaths = Images.LogoStar.paths.map((item, i) => <Path key={i} d={item.d} fill={item.fill} />);
 
         return (
             <View style={styles.container}>

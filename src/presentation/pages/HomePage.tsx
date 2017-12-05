@@ -39,7 +39,7 @@ class HomePage extends React.Component<HomePageProps, State> {
 
         return (
             <View style={styles.container}>
-                <Header title={Locales.get('horoscope')} date={headerDate} />
+                <Header title={Locales.get('today_horoscope')} date={headerDate} />
                 <View style={styles.content}>
                     {/* <ReportsHeader title={Locales.get('today_horoscope')} date={headerDate} /> */}
                     {reportsView}
