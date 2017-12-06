@@ -3,7 +3,7 @@ import { HoroscopeReports } from "../../domain";
 
 export interface ReportsState {
     isLoading: boolean
-    date?: number
+    period?: string
     data?: HoroscopeReports
     error?: Error
 }

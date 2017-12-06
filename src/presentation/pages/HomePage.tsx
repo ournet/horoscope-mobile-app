@@ -3,6 +3,7 @@ import * as React from 'react';
 import { connect } from 'react-redux';
 import { Text, View, StyleSheet } from 'react-native';
 import { State } from '../../data';
+import { Config } from '../Config';
 import { ReportsViewData, createReportsViewData } from '../components/reports/ReportsViewData';
 // import { UserReportViewData, createUserReportViewData } from '../components/userReport/UserReportViewData';
 import Header from '../components/header';
@@ -13,8 +14,8 @@ import Reports from '../components/reports';
 import { Interactors } from '../interactors';
 import { Styles } from '../resources';
 import { Locales } from '../locales';
-import { convertNumberToDate } from '../../domain';
-import { momentDate } from '../utils';
+import { convertDateToPeriod } from '../utils';
+import TabMenu from '../components/tabMenu';
 
 interface HomePageProps {
     reports?: ReportsViewData
@@ -31,17 +32,28 @@ const mapStateToProps = (state: State, props: HomePageProps): Partial<HomePagePr
 };
 
 class HomePage extends React.Component<HomePageProps, State> {
+    constructor(props: HomePageProps, state: State) {
+        super(props, state);
+
+        if (!state || !state.reports) {
+            this.changeReportsPeriod(convertDateToPeriod(new Date()));
+        }
+    }
+
+    changeReportsPeriod(period: string) {
+        const lang = this.state && this.state.user && this.state.user.data.language || Config.CurrentLanguage;
+        this.props.interactors.reports.get({ period: period, lang: lang });
+    }
+
     render() {
         const { interactors, reports } = this.props;
         const reportsView = reports && <Reports items={reports.items} isLoading={reports.isLoading} error={reports.error} /> || null;
 
-        const headerDate = reports && reports.date && Locales.get('today'); //momentDate(convertNumberToDate(reports.date)).format('ll');
-
         return (
             <View style={styles.container}>
-                <Header title={Locales.get('horoscope')} date={headerDate} />
+                <Header title={Locales.get('horoscope')} />
                 <View style={styles.content}>
-                    {/* <ReportsHeader title={Locales.get('today_horoscope')} date={headerDate} /> */}
+                    <ReportsHeader title={Locales.get('horoscope')} menuOnSelect={this.changeReportsPeriod.bind(this)} menuSelectedId={reports && reports.period} />
                     {reportsView}
                 </View>
             </View>

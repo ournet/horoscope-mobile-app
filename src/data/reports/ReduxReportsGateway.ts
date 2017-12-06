@@ -1,5 +1,5 @@
 
-import { HoroscopeReportsGateway, HoroscopeReportsGetProps, convertDateToNumber } from '../../domain';
+import { HoroscopeReportsGateway, HoroscopeReportsGetProps } from '../../domain';
 import { Dispatch } from 'redux';
 import { CacheStorage } from '../CacheStorage';
 import { State } from '../state';
@@ -21,9 +21,9 @@ export function createReduxReportsGateway(params: ReportsGatewayParams): Horosco
     return {
         get(props: HoroscopeReportsGetProps) {
 
-            const state = getState();
+            // const state = getState();
 
-            const actionProps: ReportsActionProps = { lang: state.user.data.language, date: convertDateToNumber(new Date()), ...<ReportsActionProps>props };
+            const actionProps: ReportsActionProps = <ReportsActionProps>props;
 
             dispatch(getReports(actionProps));
             return apiGateway.get(actionProps)

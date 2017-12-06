@@ -13,7 +13,7 @@ export interface ReportsAction {
 
 export type ReportsActionProps = {
     lang?: string
-    date?: number
+    period?: string
 }
 
 export interface GetReportsAction extends ReportsAction {

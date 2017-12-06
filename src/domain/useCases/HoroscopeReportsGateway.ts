@@ -3,7 +3,7 @@ import { HoroscopeReports } from '../entities/HoroscopeReport';
 
 export type HoroscopeReportsGetProps = {
     lang?: string
-    date?: number
+    period?: string
     client?: string
 }
 

@@ -6,6 +6,8 @@ type KEYS =
     'loading' |
     'no_data_error' |
     'today' |
+    'tomorrow' |
+    'weekly' |
     'sign_1' |
     'sign_2' |
     'sign_3' |

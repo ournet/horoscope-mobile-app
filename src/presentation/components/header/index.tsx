@@ -9,14 +9,14 @@ const Path = SVG.Path;
 
 interface Props {
     title: string
-    date: string
+    // date: string
 }
 
 export default class Header extends React.PureComponent<Props, State> {
     render() {
-        const { title, date } = this.props;
+        const { title } = this.props;
 
-        const logoPaths = Images.LogoStar.paths.map((item, i) => <Path key={i} d={item.d} fill={item.fill} />);
+        // const logoPaths = Images.LogoStar.paths.map((item, i) => <Path key={i} d={item.d} fill={item.fill} />);
 
         return (
             <View style={styles.container}>
@@ -30,7 +30,7 @@ export default class Header extends React.PureComponent<Props, State> {
                     <View style={[styles.toplineItem, styles.line7]} />
                     <View style={[styles.toplineItem, styles.line8]} />
                 </View>
-                <View style={styles.header}>
+                {/* <View style={styles.header}>
                     <View style={styles.logo}>
                         <Svg x="0" y="0" height="40" width="40" viewBox={Images.OurnetLogo.viewBox}>
                             {logoPaths}
@@ -40,7 +40,7 @@ export default class Header extends React.PureComponent<Props, State> {
                     <View style={styles.date}>
                         <Text style={styles.dateLabel}>{date || '...'}</Text>
                     </View>
-                </View>
+                </View> */}
             </View>
         );
     }

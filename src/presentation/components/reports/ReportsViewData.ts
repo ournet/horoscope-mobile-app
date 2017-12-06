@@ -6,17 +6,16 @@ export interface ReportsViewData {
     items: ReportItemViewData[]
     isLoading: boolean
     error?: string
-    date?: number
+    period?: string
 }
 
 export function createReportsViewData(state: ReportsState): ReportsViewData {
-    const viewData: ReportsViewData = { isLoading: state.isLoading, items: [] };
+    const viewData: ReportsViewData = { isLoading: state.isLoading, items: [], period: state.period };
     if (state.error) {
         viewData.error = state.error.message;
     }
     else if (state.data && state.data.reports) {
         viewData.items = state.data.reports.map(createReportItemViewData)
-        viewData.date = state.data.date;
     }
     return viewData;
 }

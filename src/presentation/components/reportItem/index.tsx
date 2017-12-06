@@ -32,13 +32,15 @@ const styles = StyleSheet.create({
     container: {
         flexDirection: 'row',
         justifyContent: 'flex-start',
-        marginBottom: 8
+        marginBottom: 8,
+        // alignItems: 'flex-start'
     },
     sign: {
-        paddingRight: Styles.paddingSize,
-        justifyContent: 'center',
+        // paddingRight: Styles.paddingSize,
+        // justifyContent: 'baseline',
         flexDirection: 'column',
-        alignItems: 'center'
+        alignItems: 'center',
+        backgroundColor: Styles.darkLayoutColor
     },
     signTitle: {
         // paddingTop: Styles.paddingSize,
@@ -51,6 +53,8 @@ const styles = StyleSheet.create({
     text: {
         backgroundColor: Styles.whiteColor,
         padding: Styles.paddingSize,
+        borderTopWidth: 1,
+        borderTopColor: Styles.darkLayoutColor,
         borderBottomWidth: 2,
         borderBottomColor: Styles.darkLayoutColor,
         borderRightWidth: 2,

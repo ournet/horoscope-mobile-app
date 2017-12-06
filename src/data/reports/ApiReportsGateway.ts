@@ -4,15 +4,15 @@ import 'cross-fetch/polyfill';
 import { CacheStorage } from '../CacheStorage';
 const ms = require('ms');
 
-function formatKey(lang: string, date: number) {
-    return `reports:${lang.trim().toLowerCase()}:${date.toString()}`;
+function formatKey(lang: string, period: string) {
+    return `reports:${lang.trim().toLowerCase()}:${period.toString()}`;
 }
 
 export function createApiReportsGateway(apiConfig: { host: string, client: string }, cache: CacheStorage): HoroscopeReportsGateway {
 
     return {
         get(props: HoroscopeReportsGetProps) {
-            const key = formatKey(props.lang, props.date);
+            const key = formatKey(props.lang, props.period);
 
             return cache.get<HoroscopeReports>(key)
                 .then(data => {
@@ -28,10 +28,10 @@ export function createApiReportsGateway(apiConfig: { host: string, client: strin
 
 
 function getFromApi(api: { host: string, client: string }, props: HoroscopeReportsGetProps): Promise<HoroscopeReports> {
-    if (!props || !props.date || !props.lang) {
+    if (!props || !props.period || !props.lang) {
         return Promise.reject(new Error(`Invalid props param!`));
     }
-    const url = api.host + `/daily-reports.json?lang=${props.lang}&client=${props.client || api.client}&date=${props.date}`;
+    const url = api.host + `/reports.json?lang=${props.lang}&client=${props.client || api.client}&period=${props.period}`;
 
     return Promise.race([
         fetch(url),
