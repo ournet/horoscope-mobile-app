@@ -16,6 +16,7 @@ import { Styles } from '../resources';
 import { Locales } from '../locales';
 import { convertDateToPeriod } from '../utils';
 import TabMenu from '../components/tabMenu';
+import { Analytics } from '../analytics';
 
 interface HomePageProps {
     reports?: ReportsViewData
@@ -45,6 +46,11 @@ class HomePage extends React.Component<HomePageProps, State> {
         this.props.interactors.reports.get({ period: period, lang: lang });
     }
 
+    onSelectPeriod(period: string) {
+        Analytics.trackEvent('User', 'change-period', { label: period.substr(0, 1), value: parseInt(period.substr(1)) });
+        return this.changeReportsPeriod(period);
+    }
+
     render() {
         const { interactors, reports } = this.props;
         const reportsView = reports && <Reports items={reports.items} isLoading={reports.isLoading} error={reports.error} /> || null;
@@ -53,7 +59,7 @@ class HomePage extends React.Component<HomePageProps, State> {
             <View style={styles.container}>
                 <Header title={Locales.get('horoscope')} />
                 <View style={styles.content}>
-                    <ReportsHeader title={Locales.get('horoscope')} menuOnSelect={this.changeReportsPeriod.bind(this)} menuSelectedId={reports && reports.period} />
+                    <ReportsHeader title={Locales.get('horoscope')} menuOnSelect={this.onSelectPeriod.bind(this)} menuSelectedId={reports && reports.period} />
                     {reportsView}
                 </View>
             </View>

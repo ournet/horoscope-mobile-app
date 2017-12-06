@@ -4,6 +4,7 @@ import { Config } from './Config';
 import { Store } from 'redux';
 import { createHoroscopeReportsInteractor, HoroscopeReportsInteractor, createUserInteractor, UserInteractor } from '../domain';
 import { createReduxReportsGateway, State, createCacheStorage, createReduxUserGateway } from '../data';
+import { Analytics } from './analytics';
 
 export interface Interactors {
     readonly reports: HoroscopeReportsInteractor
@@ -24,7 +25,8 @@ export function configureInteractors(store: Store<State>) {
         cache: cache,
         apiConfig: { host: Config.ApiHost, client: Config.ApiClient },
         dispatch: store.dispatch,
-        getState: store.getState
+        getState: store.getState,
+        analytics: Analytics
     });
 
     const reportsInteractor = createHoroscopeReportsInteractor(reportsGateway);
