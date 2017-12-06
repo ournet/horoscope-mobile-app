@@ -36,7 +36,7 @@ const styles = StyleSheet.create({
         // alignItems: 'flex-start'
     },
     sign: {
-        // paddingRight: Styles.paddingSize,
+        paddingBottom: Styles.paddingSize,
         // justifyContent: 'baseline',
         flexDirection: 'column',
         alignItems: 'center',
