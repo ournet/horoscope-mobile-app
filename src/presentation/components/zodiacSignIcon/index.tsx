@@ -19,11 +19,11 @@ interface ZodiacSignProps {
 export default class ZodiacSignIcon extends React.PureComponent<ZodiacSignProps, State> {
     render() {
         let { width, height, color, sign } = this.props;
-        width = width || 60;
+        width = width || 50;
         height = height || width;
         color = color || Styles.accentColor;
         const imageInfo = Images.ZodiacSignImages.one(sign.id);
-        const paths = imageInfo.svg.paths.map((item, i) => <Path key={i} d={item.d} fill={color}/>);
+        const paths = imageInfo.svg.paths.map((item, i) => <Path key={i} d={item.d} fill={color} fill-rule="evenodd"/>);
 
         return (
             <Svg x="0" y="0" height={height} width={width} viewBox={imageInfo.svg.viewBox}>
