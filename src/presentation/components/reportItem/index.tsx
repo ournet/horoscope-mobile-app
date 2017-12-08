@@ -18,7 +18,7 @@ export default class ReportItem extends React.PureComponent<ReportItemProps, Sta
             <View style={styles.container}>
                 <View style={styles.sign}>
                     <View style={styles.icon}>
-                        <ZodiacSignIcon sign={sign} />
+                        <ZodiacSignIcon sign={sign.id} />
                     </View>
                     <Text style={styles.signTitle}>{sign.name}</Text>
                 </View>

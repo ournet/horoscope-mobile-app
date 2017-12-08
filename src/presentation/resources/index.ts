@@ -2,4 +2,6 @@
 import * as Images from './images';
 import * as Styles from './styles';
 
-export { Images, Styles }
+const ZodiacSignImages = Images.ZodiacSignImages;
+
+export { Images, Styles, ZodiacSignImages }

@@ -10,7 +10,7 @@ import Header from '../components/header';
 import ReportsHeader from '../components/reportsHeader';
 import Reports from '../components/reports';
 // import UserReport from '../components/userReport';
-// import ZodiacSignSelector from '../components/zodiacSignSelector';
+import ZodiacSignSelector from '../components/zodiacSignSelector';
 import { Interactors } from '../interactors';
 import { Styles } from '../resources';
 import { Locales } from '../locales';
@@ -58,6 +58,7 @@ class HomePage extends React.Component<HomePageProps, State> {
         return (
             <View style={styles.container}>
                 <Header title={Locales.get('horoscope')} />
+                <ZodiacSignSelector />
                 <View style={styles.content}>
                     <ReportsHeader title={Locales.get('horoscope')} menuOnSelect={this.onSelectPeriod.bind(this)} menuSelectedId={reports && reports.period} />
                     {reportsView}

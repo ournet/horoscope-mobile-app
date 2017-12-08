@@ -1,67 +1,73 @@
 
 import * as React from 'react';
-import { connect } from 'react-redux';
-import { View, Text, Modal, TouchableHighlight } from 'react-native'
-import { ZodiacSign } from '../../../domain';
-import { State } from '../../../data';
-import { ViewData, createViewData } from './ViewData';
-// import { Interactors } from '../../interactors';
-// temp solution
-import { Instance as interactors } from '../../interactors';
+import { View, Text, Modal, TouchableOpacity, StyleSheet } from 'react-native'
+import { ZodiacSign, createZodiacSign, ZodiacSignId } from '../../entities';
+import { Styles } from '../../resources';
+import ZodiacSignIcon from '../zodiacSignIcon';
 
 interface Props {
-    data?: ViewData
-    visible: boolean
-    // interactors: Interactors
+    selectedSign?: ZodiacSignId
+    onSelected?: (sign: ZodiacSignId) => void
 }
 
-const mapStateToProps = (state: State, props: Props): Partial<Props> => {
-    const data = props.data || state && createViewData(state.user);
-    return {
-        data,
-        visible: props.visible === true
-    };
-};
-
-class ZodiacSignSelector extends React.PureComponent<Props, State> {
-    selectZodiacSign(id: ZodiacSign) {
-        interactors.user.save({ zodiacSign: id });
-    }
-
-    onRequestClose() {
-        
-    }
-
+export default class ZodiacSignSelector extends React.PureComponent<Props> {
     render() {
-        const { zodiacSign, texts, zodiacSignsImages } = this.props.data;
+        const { selectedSign, onSelected } = this.props;
 
-        if (zodiacSign) {
-            return null;
+        function callOnSelected(sign: ZodiacSignId) {
+            if (onSelected) {
+                onSelected(sign);
+            }
         }
 
-        const buttons = zodiacSignsImages.map(image => (
-            <TouchableHighlight key={image.id} onPress={() => this.selectZodiacSign(image.id)}>
-                <Text>{image.id}</Text>
-            </TouchableHighlight>)
-        );
+        const buttons = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12].map((id: ZodiacSignId) => {
+            const sign = createZodiacSign(id);
+            return (
+                <TouchableOpacity key={sign.id} onPress={() => callOnSelected(id)}>
+                    <View style={styles.signButtom}>
+                        <View style={styles.signIcon}>
+                            <ZodiacSignIcon width={40} sign={id} />
+                        </View>
+                        <Text style={styles.signName}>{sign.name}</Text>
+                        <Text style={styles.signDate}>{sign.date.toString()}</Text>
+                    </View>
+                </TouchableOpacity>)
+        });
 
         return (
-            <View style={{ marginTop: 22 }}>
-                <Modal onRequestClose={this.onRequestClose}
-                    animationType="slide"
-                    transparent={false}
-                    visible={true}>
-                    <View style={{ marginTop: 22 }}>
-                        <View>
-                            <Text>{texts.selectYourZodiacSign}</Text>
-
-                            {buttons}
-                        </View>
-                    </View>
-                </Modal>
+            <View style={styles.container}>
+                {buttons}
             </View>
         );
     }
 }
 
-export default connect<Partial<Props>>(mapStateToProps)(ZodiacSignSelector);
+const styles = StyleSheet.create({
+    container: {
+        flex: 1,
+        flexWrap: 'wrap',
+        flexDirection: 'row',
+        alignItems: 'stretch',
+        justifyContent: 'space-around',
+        padding: Styles.paddingSize,
+    },
+    signButtom: {
+        width: 100,
+        height: 100,
+        flexDirection: 'column',
+        alignItems: 'center',
+        justifyContent: 'center',
+        // paddingBottom: Styles.paddingSize,
+        // flexGrow: 1,
+    },
+    signIcon: {
+        paddingBottom: Styles.paddingSize / 2,
+    },
+    signName: {
+        fontWeight: 'bold',
+    },
+    signDate: {
+        color: Styles.muteColor,
+        fontSize: 12
+    },
+});
