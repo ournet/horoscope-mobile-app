@@ -1,14 +1,14 @@
 
 import * as React from 'react';
 import { View, Text, StyleSheet } from 'react-native';
-import { Styles } from '../../resources';
+import { Styles } from '../resources';
 
 interface Props {
     message: string
     type: 'danger' | 'info'
 }
 
-export default class Message extends React.PureComponent<Props> {
+export class Message extends React.PureComponent<Props> {
     render() {
         const { message, type } = this.props;
         const style = type === 'danger' ? dangerStyle : infoStyle;

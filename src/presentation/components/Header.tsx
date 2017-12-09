@@ -1,8 +1,9 @@
 
 import * as React from 'react';
 import { View, Text, StyleSheet } from 'react-native'
-import { State } from '../../../data';
-import { Styles, Images } from '../../resources';
+import { State } from '../data/state';
+import { Styles, Images } from '../resources';
+
 const SVG = require('react-native-svg');
 const Svg = SVG.Svg;
 const Path = SVG.Path;
@@ -12,7 +13,7 @@ interface Props {
     // date: string
 }
 
-export default class Header extends React.PureComponent<Props, State> {
+export class Header extends React.PureComponent<Props, State> {
     render() {
         const { title } = this.props;
 

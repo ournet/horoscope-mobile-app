@@ -1,7 +1,7 @@
 
 import * as React from 'react';
 import { View, TouchableOpacity, Text, StyleSheet } from 'react-native';
-import { Styles } from '../../resources';
+import { Styles } from '../resources';
 
 interface Props {
     tabs: { text: string, id: string }[]
@@ -9,7 +9,7 @@ interface Props {
     onSelect: (selectedId: string) => void
 }
 
-export default class TabMenu extends React.PureComponent<Props> {
+export class TabMenu extends React.PureComponent<Props> {
     private onPressItem(id: string) {
         this.props.onSelect(id);
     }

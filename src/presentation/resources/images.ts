@@ -1,5 +1,5 @@
 
-import { ZodiacSign } from '../../domain';
+import { ZodiacSignId } from '../../domain';
 
 export type SvgPathInfo = {
     d: string
@@ -12,7 +12,7 @@ export type SvgInfo = {
 }
 
 export type ZodiacSignImage = {
-    readonly id: ZodiacSign
+    readonly id: ZodiacSignId
     readonly src?: string
     readonly svg?: SvgInfo
 }
@@ -114,7 +114,7 @@ function createZodiacSignImages() {
     return {
         map() { return map },
         list() { return list },
-        one(id: ZodiacSign) {
+        one(id: ZodiacSignId) {
             return map[id];
         }
     }

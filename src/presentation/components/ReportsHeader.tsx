@@ -3,11 +3,11 @@ import * as React from 'react';
 // import { connect } from 'react-redux';
 import { View, Text, StyleSheet } from 'react-native'
 // import { State } from '../../../data';
-import ZodiacSignIcon from '../zodiacSignIcon';
-import { Styles } from '../../resources';
-import { convertDateToPeriod } from '../../utils';
-import { Locales } from '../../locales';
-import TabMenu from '../tabMenu';
+import { ZodiacSignIcon } from './ZodiacSignIcon';
+import { Styles } from '../resources';
+import { convertDateToPeriod } from '../utils';
+import { Locales } from '../locales';
+import { TabMenu } from './TabMenu';
 
 interface Props {
     title: string
@@ -16,7 +16,7 @@ interface Props {
     menuSelectedId?: string
 }
 
-export default class ReportsHeader extends React.PureComponent<Props> {
+export class ReportsHeader extends React.PureComponent<Props> {
     render() {
         const { title, menuOnSelect, menuSelectedId } = this.props;
 

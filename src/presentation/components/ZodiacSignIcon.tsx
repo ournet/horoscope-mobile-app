@@ -1,11 +1,10 @@
 
 import * as React from 'react';
-// import { View, Text } from 'react-native'
-import { State } from '../../../data';
-// import { ZodiacSign as ZodiacSignId } from '../../../domain';
-import { ZodiacSignId } from '../../entities';
-import { Images, Styles } from '../../resources';
+import { State } from '../data/state';
+import { ZodiacSignId } from '../data/entities';
+import { Images, Styles } from '../resources';
 import { View } from 'react-native';
+
 const SVG = require('react-native-svg');
 const Svg = SVG.Svg;
 const Path = SVG.Path;
@@ -19,7 +18,7 @@ interface ZodiacSignProps {
     backgroundColor?: string
 }
 
-export default class ZodiacSignIcon extends React.PureComponent<ZodiacSignProps, State> {
+export class ZodiacSignIcon extends React.PureComponent<ZodiacSignProps, State> {
     render() {
         let { width, height, color, sign, borderColor, backgroundColor } = this.props;
         width = width || 50;

@@ -2,33 +2,38 @@
 import * as React from 'react';
 import { connect } from 'react-redux';
 import { View, Text, ScrollView, StyleSheet } from 'react-native';
-import { State } from '../../../data';
-import { ReportsViewData, createReportsViewData } from './ReportsViewData';
-import ReportItem from '../reportItem';
-import { Interactors } from '../../interactors';
-import { Styles } from '../../resources';
-import { Locales } from '../../locales';
+import { State } from '../data/state';
+import { ReportItem } from './ReportItem';
+import { Interactors } from '../interactors';
+import { Styles } from '../resources';
+import { Locales } from '../locales';
+import { ReportItemViewData, createReportItemViewData } from './ReportItem';
+import { ReportsState } from '../../data/reports/state';
+
+export interface ReportsViewData {
+    items: ReportItemViewData[]
+    isLoading: boolean
+    error?: string
+    period?: string
+}
+
+export function createReportsViewData(state: ReportsState): ReportsViewData {
+    const viewData: ReportsViewData = { isLoading: state.isLoading, items: [], period: state.period };
+    if (state.error) {
+        viewData.error = state.error.message;
+    }
+    else if (state.data && state.data.reports) {
+        viewData.items = state.data.reports.map(createReportItemViewData)
+    }
+    return viewData;
+}
 
 interface ReportsProps extends ReportsViewData {
 }
 
-// const mapStateToProps = (state: State, props: ReportsProps): Partial<ReportsProps> => {
-//     return {
-//         data: props.data || state && state.reports && createReportsViewData(state.reports),
-//         interactors: props.interactors
-//     };
-// };
-
-export default class Reports extends React.PureComponent<ReportsProps, State> {
+export class Reports extends React.PureComponent<ReportsProps, State> {
     render() {
         const { items, error, isLoading } = this.props;
-        // if (error) {
-        //     return (
-        //         <View>
-        //             <Text>Error: {error}</Text>
-        //         </View>
-        //     );
-        // }
 
         if (isLoading) {
             return (
@@ -55,8 +60,6 @@ export default class Reports extends React.PureComponent<ReportsProps, State> {
         );
     }
 }
-
-// export default connect<Partial<ReportsProps>>(mapStateToProps)(Reports);
 
 const styles = StyleSheet.create({
     container: {
@@ -88,4 +91,4 @@ const styles = StyleSheet.create({
         fontWeight: 'bold',
         textAlign: 'center',
     },
-})
+});

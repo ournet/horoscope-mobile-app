@@ -1,16 +1,16 @@
 
 import * as React from 'react';
 import { View, Text, Modal, TouchableOpacity, StyleSheet } from 'react-native'
-import { ZodiacSign, createZodiacSign, ZodiacSignId } from '../../entities';
-import { Styles } from '../../resources';
-import ZodiacSignIcon from '../zodiacSignIcon';
+import { ZodiacSign, createZodiacSign, ZodiacSignId } from '../data/entities';
+import { Styles } from '../resources';
+import { ZodiacSignIcon } from './ZodiacSignIcon';
 
 interface Props {
     selectedSign?: ZodiacSignId
     onSelected?: (sign: ZodiacSignId) => void
 }
 
-export default class ZodiacSignSelector extends React.PureComponent<Props> {
+export class ZodiacSignSelector extends React.PureComponent<Props> {
     render() {
         const { selectedSign, onSelected } = this.props;
 

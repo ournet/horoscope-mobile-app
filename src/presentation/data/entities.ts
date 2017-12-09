@@ -1,11 +1,11 @@
 
-import { ZodiacSign as ZodiacSignId } from '../domain';
-import { Locales } from './locales';
-import { momentDate } from './utils';
+import { ZodiacSignId } from '../../domain';
+import { Locales } from '../locales';
+import { momentDate } from '../utils';
 
 export { ZodiacSignId }
 
-const ZODIAC_DATE_MAP: { [sign: number]: ZodiacSignDate } = require('./resources/zodiacSignDates.json');
+const ZODIAC_DATE_MAP: { [sign: number]: ZodiacSignDate } = require('../resources/zodiacSignDates.json');
 
 export interface ZodiacSignDate {
     readonly startDay: number

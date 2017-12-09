@@ -1,4 +1,4 @@
 
 export * from './HoroscopeReport';
-export * from './ZodiacSign';
+export * from './ZodiacSignId';
 export * from './User';

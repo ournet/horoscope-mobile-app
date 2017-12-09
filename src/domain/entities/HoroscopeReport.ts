@@ -1,11 +1,11 @@
 
-import { ZodiacSign } from './ZodiacSign';
+import { ZodiacSignId } from './ZodiacSignId';
 
 export interface HoroscopeReport {
     id: string
     period: string
     text: string
-    sign: ZodiacSign
+    sign: ZodiacSignId
 }
 
 export interface HoroscopeReports {

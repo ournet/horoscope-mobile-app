@@ -1,16 +1,31 @@
 
 import * as React from 'react';
 import { View, Text, StyleSheet } from 'react-native'
-import { State } from '../../../data';
-import { ReportItemViewData } from './ReportItemViewData';
-import ZodiacSignIcon from '../zodiacSignIcon';
-import { Styles } from '../../resources';
+import { State } from '../data/state';
+import { ZodiacSignIcon } from './ZodiacSignIcon';
+import { Styles } from '../resources';
+import { createZodiacSign, ZodiacSign } from '../data/entities';
+import { HoroscopeReport } from '../../domain';
+
+export interface ReportItemViewData {
+    id: string
+    text: string
+    sign: ZodiacSign
+}
+
+export function createReportItemViewData(report: HoroscopeReport): ReportItemViewData {
+    return {
+        id: report.id,
+        text: report.text.split(/\n/g)[0].trim(),
+        sign: createZodiacSign(report.sign)
+    }
+}
 
 interface ReportItemProps {
     report: ReportItemViewData
 }
 
-export default class ReportItem extends React.PureComponent<ReportItemProps, State> {
+export class ReportItem extends React.PureComponent<ReportItemProps, State> {
     render() {
         const { sign, text } = this.props.report;
 
