@@ -5,7 +5,6 @@ import { Text, View, StyleSheet } from 'react-native';
 import { State } from '../data/state';
 import { Config } from '../Config';
 
-import { Header } from '../components/Header';
 import { ReportsHeader } from '../components/ReportsHeader';
 import { Reports, ReportsViewData, createReportsViewData } from '../components/Reports';
 import { ZodiacSignSelector } from '../components/ZodiacSignSelector';
@@ -16,54 +15,50 @@ import { Styles } from '../resources';
 import { Locales } from '../locales';
 import { convertDateToPeriod } from '../utils';
 import { Analytics } from '../analytics';
+import { BaseScreen, BaseScreenProps } from './BaseScreen';
 
-interface Props {
+interface Props extends BaseScreenProps {
     reports?: ReportsViewData
-    // userReport?: UserReportViewData
-    interactors: Interactors
 }
 
 const mapStateToProps = (state: State, props: Props): Partial<Props> => {
     return {
         reports: state && state.reports && createReportsViewData(state.reports),
-        // userReport: state && createUserReportViewData(state),
-        interactors: props.interactors
+        interactors: props.interactors,
     };
 };
 
-class HomeScreen extends React.Component<Props, State> {
+class ReportsScreen extends BaseScreen<Props> {
     constructor(props: Props, state: State) {
         super(props, state);
 
         if (!state || !state.reports) {
-            this.changeReportsPeriod(convertDateToPeriod(new Date()));
+            this.actionGetReports();
         }
-    }
-
-    changeReportsPeriod(period: string) {
-        const lang = this.state && this.state.user && this.state.user.data.language || Config.CurrentLanguage;
-        this.props.interactors.reports.get({ period: period, lang: lang });
     }
 
     onSelectPeriod(period: string) {
         Analytics.trackEvent('User', 'change-period', { label: period.substr(0, 1), value: parseInt(period.substr(1)) });
-        return this.changeReportsPeriod(period);
+        return this.actionGetReports(period);
     }
 
-    render() {
+    innerRender() {
         const { interactors, reports } = this.props;
         const reportsView = reports && <Reports items={reports.items} isLoading={reports.isLoading} error={reports.error} /> || null;
 
-        return (
+        const header = { title: Locales.get('horoscope') }
+
+        const body =
             <View style={styles.content}>
-                <ReportsHeader title={Locales.get('horoscope')} menuOnSelect={this.onSelectPeriod.bind(this)} menuSelectedId={reports && reports.period} />
+                <ReportsHeader menuOnSelect={this.onSelectPeriod.bind(this)} menuSelectedId={reports && reports.period} />
                 {reportsView}
             </View>
-        );
+
+        return { header, body };
     }
 }
 
-export default connect<Partial<Props>>(mapStateToProps)(HomeScreen) as any;
+export default connect<Partial<Props>>(mapStateToProps)(ReportsScreen) as any;
 
 const styles = StyleSheet.create({
     content: {

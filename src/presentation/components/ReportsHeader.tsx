@@ -10,7 +10,7 @@ import { Locales } from '../locales';
 import { TabMenu } from './TabMenu';
 
 interface Props {
-    title: string
+    // title: string
     // period: string
     menuOnSelect: (selectedId: string) => void
     menuSelectedId?: string
@@ -18,7 +18,7 @@ interface Props {
 
 export class ReportsHeader extends React.PureComponent<Props> {
     render() {
-        const { title, menuOnSelect, menuSelectedId } = this.props;
+        const { menuOnSelect, menuSelectedId } = this.props;
 
         const currentDate = new Date();
         const tomorrowDate = new Date();
@@ -39,10 +39,7 @@ export class ReportsHeader extends React.PureComponent<Props> {
 
         return (
             <View style={styles.container}>
-                <Text style={styles.title}>{title}</Text>
-                <View style={styles.menu}>
-                    <TabMenu tabs={dateTabs} onSelect={menuOnSelect} selectedId={menuSelectedId} />
-                </View>
+                <TabMenu tabs={dateTabs} onSelect={menuOnSelect} selectedId={menuSelectedId} />
             </View>
         );
     }
@@ -53,8 +50,8 @@ const styles = StyleSheet.create({
         flexDirection: 'row',
         marginTop: Styles.paddingSize * 2,
         marginBottom: Styles.paddingSize * 2,
-        // alignItems: 'center',
-        justifyContent: 'space-between',
+        alignItems: 'center',
+        justifyContent: 'center',
     },
     menu: {
 

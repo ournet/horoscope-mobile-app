@@ -4,19 +4,17 @@ import { Config } from './Config';
 import { Store } from 'redux';
 import { createHoroscopeReportsInteractor, HoroscopeReportsInteractor, createUserInteractor, UserInteractor } from '../domain';
 import { createReduxReportsGateway, createCacheStorage, createReduxUserGateway } from '../data';
+import { createNavigationInteractor, NavigationInteractor } from './data/navigation/interactor';
 import { State } from './data/state';
 import { Analytics } from './analytics';
 
 export interface Interactors {
     readonly reports: HoroscopeReportsInteractor
     readonly user: UserInteractor
+    readonly navigation: NavigationInteractor
 }
 
 let Instance: Interactors;
-
-export function getInstance() {
-    return Instance;
-}
 
 export function configureInteractors(store: Store<State>) {
 
@@ -39,10 +37,12 @@ export function configureInteractors(store: Store<State>) {
     });
 
     const userInteractor = createUserInteractor(userGateway);
+    const navigationInteractor = createNavigationInteractor({ dispatch: store.dispatch, getState: store.getState });
 
     Instance = {
         reports: reportsInteractor,
-        user: userInteractor
+        user: userInteractor,
+        navigation: navigationInteractor,
     };
 
     return Instance;

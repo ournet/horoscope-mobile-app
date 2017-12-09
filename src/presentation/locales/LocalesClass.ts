@@ -7,6 +7,7 @@ type KEYS =
     'no_data_error' |
     'today' |
     'tomorrow' |
+    'select_your_sign' |
     'weekly' |
     'sign_1' |
     'sign_2' |
