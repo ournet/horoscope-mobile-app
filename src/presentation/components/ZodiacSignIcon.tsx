@@ -10,9 +10,8 @@ const Svg = SVG.Svg;
 const Path = SVG.Path;
 
 interface ZodiacSignProps {
-    sign: ZodiacSignId
-    width?: number
-    height?: number
+    signId: ZodiacSignId
+    size?: number
     color?: string
     borderColor?: string
     backgroundColor?: string
@@ -20,27 +19,31 @@ interface ZodiacSignProps {
 
 export class ZodiacSignIcon extends React.PureComponent<ZodiacSignProps, State> {
     render() {
-        let { width, height, color, sign, borderColor, backgroundColor } = this.props;
-        width = width || 50;
-        height = height || width;
+        let { size, color, signId, borderColor, backgroundColor } = this.props;
+        size = size || 50;
         color = color || Styles.accentColor;
         borderColor = borderColor || Styles.darkLayoutColor;
         backgroundColor = backgroundColor || Styles.whiteColor;
-        const imageInfo = Images.ZodiacSignImages.one(sign);
-        const paths = imageInfo.svg.paths.map((item, i) => <Path key={i} d={item.d} fill={color} fill-rule="evenodd" />);
+        const imageInfo = Images.ZodiacSignImages.one(signId);
+        let paths: any[] = [];
+        if (imageInfo) {
+            paths = imageInfo.svg.paths.map((item, i) => <Path key={i} d={item.d} fill={color} fill-rule="evenodd" />);
+        }
+
+        const sizeDiff = Math.round((size / 100) * 40);
 
         return (
             <View style={{
                 flexDirection: 'row',
                 alignItems: 'center',
                 justifyContent: 'center',
-                height, width,
+                height: size, width: size,
                 borderWidth: 3,
                 borderColor,
-                borderRadius: width,
+                borderRadius: size,
                 backgroundColor: backgroundColor,
             }}>
-                <Svg x="0" y="0" height={height - 18} width={width - 18} viewBox={imageInfo.svg.viewBox}>
+                <Svg x="0" y="0" height={size - sizeDiff} width={size - sizeDiff} viewBox={imageInfo && imageInfo.svg.viewBox}>
                     {paths}
                 </Svg>
             </View>

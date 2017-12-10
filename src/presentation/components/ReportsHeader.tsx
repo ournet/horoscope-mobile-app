@@ -8,6 +8,7 @@ import { Styles } from '../resources';
 import { convertDateToPeriod } from '../utils';
 import { Locales } from '../locales';
 import { TabMenu } from './TabMenu';
+import { formatHeaderDates } from '../helpers';
 
 interface Props {
     // title: string
@@ -20,22 +21,7 @@ export class ReportsHeader extends React.PureComponent<Props> {
     render() {
         const { menuOnSelect, menuSelectedId } = this.props;
 
-        const currentDate = new Date();
-        const tomorrowDate = new Date();
-        tomorrowDate.setDate(tomorrowDate.getDate() + 1);
-        const dateTabs = [
-            {
-                id: convertDateToPeriod(currentDate),
-                text: Locales.get('today')
-            },
-            {
-                id: convertDateToPeriod(tomorrowDate),
-                text: Locales.get('tomorrow')
-            },
-            {
-                id: convertDateToPeriod(tomorrowDate, 'W'),
-                text: Locales.get('weekly')
-            }];
+        const dateTabs = formatHeaderDates();
 
         return (
             <View style={styles.container}>

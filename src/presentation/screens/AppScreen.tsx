@@ -10,6 +10,7 @@ import { Header } from '../components/Header';
 import ReportsScreen from './ReportsScreen';
 import StartScreen from './StartScreen';
 import SelectSignScreen from './SelectSignScreen';
+import SignScreen from './SignScreen';
 
 import { Interactors } from '../interactors';
 import { Styles } from '../resources';
@@ -44,6 +45,8 @@ class MainScreen extends React.Component<Props, State> {
                 return <ReportsScreen interactors={interactors} navigation={navigation} />
             case NavigationRouteKey.SELECT_SIGN:
                 return <SelectSignScreen interactors={interactors} navigation={navigation} />
+            case NavigationRouteKey.SIGN:
+                return <SignScreen interactors={interactors} navigation={navigation} />
         }
     }
 

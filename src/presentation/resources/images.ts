@@ -115,7 +115,7 @@ function createZodiacSignImages() {
         map() { return map },
         list() { return list },
         one(id: ZodiacSignId) {
-            return map[id];
+            return id && map[id];
         }
     }
 }

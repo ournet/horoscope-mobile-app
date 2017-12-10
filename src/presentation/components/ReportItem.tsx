@@ -13,10 +13,10 @@ export interface ReportItemViewData {
     sign: ZodiacSign
 }
 
-export function createReportItemViewData(report: HoroscopeReport): ReportItemViewData {
+export function createReportItemViewData(report: HoroscopeReport, truncate: boolean = true): ReportItemViewData {
     return {
         id: report.id,
-        text: report.text.split(/\n/g)[0].trim(),
+        text: truncate ? report.text.split(/\n/g)[0].trim() : report.text,
         sign: createZodiacSign(report.sign)
     }
 }
@@ -33,7 +33,7 @@ export class ReportItem extends React.PureComponent<ReportItemProps, State> {
             <View style={styles.container}>
                 <View style={styles.sign}>
                     <View style={styles.icon}>
-                        <ZodiacSignIcon sign={sign.id} />
+                        <ZodiacSignIcon signId={sign.id} />
                     </View>
                     <Text style={styles.signTitle}>{sign.name}</Text>
                 </View>

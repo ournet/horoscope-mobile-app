@@ -1,6 +1,6 @@
 
 import * as React from 'react';
-import { View, Text, Modal, TouchableOpacity, StyleSheet } from 'react-native'
+import { View, Text, Modal, TouchableOpacity, StyleSheet, ScrollView } from 'react-native'
 import { ZodiacSign, createZodiacSign, ZodiacSignId } from '../data/entities';
 import { Styles } from '../resources';
 import { ZodiacSignIcon } from './ZodiacSignIcon';
@@ -26,7 +26,7 @@ export class ZodiacSignSelector extends React.PureComponent<Props> {
                 <TouchableOpacity key={sign.id} onPress={() => callOnSelected(id)}>
                     <View style={styles.signButtom}>
                         <View style={styles.signIcon}>
-                            <ZodiacSignIcon width={40} sign={id} />
+                            <ZodiacSignIcon size={40} signId={id} />
                         </View>
                         <Text style={styles.signName}>{sign.name}</Text>
                         <Text style={styles.signDate}>{sign.date.toString()}</Text>
@@ -36,7 +36,9 @@ export class ZodiacSignSelector extends React.PureComponent<Props> {
 
         return (
             <View style={styles.container}>
-                {buttons}
+                <ScrollView>
+                    {buttons}
+                </ScrollView>
             </View>
         );
     }

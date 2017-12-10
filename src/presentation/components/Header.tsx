@@ -50,10 +50,11 @@ export class Header extends React.PureComponent<Props, State> {
 const styles = StyleSheet.create({
     container: {
         // height: 60
+        // backgroundColor: Styles.darkLayoutColor,
     },
     topline: {
         flexDirection: 'row',
-        height: 5
+        height: 20
     },
     toplineItem: {
         flex: 1
@@ -86,12 +87,12 @@ const styles = StyleSheet.create({
         flexDirection: 'row',
         // for iOS
         paddingTop: 20,
-        height: 50,
+        height: 30,
         alignItems: 'center',
         paddingLeft: Styles.paddingSize,
         paddingRight: Styles.paddingSize,
         marginBottom: Styles.paddingSize * 2,
-        // backgroundColor: Styles.primaryColor
+        // backgroundColor: Styles.darkLayoutColor,
     },
     logo: {
         // textAlign: 'center',
