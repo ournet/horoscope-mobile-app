@@ -23,7 +23,7 @@ export function createReportsViewData(state: ReportsState): ReportsViewData {
         viewData.error = state.error.message;
     }
     else if (state.data && state.data.reports) {
-        viewData.items = state.data.reports.map(createReportItemViewData)
+        viewData.items = state.data.reports.map(item => createReportItemViewData(item))
     }
     return viewData;
 }

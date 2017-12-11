@@ -1,7 +1,7 @@
 
 import * as React from 'react';
 import { connect } from 'react-redux';
-import { Text, View, StyleSheet } from 'react-native';
+import { Text, View, StyleSheet, ScrollView } from 'react-native';
 import { State } from '../data/state';
 import { Config } from '../Config';
 
@@ -46,7 +46,9 @@ export abstract class BaseScreen<P extends BaseScreenProps> extends React.Compon
             <View style={styles.container}>
                 {header}
                 <View style={styles.content}>
-                    {body}
+                    <ScrollView>
+                        {body}
+                    </ScrollView>
                 </View>
             </View>
         );

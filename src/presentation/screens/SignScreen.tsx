@@ -19,6 +19,7 @@ import { ReportsViewData, createReportsViewData } from '../components/Reports';
 import { UserState } from '../../data';
 import { ReportItem } from '../components/ReportItem';
 import { Message } from '../components/Message';
+import { getMainReportStatsColor } from '../helpers';
 
 interface Props extends BaseScreenProps {
     user?: UserState
@@ -57,7 +58,7 @@ class SignScreen extends BaseScreen<Props> {
 
         const reportItem = sign && reports && reports.items && reports.items.find(item => item.sign.id === sign.id)
 
-        const report = reportItem && <ReportItem report={reportItem} />
+        const report = reportItem && <ReportItem noSign={true} report={reportItem} />
         let message = null;
         if (!report) {
             const error = user && user.error || reports && reports.error;
@@ -68,9 +69,11 @@ class SignScreen extends BaseScreen<Props> {
             }
         }
 
+        const signBorgerColor = reportItem && getMainReportStatsColor(reportItem.stats);
+
         const body =
             <View style={styles.content}>
-                <SignHeader sign={sign} menuOnSelect={this.onSelectPeriod.bind(this)} menuSelectedId={reports && reports.period} />
+                <SignHeader signBorgerColor={signBorgerColor} sign={sign} menuOnSelect={this.onSelectPeriod.bind(this)} menuSelectedId={reports && reports.period} />
                 <View style={styles.report}>
                     <ScrollView>
                         {message}

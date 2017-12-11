@@ -9,24 +9,25 @@ import { convertDateToPeriod } from '../utils';
 import { Locales } from '../locales';
 import { TabMenu } from './TabMenu';
 import { ZodiacSign } from '../data/entities';
-import { formatHeaderDates } from '../helpers';
+import { formatHeaderDates, getMainReportStatsColor } from '../helpers';
 
 interface Props {
     sign: ZodiacSign
     menuOnSelect: (selectedId: string) => void
     menuSelectedId?: string
+    signBorgerColor?: string
 }
 
 export class SignHeader extends React.PureComponent<Props> {
     render() {
-        const { sign, menuOnSelect, menuSelectedId } = this.props;
+        const { sign, menuOnSelect, menuSelectedId, signBorgerColor } = this.props;
 
         const dateTabs = formatHeaderDates();
 
         return (
             <View style={styles.container}>
                 <View style={styles.signIcon}>
-                    <ZodiacSignIcon signId={sign && sign.id || null} size={80} />
+                    <ZodiacSignIcon borderColor={signBorgerColor} signId={sign && sign.id || null} size={80} />
                 </View>
                 <Text style={styles.signName}>{sign && sign.name && sign.name.toUpperCase() || '...'}</Text>
                 <Text style={styles.signDate}>{sign && sign.date.toString('long') || '...'}</Text>
@@ -57,6 +58,7 @@ const styles = StyleSheet.create({
     signName: {
         fontWeight: 'bold',
         fontSize: 20,
+        color: Styles.textColor,
     },
     signDate: {
         color: Styles.muteColor,

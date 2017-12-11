@@ -8,6 +8,10 @@ type KEYS =
     'today' |
     'tomorrow' |
     'select_your_sign' |
+    'lucky_numbers' |
+    'health' |
+    'love' |
+    'success' |
     'weekly' |
     'sign_1' |
     'sign_2' |

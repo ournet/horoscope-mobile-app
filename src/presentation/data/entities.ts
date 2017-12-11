@@ -1,9 +1,9 @@
 
-import { ZodiacSignId } from '../../domain';
+import { ZodiacSignId, HoroscopeReportStats } from '../../domain';
 import { Locales } from '../locales';
 import { momentDate } from '../utils';
 
-export { ZodiacSignId }
+export { ZodiacSignId, HoroscopeReportStats }
 
 const ZODIAC_DATE_MAP: { [sign: number]: ZodiacSignDate } = require('../resources/zodiacSignDates.json');
 

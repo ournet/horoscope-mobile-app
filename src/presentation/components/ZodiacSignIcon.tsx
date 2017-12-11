@@ -38,7 +38,7 @@ export class ZodiacSignIcon extends React.PureComponent<ZodiacSignProps, State> 
                 alignItems: 'center',
                 justifyContent: 'center',
                 height: size, width: size,
-                borderWidth: 3,
+                borderWidth: 4,
                 borderColor,
                 borderRadius: size,
                 backgroundColor: backgroundColor,

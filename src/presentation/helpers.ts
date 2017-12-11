@@ -1,6 +1,7 @@
 
 import { convertDateToPeriod } from './utils';
 import { Locales } from './locales';
+import { Styles } from './resources';
 
 export function formatHeaderDates(startDate?: Date) {
     startDate = startDate || new Date();
@@ -22,4 +23,23 @@ export function formatHeaderDates(startDate?: Date) {
         }];
 
     return dateTabs;
+}
+
+export function getMainReportStatsColor(stats:
+    { health: number, love: number, success: number, [key: string]: number }): string {
+
+    if (!stats) {
+        return Styles.darkLayoutColor;
+    }
+
+    const max = Math.max(stats.health, stats.love, stats.success);
+    const key = Object.keys(stats).find(key => stats[key] === max);
+
+    switch (key) {
+        case 'health': return Styles.healthColor;
+        case 'love': return Styles.loveColor;
+        case 'success': return Styles.successColor;
+    }
+
+    return Styles.darkLayoutColor;
 }
