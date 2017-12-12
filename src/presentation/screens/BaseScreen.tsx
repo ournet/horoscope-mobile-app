@@ -1,7 +1,7 @@
 
 import * as React from 'react';
 import { connect } from 'react-redux';
-import { Text, View, StyleSheet, ScrollView } from 'react-native';
+import { Text, View, StyleSheet, ScrollView, BackHandler } from 'react-native';
 import { State } from '../data/state';
 import { Config } from '../Config';
 
@@ -25,15 +25,30 @@ export interface HeaderOptions {
 }
 
 export abstract class BaseScreen<P extends BaseScreenProps> extends React.Component<P, State> {
-    // constructor(props: P, state: State) {
-    //     super(props, state);
-    // }
+    constructor(props: P, state: State) {
+        super(props, state)
+        this.handleBackButtonClick = this.handleBackButtonClick.bind(this);
+    }
 
-    // protected getNavigation(): NavigationRoute {
-    //     return this.props.navigation || this.state && this.state.navigation && this.state.navigation.route;
-    // }
+    componentWillMount() {
+        BackHandler.addEventListener('hardwareBackPress', this.handleBackButtonClick);
+    }
 
-    // protected headerOptions: HeaderOptions = { visible: true }
+    componentWillUnmount() {
+        BackHandler.removeEventListener('hardwareBackPress', this.handleBackButtonClick);
+    }
+
+    handleBackButtonClick() {
+        const { navigation, interactors } = this.props;
+
+        if (navigation.previous) {
+            interactors.navigation.goBack()
+        } else {
+            BackHandler.exitApp()
+        }
+
+        return true;
+    }
 
     render() {
         const content = this.innerRender();

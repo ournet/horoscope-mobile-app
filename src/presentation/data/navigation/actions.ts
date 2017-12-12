@@ -4,6 +4,7 @@ import { NavigationRoute } from './route';
 export enum NavigationActionTypes {
     NAVIGATE = 'NAV_NAVIGATE',
     REPLACE = 'NAV_REPLACE',
+    GO_BACK = 'NAV_BACK',
 }
 
 export interface NavigationAction {
@@ -27,5 +28,12 @@ export function replace(route: NavigationRoute)
     return {
         type: NavigationActionTypes.REPLACE,
         route: route
+    };
+}
+
+export function goBack()
+    : NavigationAction {
+    return {
+        type: NavigationActionTypes.GO_BACK
     };
 }

@@ -6,7 +6,8 @@ import { NavigationRouteKey, START_ROUTE_KEY } from './route';
 export function navigateReducer<A extends NavigateAction>(state: NavigationState, action: A): NavigationState {
     const currentRoute = state && state.route;
     const previousRoute = currentRoute && currentRoute.previous;
-    const isBack = currentRoute && previousRoute && previousRoute.key === action.route.key;
+    const isBack = currentRoute && previousRoute && action.route && previousRoute.key === action.route.key;
+
     switch (action.type) {
 
         case NavigationActionTypes.NAVIGATE:
@@ -21,7 +22,13 @@ export function navigateReducer<A extends NavigateAction>(state: NavigationState
             }
             return { route: action.route };
 
-        default:
-            return state || { route: { key: START_ROUTE_KEY } };
+        case NavigationActionTypes.GO_BACK:
+            if (previousRoute) {
+                return { route: previousRoute };
+            }
+
+        // default:
+        // return state || { route: { key: START_ROUTE_KEY } };
     }
+    return state || { route: { key: START_ROUTE_KEY } };
 }
