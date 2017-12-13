@@ -63,8 +63,5 @@ export default connect<Partial<Props>>(mapStateToProps)(ReportsScreen) as any;
 const styles = StyleSheet.create({
     content: {
         flex: 1,
-        paddingLeft: Styles.paddingSize,
-        paddingRight: Styles.paddingSize,
-        backgroundColor: Styles.layoutColor,
     }
 });

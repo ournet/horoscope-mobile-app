@@ -13,6 +13,10 @@ type KEYS =
     'love' |
     'success' |
     'weekly' |
+    'home' |
+    'my_sign' |
+    'all_signs' |
+    'settings' |
     'sign_1' |
     'sign_2' |
     'sign_3' |

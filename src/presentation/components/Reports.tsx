@@ -53,9 +53,7 @@ export class Reports extends React.PureComponent<ReportsProps, State> {
 
         return (
             <View style={styles.container}>
-                <ScrollView>
-                    {items.map(item => <ReportItem key={item.id} report={item} />)}
-                </ScrollView>
+                {items.map(item => <ReportItem noNumbers={true} noStats={true} key={item.id} report={item} />)}
             </View>
         );
     }

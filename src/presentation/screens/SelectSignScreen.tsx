@@ -31,19 +31,8 @@ export default class SelectSignScreen extends BaseScreen<Props> {
         const header = { title: Locales.get('select_your_sign') };
 
         const body =
-            <View style={styles.content}>
-                <ZodiacSignSelector onSelected={this.onSelectSign.bind(this)} />
-            </View>
+            <ZodiacSignSelector onSelected={this.onSelectSign.bind(this)} />
 
         return { header, body };
     }
 }
-
-const styles = StyleSheet.create({
-    content: {
-        flex: 1,
-        paddingLeft: Styles.paddingSize,
-        paddingRight: Styles.paddingSize,
-        backgroundColor: Styles.layoutColor,
-    }
-});

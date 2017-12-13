@@ -14,6 +14,10 @@ export function navigateReducer<A extends NavigateAction>(state: NavigationState
             if (!isBack) {
                 action.route.previous = currentRoute;
             }
+            // is HOME page
+            if (action.route.key === NavigationRouteKey.SIGN) {
+                action.route.previous = null;
+            }
             return { route: action.route };
 
         case NavigationActionTypes.REPLACE:

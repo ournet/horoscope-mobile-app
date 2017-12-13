@@ -50,12 +50,24 @@ export abstract class BaseScreen<P extends BaseScreenProps> extends React.Compon
         return true;
     }
 
+    onNavigate(route: NavigationRoute) {
+        const currentKey = this.props.navigation.key;
+        const prevKey = this.props.navigation.previous && this.props.navigation.previous.key;
+        if (route.key === currentKey) {
+            return;
+        }
+        if (route.key === prevKey) {
+            return this.props.interactors.navigation.goBack();
+        }
+        this.props.interactors.navigation.navigate(route);
+    }
+
     render() {
         const content = this.innerRender();
         const body = content.body;
         let header: any = null;
         if (content.header && content.header.visible !== false) {
-            header = <Header title={content.header.title} />;
+            header = <Header route={this.props.navigation} onNavigate={this.onNavigate.bind(this)} title={content.header.title} />;
         }
         return (
             <View style={styles.container}>

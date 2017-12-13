@@ -22,10 +22,10 @@ export interface ReportItemViewData {
     }
 }
 
-export function createReportItemViewData(report: HoroscopeReport, truncate: boolean = true): ReportItemViewData {
+export function createReportItemViewData(report: HoroscopeReport): ReportItemViewData {
     return {
         id: report.id,
-        text: truncate ? report.text.split(/\n/g)[0].trim() : report.text,
+        text: report.text,
         sign: createZodiacSign(report.sign),
         numbers: report.numbers,
         stats: report.stats
@@ -35,6 +35,8 @@ export function createReportItemViewData(report: HoroscopeReport, truncate: bool
 interface ReportItemProps {
     report: ReportItemViewData
     noSign?: boolean
+    noStats?: boolean
+    noNumbers?: boolean
 }
 
 export class ReportItem extends React.PureComponent<ReportItemProps, State> {
@@ -45,7 +47,7 @@ export class ReportItem extends React.PureComponent<ReportItemProps, State> {
 
         let statsView: any = null;
 
-        if (stats) {
+        if (stats && this.props.noStats !== true) {
             statsView =
                 <View style={styles.stats}>
                     <View key={sign.id + '-health'} style={styles.statsItem}>
@@ -73,7 +75,7 @@ export class ReportItem extends React.PureComponent<ReportItemProps, State> {
         }
 
         let numbersView: any = null;
-        if (numbers && numbers.length) {
+        if (numbers && numbers.length && this.props.noNumbers !== true) {
             numbersView = numbers.map(no => <View key={sign.id + '-' + no} style={styles.number}><Text style={styles.numberText}>{no}</Text></View>);
             numbersView =
                 <View style={styles.numbers}>

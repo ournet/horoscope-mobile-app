@@ -36,9 +36,7 @@ export class ZodiacSignSelector extends React.PureComponent<Props> {
 
         return (
             <View style={styles.container}>
-                <ScrollView>
-                    {buttons}
-                </ScrollView>
+                {buttons}
             </View>
         );
     }
