@@ -74,7 +74,7 @@ class SignScreen extends BaseScreen<Props> {
             }
         }
 
-        const signBorgerColor = reportItem && getMainReportStatsColor(reportItem.stats);
+        // const signBorgerColor = reportItem && getMainReportStatsColor(reportItem.stats);
 
         const navTabs = [
             { text: Locales.get('all_signs'), id: NavigationRouteKey.REPORTS },
@@ -83,7 +83,7 @@ class SignScreen extends BaseScreen<Props> {
 
         const body =
             <View style={styles.content}>
-                <SignHeader signBorgerColor={signBorgerColor} sign={sign} menuOnSelect={this.onSelectMenuTab.bind(this)} menuSelectedId={reports && reports.period} />
+                <SignHeader sign={sign} menuOnSelect={this.onSelectMenuTab.bind(this)} menuSelectedId={reports && reports.period} />
                 <View style={styles.report}>
                     {message}
                     {report}

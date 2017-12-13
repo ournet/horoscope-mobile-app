@@ -105,11 +105,11 @@ function renderMenu(onClick: (key: string) => void) {
                 <Text style={styles.menuItemText}>{Locales.get('all_signs')}</Text>
             </View>
         </TouchableOpacity>
-        <TouchableOpacity key='settings' onPress={() => onClick('settings')}>
+        {/* <TouchableOpacity key='settings' onPress={() => onClick('settings')}>
             <View style={styles.menuItem}>
                 <Text style={styles.menuItemText}>{Locales.get('settings')}</Text>
             </View>
-        </TouchableOpacity>
+        </TouchableOpacity> */}
     </View>
 
 }

@@ -9,6 +9,7 @@ type KEYS =
     'tomorrow' |
     'select_your_sign' |
     'lucky_numbers' |
+    'numbers' |
     'health' |
     'love' |
     'success' |

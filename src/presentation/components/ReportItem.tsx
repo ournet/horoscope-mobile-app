@@ -9,6 +9,7 @@ import { createZodiacSign, ZodiacSign } from '../data/entities';
 import { HoroscopeReport } from '../../domain';
 import { Locales } from '../locales';
 import { getMainReportStatsColor, truncateReport } from '../helpers';
+import Icon from 'react-native-vector-icons/Ionicons';
 
 export interface ReportItemViewData {
     id: string
@@ -42,7 +43,7 @@ interface ReportItemProps {
 
 export class ReportItem extends React.PureComponent<ReportItemProps, State> {
     render() {
-        const { sign, numbers, stats } = this.props.report;
+        const { sign, numbers, stats, id } = this.props.report;
         const text = this.props.truncate ? truncateReport(this.props.report.text) : this.props.report.text;
 
         const color = getMainReportStatsColor(stats);
@@ -77,11 +78,12 @@ export class ReportItem extends React.PureComponent<ReportItemProps, State> {
         }
 
         let numbersView: any = null;
-        if (numbers && numbers.length && this.props.noNumbers !== true) {
+        if (id.substr(0, 1) !== 'W' && numbers && numbers.length && this.props.noNumbers !== true) {
             numbersView = numbers.map(no => <View key={sign.id + '-' + no} style={styles.number}><Text style={styles.numberText}>{no}</Text></View>);
             numbersView =
                 <View style={styles.numbers}>
-                    <Text style={styles.numbersLabel} numberOfLines={1}>{Locales.get('lucky_numbers')}</Text>
+                    <Icon name="md-flower" size={26} color={Styles.accentColor} />
+                    <Text style={styles.numbersLabel} numberOfLines={1}>{Locales.get('numbers')}:</Text>
                     <View style={styles.numbersData}>{numbersView}</View>
                 </View>;
         }
@@ -145,15 +147,17 @@ const styles = StyleSheet.create({
         flexDirection: 'row',
         backgroundColor: Styles.layoutColor,
         padding: Styles.paddingSize,
-        flexWrap: 'wrap',
+        // flexWrap: 'wrap',
         alignItems: 'center',
+        justifyContent: 'center',
     },
     numbersLabel: {
-
+        marginLeft: Styles.paddingSize,
+        textAlign: 'right',
     },
     numbersData: {
         flexDirection: 'row',
-        flex: 1,
+        // flex: 1,
         justifyContent: 'center',
         marginLeft: Styles.paddingSize,
     },
@@ -171,6 +175,7 @@ const styles = StyleSheet.create({
     numberText: {
         color: Styles.accentColor,
         fontWeight: 'bold',
+        fontSize: 12,
     },
     stats: {
         flexDirection: 'row',

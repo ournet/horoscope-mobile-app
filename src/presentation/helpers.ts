@@ -33,12 +33,14 @@ export function getMainReportStatsColor(stats:
     }
 
     const max = Math.max(stats.health, stats.love, stats.success);
-    const key = Object.keys(stats).find(key => stats[key] === max);
+    if (max > 50) {
+        const key = Object.keys(stats).find(key => stats[key] === max);
 
-    switch (key) {
-        case 'health': return Styles.healthColor;
-        case 'love': return Styles.loveColor;
-        case 'success': return Styles.successColor;
+        switch (key) {
+            case 'health': return Styles.healthColor;
+            case 'love': return Styles.loveColor;
+            case 'success': return Styles.successColor;
+        }
     }
 
     return Styles.darkLayoutColor;

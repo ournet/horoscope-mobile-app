@@ -62,16 +62,17 @@ const styles = StyleSheet.create({
         paddingBottom: Styles.paddingSize / 2,
         paddingLeft: Styles.paddingSize,
         paddingRight: Styles.paddingSize,
-        borderRightColor: Styles.layoutColor,
-        borderRightWidth: 1,
+        // borderRightColor: Styles.layoutColor,
+        // borderRightWidth: 1,
         backgroundColor: Styles.darkLayoutColor,
+        marginRight: 1,
     },
     itemFirst: {
         // borderLeftWidth: 1,
         borderTopLeftRadius: Styles.borderRadius,
         borderBottomLeftRadius: Styles.borderRadius,
-        borderRightColor: Styles.layoutColor,
-        borderRightWidth: 1,
+        // borderRightColor: Styles.layoutColor,
+        // borderRightWidth: 1,
     },
     itemLast: {
         borderTopRightRadius: Styles.borderRadius,
@@ -79,8 +80,8 @@ const styles = StyleSheet.create({
     },
     itemSelected: {
         backgroundColor: Styles.accentColor,
-        borderRightColor: Styles.layoutColor,
-        borderRightWidth: 1,
+        // borderRightColor: Styles.layoutColor,
+        // borderRightWidth: 1,
         // borderColor: Styles.accentColor,
     },
     text: {
