@@ -5,10 +5,7 @@ import { Text, View, StyleSheet } from 'react-native';
 import { State } from '../data/state';
 import { Config } from '../Config';
 
-import { ReportsHeader } from '../components/ReportsHeader';
-import { Reports, ReportsViewData, createReportsViewData } from '../components/Reports';
-import { ZodiacSignSelector } from '../components/ZodiacSignSelector';
-import { TabMenu } from '../components/TabMenu';
+import { Message } from '../components/Message';
 
 import { Interactors } from '../interactors';
 import { Styles } from '../resources';
@@ -42,7 +39,7 @@ export default class StartScreen extends BaseScreen<Props> {
 
         const body =
             <View style={styles.content}>
-                <Text>Loading</Text>
+                <Message type="info" message={Locales.get('loading')} />
             </View>
 
         return { header, body };
@@ -52,5 +49,9 @@ export default class StartScreen extends BaseScreen<Props> {
 const styles = StyleSheet.create({
     content: {
         flex: 1,
+        paddingLeft: Styles.paddingSize,
+        paddingRight: Styles.paddingSize,
+        justifyContent: 'center',
+        alignItems: 'center',
     }
 });

@@ -21,7 +21,7 @@ export function navigateReducer<A extends NavigateAction>(state: NavigationState
             return { route: action.route };
 
         case NavigationActionTypes.REPLACE:
-            if (previousRoute) {
+            if (previousRoute && previousRoute.key !== action.route.key) {
                 action.route.previous = previousRoute;
             }
             return { route: action.route };

@@ -101,8 +101,6 @@ const styles = StyleSheet.create({
     },
     content: {
         flex: 1,
-        paddingLeft: Styles.paddingSize,
-        paddingRight: Styles.paddingSize,
     },
     // tabBar: {
     //     flexDirection: 'row',

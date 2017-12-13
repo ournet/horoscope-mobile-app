@@ -30,7 +30,7 @@ export class TabMenu extends React.PureComponent<Props> {
             return (
                 <TouchableOpacity key={tab.id} onPress={this.onPressItem.bind(this, tab.id)}>
                     <View style={style}>
-                        <Text style={styles.text}>{tab.text}</Text>
+                        <Text style={[styles.text, selectedId === tab.id ? styles.textSelected : null]}>{tab.text}</Text>
                     </View>
                 </TouchableOpacity>
             );
@@ -62,25 +62,33 @@ const styles = StyleSheet.create({
         paddingBottom: Styles.paddingSize / 2,
         paddingLeft: Styles.paddingSize,
         paddingRight: Styles.paddingSize,
-        borderColor: Styles.darkLayoutColor,
-        borderWidth: 1,
-        borderLeftWidth: 0
+        borderRightColor: Styles.layoutColor,
+        borderRightWidth: 1,
+        backgroundColor: Styles.darkLayoutColor,
     },
     itemFirst: {
-        borderLeftWidth: 1,
+        // borderLeftWidth: 1,
         borderTopLeftRadius: Styles.borderRadius,
-        borderBottomLeftRadius: Styles.borderRadius
+        borderBottomLeftRadius: Styles.borderRadius,
+        borderRightColor: Styles.layoutColor,
+        borderRightWidth: 1,
     },
     itemLast: {
         borderTopRightRadius: Styles.borderRadius,
-        borderBottomRightRadius: Styles.borderRadius
+        borderBottomRightRadius: Styles.borderRadius,
     },
     itemSelected: {
-        backgroundColor: Styles.darkLayoutColor
+        backgroundColor: Styles.accentColor,
+        borderRightColor: Styles.layoutColor,
+        borderRightWidth: 1,
+        // borderColor: Styles.accentColor,
     },
     text: {
-        color: Styles.textColor,
+        color: Styles.accentColor,
         fontWeight: 'bold',
         textAlign: 'center',
-    }
+    },
+    textSelected: {
+        color: Styles.whiteColor,
+    },
 })

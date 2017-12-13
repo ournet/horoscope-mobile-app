@@ -17,6 +17,7 @@ type KEYS =
     'my_sign' |
     'all_signs' |
     'settings' |
+    'change_sign' |
     'sign_1' |
     'sign_2' |
     'sign_3' |

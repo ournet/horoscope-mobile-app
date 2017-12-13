@@ -19,6 +19,7 @@ import { ReportsViewData, createReportsViewData } from '../components/Reports';
 import { UserState } from '../../data';
 import { ReportItem } from '../components/ReportItem';
 import { Message } from '../components/Message';
+import { TabMenu } from '../components/TabMenu';
 import { getMainReportStatsColor } from '../helpers';
 
 interface Props extends BaseScreenProps {
@@ -45,9 +46,13 @@ class SignScreen extends BaseScreen<Props> {
         }
     }
 
-    onSelectPeriod(period: string) {
-        Analytics.trackEvent('User', 'change-period', { label: period.substr(0, 1), value: parseInt(period.substr(1)) });
+    onSelectMenuTab(period: string) {
+        Analytics.trackEvent('click', 'change-period', { label: period.substr(0, 1), value: parseInt(period.substr(1)) });
         return this.actionGetReports(period);
+    }
+    onSelectMoreTab(key: NavigationRouteKey) {
+        Analytics.trackEvent('click', 'route', { label: key, value: 1 });
+        this.props.interactors.navigation.navigate({ key });
     }
 
     innerRender() {
@@ -71,14 +76,20 @@ class SignScreen extends BaseScreen<Props> {
 
         const signBorgerColor = reportItem && getMainReportStatsColor(reportItem.stats);
 
+        const navTabs = [
+            { text: Locales.get('all_signs'), id: NavigationRouteKey.REPORTS },
+            { text: Locales.get('change_sign'), id: NavigationRouteKey.SELECT_SIGN }
+        ]
+
         const body =
             <View style={styles.content}>
-                <SignHeader signBorgerColor={signBorgerColor} sign={sign} menuOnSelect={this.onSelectPeriod.bind(this)} menuSelectedId={reports && reports.period} />
+                <SignHeader signBorgerColor={signBorgerColor} sign={sign} menuOnSelect={this.onSelectMenuTab.bind(this)} menuSelectedId={reports && reports.period} />
                 <View style={styles.report}>
-                    <ScrollView>
-                        {message}
-                        {report}
-                    </ScrollView>
+                    {message}
+                    {report}
+                </View>
+                <View style={styles.footer}>
+                    <TabMenu tabs={navTabs} onSelect={this.onSelectMoreTab.bind(this)} />
                 </View>
             </View>
 
@@ -91,10 +102,17 @@ export default connect<Partial<Props>>(mapStateToProps)(SignScreen) as any;
 const styles = StyleSheet.create({
     content: {
         flex: 1,
+        paddingLeft: Styles.paddingSize,
+        paddingRight: Styles.paddingSize,
     },
     report: {
         flex: 1,
         flexDirection: 'column',
         marginTop: Styles.paddingSize,
+    },
+    footer: {
+        paddingTop: Styles.paddingSize,
+        paddingBottom: Styles.paddingSize * 2,
+        // backgroundColor: Styles.primaryColor,
     },
 });

@@ -24,7 +24,8 @@ export default class SelectSignScreen extends BaseScreen<Props> {
 
     onSelectSign(sign: ZodiacSignId) {
         const { interactors } = this.props;
-        interactors.user.save({ zodiacSign: sign }).then(() => interactors.navigation.replace({ key: NavigationRouteKey.SIGN }))
+        interactors.user.save({ zodiacSign: sign })
+            .then(() => interactors.navigation.replace({ key: NavigationRouteKey.SIGN }))
     }
 
     innerRender() {
