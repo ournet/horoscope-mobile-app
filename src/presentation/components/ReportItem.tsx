@@ -10,6 +10,7 @@ import { HoroscopeReport } from '../../domain';
 import { Locales } from '../locales';
 import { getMainReportStatsColor, truncateReport } from '../helpers';
 import Icon from 'react-native-vector-icons/Ionicons';
+import LinearGradient from 'react-native-linear-gradient';
 
 export interface ReportItemViewData {
     id: string
@@ -52,7 +53,7 @@ export class ReportItem extends React.PureComponent<ReportItemProps, State> {
 
         if (stats && this.props.noStats !== true) {
             statsView =
-                <View style={styles.stats}>
+                <LinearGradient colors={[Styles.lightLayoutColor, Styles.darkLayoutColor]} style={styles.stats}>
                     <View key={sign.id + '-health'} style={styles.statsItem}>
                         <ZodiacStatsItem title={Locales.get('health')} value={stats.health} color={Styles.healthColor} />
                     </View>
@@ -62,7 +63,7 @@ export class ReportItem extends React.PureComponent<ReportItemProps, State> {
                     <View key={sign.id + '-success'} style={styles.statsItem}>
                         <ZodiacStatsItem title={Locales.get('success')} value={stats.success} color={Styles.successColor} />
                     </View>
-                </View>
+                </LinearGradient>
         }
 
         let signView: any = null;
@@ -182,6 +183,8 @@ const styles = StyleSheet.create({
         padding: Styles.paddingSize,
         justifyContent: 'center',
         alignItems: 'center',
+        // borderBottomWidth: 2,
+        // borderBottomColor: Styles.darkLayoutColor,
     },
     statsItem: {
         marginLeft: Styles.paddingSize,
