@@ -53,7 +53,7 @@ export class Reports extends React.PureComponent<ReportsProps, State> {
 
         return (
             <View style={styles.container}>
-                {items.map(item => <ReportItem noNumbers={true} noStats={true} key={item.id} report={item} />)}
+                {items.map(item => <ReportItem truncate={true} noNumbers={true} noStats={true} key={item.id} report={item} />)}
             </View>
         );
     }

@@ -43,3 +43,12 @@ export function getMainReportStatsColor(stats:
 
     return Styles.darkLayoutColor;
 }
+
+export function truncateReport(text: string): string {
+    const parts = text.split(/\n+/g);
+    const MAX_LENGTH = 150;
+    if (parts[0].length >= MAX_LENGTH) {
+        return parts[0];
+    }
+    return parts.length > 2 ? parts.slice(0, 1).join('\n') : text;
+}

@@ -8,7 +8,7 @@ import { Styles } from '../resources';
 import { createZodiacSign, ZodiacSign } from '../data/entities';
 import { HoroscopeReport } from '../../domain';
 import { Locales } from '../locales';
-import { getMainReportStatsColor } from '../helpers';
+import { getMainReportStatsColor, truncateReport } from '../helpers';
 
 export interface ReportItemViewData {
     id: string
@@ -37,11 +37,13 @@ interface ReportItemProps {
     noSign?: boolean
     noStats?: boolean
     noNumbers?: boolean
+    truncate?: boolean
 }
 
 export class ReportItem extends React.PureComponent<ReportItemProps, State> {
     render() {
-        const { sign, text, numbers, stats } = this.props.report;
+        const { sign, numbers, stats } = this.props.report;
+        const text = this.props.truncate ? truncateReport(this.props.report.text) : this.props.report.text;
 
         const color = getMainReportStatsColor(stats);
 
