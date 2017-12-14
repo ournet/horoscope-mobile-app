@@ -19,6 +19,7 @@ import { convertDateToPeriod } from '../utils';
 import { Analytics } from '../analytics';
 import { BaseScreenProps } from './BaseScreen';
 import { NavigationRouteKey } from '../data/navigation/route';
+import { Notifications } from '../notifications';
 
 interface Props extends BaseScreenProps {
     interactors: Interactors
@@ -32,9 +33,11 @@ const mapStateToProps = (state: State, props: Props): Partial<Props> => {
 };
 
 class MainScreen extends React.Component<Props, State> {
-    // constructor(props: Props, state: State) {
-    //     super(props, state);
-    // }
+    constructor(props: Props, state: State) {
+        super(props, state);
+
+        Notifications.ensureTags({ lang: Config.CurrentLanguage });
+    }
 
     getCurrentScreen() {
         const { interactors, navigation } = this.props;

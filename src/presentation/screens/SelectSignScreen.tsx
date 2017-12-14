@@ -15,6 +15,7 @@ import { Analytics } from '../analytics';
 import { BaseScreen, BaseScreenProps } from './BaseScreen';
 import { NavigationRouteKey } from '../data/navigation/route';
 import { ZodiacSignId } from '../data/entities';
+import { Notifications } from '../notifications';
 
 interface Props extends BaseScreenProps {
 
@@ -25,7 +26,10 @@ export default class SelectSignScreen extends BaseScreen<Props> {
     onSelectSign(sign: ZodiacSignId) {
         const { interactors } = this.props;
         interactors.user.save({ zodiacSign: sign })
-            .then(() => interactors.navigation.replace({ key: NavigationRouteKey.SIGN }))
+            .then(() => interactors.navigation.replace({ key: NavigationRouteKey.SIGN }));
+
+        Notifications.ensureTags({ zodiacSign: sign.toString() });
+        Analytics.trackEvent('settings', 'set-zodiac-sign', { label: 'zodiacSign', value: sign });
     }
 
     innerRender() {
