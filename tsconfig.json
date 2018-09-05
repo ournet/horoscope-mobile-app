@@ -1,13 +1,16 @@
 {
     "compilerOptions": {
         "module": "commonjs",
-        "target": "es6",
+        "target": "es2017",
         "noImplicitAny": true,
         "noUnusedLocals": false,
         "sourceMap": false,
         "pretty": true,
         "outDir": "./lib",
-        "jsx": "react"
+        "jsx": "react",
+        "lib": [
+            "es2017"
+        ]
     },
     "files": [
         "./src/index.ts"
