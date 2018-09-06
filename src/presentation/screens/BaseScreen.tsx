@@ -100,6 +100,7 @@ const styles = StyleSheet.create({
         backgroundColor: Styles.layoutColor
     },
     content: {
+        marginTop: Styles.paddingSize,
         flex: 1,
     },
     // tabBar: {

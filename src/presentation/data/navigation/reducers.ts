@@ -1,6 +1,6 @@
 
 import { NavigationState } from './state';
-import { NavigateAction, NavigationActionTypes, NavigationAction } from './actions';
+import { NavigateAction, NavigationActionTypes } from './actions';
 import { NavigationRouteKey, START_ROUTE_KEY } from './route';
 
 export function navigateReducer<A extends NavigateAction>(state: NavigationState, action: A): NavigationState {

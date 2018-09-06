@@ -17,7 +17,7 @@ export interface NavigationInteractor {
 
 export function createNavigationInteractor(params: NavigationInteractorParams): NavigationInteractor {
 
-    const { dispatch, getState } = params;
+    const { dispatch } = params;
 
     return {
         navigate(route: NavigationRoute) {

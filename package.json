@@ -6,8 +6,9 @@
 		"start": "node node_modules/react-native/local-cli/cli.js start",
 		"test": "jest",
 		"tsc": "copy src/**/*.json lib && tsc",
-		"android": "npm run tsc && react-native run-android",
-		"ios": "npm run tsc && react-native run-ios",
+		"wtsc": "tsc --watch",
+		"android": "react-native run-android",
+		"ios": "react-native run-ios",
 		"release": "cd android && ./gradlew assembleRelease"
 	},
 	"dependencies": {
