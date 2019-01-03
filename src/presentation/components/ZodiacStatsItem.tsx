@@ -1,7 +1,6 @@
 
 import * as React from 'react';
-import { State } from '../data/state';
-import { Images, Styles } from '../resources';
+import { Styles } from '../resources';
 import { View, Text } from 'react-native';
 
 const SVG = require('react-native-svg');
@@ -39,12 +38,12 @@ export class ZodiacStatsItem extends React.PureComponent<Props> {
                 justifyContent: 'center',
                 // width: size,
             }}>
-                <View>
+                <View style={{position: "relative", height:size, width:size}}>
                     <Svg x="0" y="0" height={size} width={size}>
                         <Circle r={R} cx={size / 2} cy={size / 2} stroke={Styles.darkLayoutColor} strokeWidth={strokeWidth} fill={backgroundColor} />
                         <Circle originX={R + strokeWidth} originY={R + strokeWidth} rotate={180} strokeDasharray={[strokeValue, STROKE_MAX]} r={R} cx={size / 2} cy={size / 2} stroke={color} strokeWidth={strokeWidth} fill={backgroundColor} />
-                        <SvgText x={size / 2} y={size / 3} textAnchor="middle" color={Styles.textColor} fontSize={15} fontWeight="bold">{value}</SvgText>
                     </Svg>
+                    <Text style={{position: "absolute",top: size/3.2, left: 0, right: 0, textAlign: "center",fontWeight:"bold"}}>{value}</Text>
                 </View>
                 {titleView}
             </View>

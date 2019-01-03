@@ -17,10 +17,11 @@ export function formatHeaderDates(startDate?: Date) {
             id: convertDateToPeriod(tomorrowDate),
             text: Locales.get('tomorrow')
         },
-        {
-            id: convertDateToPeriod(tomorrowDate, 'W'),
-            text: Locales.get('weekly')
-        }];
+        // {
+        //     id: convertDateToPeriod(tomorrowDate, 'W'),
+        //     text: Locales.get('weekly')
+        // },
+    ];
 
     return dateTabs;
 }

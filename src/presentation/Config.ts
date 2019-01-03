@@ -12,7 +12,7 @@ type ConfigType = {
 }
 
 export const Config: ConfigType = {
-    ApiClient: 'com.ournet.horoscope',
+    ApiClient: 'com.ournet.horoscope_0.2.1',
     DefaultLang: 'ro',
     SupportedLangs: ['ro'],
     ApiHost: 'https://horoscop.ournet.ro/api',

@@ -8,7 +8,7 @@ import { Styles } from '../resources';
 import { createZodiacSign, ZodiacSign } from '../data/entities';
 import { HoroscopeReport } from '../../domain';
 import { Locales } from '../locales';
-import { getMainReportStatsColor, truncateReport } from '../helpers';
+import { truncateReport } from '../helpers';
 import Icon from 'react-native-vector-icons/Ionicons';
 import LinearGradient from 'react-native-linear-gradient';
 
@@ -47,7 +47,7 @@ export class ReportItem extends React.PureComponent<ReportItemProps, State> {
         const { sign, numbers, stats, id } = this.props.report;
         const text = this.props.truncate ? truncateReport(this.props.report.text) : this.props.report.text;
 
-        const color = getMainReportStatsColor(stats);
+        // const color = getMainReportStatsColor(stats);
 
         let statsView: any = null;
 
@@ -71,7 +71,7 @@ export class ReportItem extends React.PureComponent<ReportItemProps, State> {
             signView =
                 <View style={styles.sign}>
                     <View style={styles.icon}>
-                        <ZodiacSignIcon borderColor={color} signId={sign.id} />
+                        <ZodiacSignIcon signId={sign.id} />
                     </View>
                     <Text style={styles.signTitle}>{sign.name}</Text>
                 </View>

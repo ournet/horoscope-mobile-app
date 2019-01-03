@@ -17,6 +17,6 @@ export interface HoroscopeReport {
 }
 
 export interface HoroscopeReports {
-    date: number
+    period: string
     reports: HoroscopeReport[]
 }
