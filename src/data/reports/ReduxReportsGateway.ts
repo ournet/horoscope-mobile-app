@@ -10,7 +10,7 @@ import { IAnalytics } from '../utils';
 export type ReportsGatewayParams = {
     apiConfig: { host: string, client: string }
     cache: CacheStorage
-    dispatch: Dispatch<State>
+    dispatch: Dispatch
     getState: () => State
     analytics: IAnalytics
 }

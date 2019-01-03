@@ -5,7 +5,7 @@ import { navigate, replace, goBack } from './actions';
 import { NavigationRoute } from './route';
 
 export type NavigationInteractorParams = {
-    dispatch: Dispatch<State>
+    dispatch: Dispatch
     getState: () => State
 }
 

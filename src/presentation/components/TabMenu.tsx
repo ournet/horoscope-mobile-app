@@ -16,7 +16,7 @@ export class TabMenu extends React.PureComponent<Props> {
     render() {
         const { tabs, selectedId, onSelect } = this.props;
         const tabsView = tabs.map((tab, index) => {
-            const style = [styles.item];
+            const style = [styles.item] as any[];
             if (tab.id === selectedId) {
                 style.push(styles.itemSelected)
             }

@@ -8,7 +8,7 @@ import { createApiUserGateway } from './ApiUserGateway';
 
 export type UserGatewayParams = {
     cache: CacheStorage
-    dispatch: Dispatch<State>
+    dispatch: Dispatch
     getState: () => State
 }
 
