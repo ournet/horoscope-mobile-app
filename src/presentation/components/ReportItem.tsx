@@ -79,10 +79,12 @@ export class ReportItem extends React.PureComponent<ReportItemProps, State> {
             info: {
                 flexDirection: 'column',
                 backgroundColor: Styles.whiteColor,
+                paddingBottom: Sizes.padding.medium,
                 flex: 1,
             },
             text: {
                 padding: Sizes.padding.medium,
+                paddingBottom: 0,
                 color: Styles.textColor,
                 flex: 1,
                 fontSize: Sizes.font.medium,
@@ -138,6 +140,9 @@ export class ReportItem extends React.PureComponent<ReportItemProps, State> {
 
         const { sign, numbers, stats, id } = this.props.report;
         const text = this.props.truncate ? truncateReport(this.props.report.text) : this.props.report.text;
+        const phrases = text.split(/\s*\n\s*/g);
+
+        const texts = phrases.map((item, index) => <Text key={index} style={styles.text}>{item}</Text>);
 
         // const color = getMainReportStatsColor(stats);
 
@@ -188,7 +193,7 @@ export class ReportItem extends React.PureComponent<ReportItemProps, State> {
                 <View style={styles.data}>
                     {signView}
                     <View style={styles.info}>
-                        <Text style={styles.text}>{text}</Text>
+                        {texts}
                     </View>
                 </View>
                 {numbersView}
