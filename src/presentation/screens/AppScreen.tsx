@@ -1,7 +1,6 @@
 
 import * as React from 'react';
 import { connect } from 'react-redux';
-import { DeviceEventEmitter } from 'react-native';
 import { State } from '../data/state';
 import { Config } from '../Config';
 
@@ -14,7 +13,10 @@ import { Interactors } from '../interactors';
 import { BaseScreenProps } from './BaseScreen';
 import { NavigationRouteKey } from '../data/navigation/route';
 import { Notifications } from '../notifications';
-import { NavigationActionTypes } from '../data/navigation/actions';
+import {
+    listenOrientationChange as lor,
+    removeOrientationListener as rol
+} from 'react-native-responsive-screen';
 
 interface Props extends BaseScreenProps {
     interactors: Interactors
@@ -31,11 +33,18 @@ class MainScreen extends React.Component<Props, State> {
     constructor(props: Props, state: State) {
         super(props, state);
 
-        Notifications.ensureTags({ lang: Config.CurrentLanguage });
+        this.onNotificationOpened = this.onNotificationOpened.bind(this);
     }
 
-    componentWillMount() {
-        Notifications.onNotificationOpened(() => this.onNotificationOpened());
+    componentDidMount() {
+        Notifications.ensureTags({ lang: Config.CurrentLanguage });
+        lor(this);
+        Notifications.addNotificationOpened(this.onNotificationOpened);
+    }
+
+    componentWillUnmount() {
+        rol();
+        Notifications.removeNotificationOpened(this.onNotificationOpened);
     }
 
     private onNotificationOpened() {

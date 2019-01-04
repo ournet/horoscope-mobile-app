@@ -1,11 +1,10 @@
 
 import * as React from 'react';
-import { View, Text, StyleSheet, TouchableOpacity, StatusBar } from 'react-native'
+import { View, Text, StyleSheet, StatusBar } from 'react-native'
 import { Styles, Images } from '../resources';
-import { Locales } from '../locales/index';
-import { NavigationRoute, NavigationRouteKey } from '../data/navigation/route';
+import { NavigationRoute } from '../data/navigation/route';
 import Icon from 'react-native-vector-icons/Ionicons';
-import { accentColor } from '../resources/styles';
+import { accentColor, Sizes } from '../resources/styles';
 
 const SVG = require('react-native-svg');
 const Svg = SVG.Svg;
@@ -41,6 +40,56 @@ export class Header extends React.PureComponent<Props, State> {
     }
 
     render() {
+
+        const styles = StyleSheet.create({
+            container: {
+                // height: 60
+                // backgroundColor: Styles.darkLayoutColor,
+                overflow: 'visible',
+            },
+            topline: {
+                flexDirection: 'row',
+                height: 20,
+                backgroundColor: Styles.accentColor,
+            },
+            toplineItem: {
+                flex: 1
+            },
+            header: {
+
+                flexDirection: 'row',
+                // for iOS
+                paddingTop: Styles.paddingSize,
+                // height: LINE_HEIGHT,
+                alignItems: 'center',
+                paddingLeft: Styles.paddingSize,
+                paddingRight: Styles.paddingSize,
+                paddingBottom: Styles.paddingSize,
+                // overflow: 'visible',
+                position: 'relative',
+                backgroundColor: Styles.accentColor,
+                color: Styles.whiteColor,
+            },
+            logo: {
+                flex: 1,
+                // textAlign: 'center',
+                // width: 60,
+                // paddingLeft: Styles.paddingSize * 2
+            },
+            title: {
+                flex: 3,
+                color: Styles.whiteColor,
+                fontWeight: 'bold',
+                textAlign: 'center',
+                fontSize: Sizes.font.medium,
+            },
+            menu: {
+                flex: 1,
+                fontSize: 16,
+                width: Styles.paddingSize * 2,
+            },
+        });
+
         const { title, route } = this.props;
         // let { openMenu } = this.state;
 
@@ -71,52 +120,3 @@ export class Header extends React.PureComponent<Props, State> {
         );
     }
 }
-
-const styles = StyleSheet.create({
-    container: {
-        // height: 60
-        // backgroundColor: Styles.darkLayoutColor,
-        overflow: 'visible',
-    },
-    topline: {
-        flexDirection: 'row',
-        height: 20,
-        backgroundColor: Styles.accentColor,
-    },
-    toplineItem: {
-        flex: 1
-    },
-    header: {
-
-        flexDirection: 'row',
-        // for iOS
-        paddingTop: Styles.paddingSize,
-        // height: LINE_HEIGHT,
-        alignItems: 'center',
-        paddingLeft: Styles.paddingSize,
-        paddingRight: Styles.paddingSize,
-        paddingBottom: Styles.paddingSize,
-        // overflow: 'visible',
-        position: 'relative',
-        backgroundColor: Styles.accentColor,
-        color: Styles.whiteColor,
-    },
-    logo: {
-        flex: 1,
-        // textAlign: 'center',
-        // width: 60,
-        // paddingLeft: Styles.paddingSize * 2
-    },
-    title: {
-        flex: 3,
-        color: Styles.whiteColor,
-        fontWeight: 'bold',
-        textAlign: 'center',
-        fontSize: 16
-    },
-    menu: {
-        flex: 1,
-        fontSize: 16,
-        width: Styles.paddingSize * 2,
-    },
-});

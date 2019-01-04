@@ -11,6 +11,7 @@ import { Locales } from '../locales';
 import { truncateReport } from '../helpers';
 import Icon from 'react-native-vector-icons/Ionicons';
 import LinearGradient from 'react-native-linear-gradient';
+import { Sizes, widthPercentage } from '../resources/styles';
 
 export interface ReportItemViewData {
     id: string
@@ -44,6 +45,97 @@ interface ReportItemProps {
 
 export class ReportItem extends React.PureComponent<ReportItemProps, State> {
     render() {
+        const numberSize = widthPercentage('6%');
+        const styles = StyleSheet.create({
+            container: {
+                flexDirection: 'column',
+                // justifyContent: 'flex-start',
+                marginBottom: 8,
+                // alignItems: 'flex-start'
+                borderWidth: 2,
+                borderColor: Styles.darkLayoutColor,
+                borderRadius: Styles.borderRadius,
+            },
+            sign: {
+                paddingBottom: Sizes.padding.medium,
+                // justifyContent: 'baseline',
+                flexDirection: 'column',
+                alignItems: 'center',
+                backgroundColor: Styles.darkLayoutColor
+            },
+            signTitle: {
+                // paddingTop: Styles.paddingSize,
+                color: Styles.textColor,
+                fontWeight: 'bold',
+                fontSize: Sizes.font.medium,
+            },
+            icon: {
+                padding: Sizes.padding.medium,
+            },
+            data: {
+                flexDirection: 'row',
+                justifyContent: 'flex-start',
+            },
+            info: {
+                flexDirection: 'column',
+                backgroundColor: Styles.whiteColor,
+                flex: 1,
+            },
+            text: {
+                padding: Sizes.padding.medium,
+                color: Styles.textColor,
+                flex: 1,
+                fontSize: Sizes.font.medium,
+            },
+            numbers: {
+                flexDirection: 'row',
+                backgroundColor: Styles.layoutColor,
+                padding: Styles.paddingSize,
+                // flexWrap: 'wrap',
+                alignItems: 'center',
+                justifyContent: 'center',
+            },
+            numbersLabel: {
+                marginLeft: Styles.paddingSize,
+                textAlign: 'right',
+                fontSize: Sizes.font.medium,
+            },
+            numbersData: {
+                flexDirection: 'row',
+                // flex: 1,
+                justifyContent: 'center',
+                marginLeft: Styles.paddingSize,
+            },
+            number: {
+                marginLeft: Sizes.padding.small,
+                width: numberSize,
+                height: numberSize,
+                borderRadius: numberSize,
+                backgroundColor: Styles.whiteColor,
+                alignItems: 'center',
+                justifyContent: 'center',
+                borderWidth: 2,
+                borderColor: Styles.darkLayoutColor,
+            },
+            numberText: {
+                color: Styles.accentColor,
+                fontWeight: 'bold',
+                fontSize: Sizes.font.small,
+            },
+            stats: {
+                flexDirection: 'row',
+                padding: Sizes.padding.small,
+                justifyContent: 'center',
+                alignItems: 'center',
+                // borderBottomWidth: 2,
+                // borderBottomColor: Styles.darkLayoutColor,
+            },
+            statsItem: {
+                marginLeft: Sizes.padding.small,
+                marginRight: Sizes.padding.small,
+            },
+        });
+
         const { sign, numbers, stats, id } = this.props.report;
         const text = this.props.truncate ? truncateReport(this.props.report.text) : this.props.report.text;
 
@@ -52,16 +144,17 @@ export class ReportItem extends React.PureComponent<ReportItemProps, State> {
         let statsView: any = null;
 
         if (stats && this.props.noStats !== true) {
+            const signSize = widthPercentage('12%');
             statsView =
                 <LinearGradient colors={[Styles.lightLayoutColor, Styles.darkLayoutColor]} style={styles.stats}>
                     <View key={sign.id + '-health'} style={styles.statsItem}>
-                        <ZodiacStatsItem title={Locales.get('health')} value={stats.health} color={Styles.healthColor} />
+                        <ZodiacStatsItem size={signSize} title={Locales.get('health')} value={stats.health} color={Styles.healthColor} />
                     </View>
                     <View key={sign.id + '-love'} style={styles.statsItem}>
-                        <ZodiacStatsItem title={Locales.get('love')} value={stats.love} color={Styles.loveColor} />
+                        <ZodiacStatsItem size={signSize} title={Locales.get('love')} value={stats.love} color={Styles.loveColor} />
                     </View>
                     <View key={sign.id + '-success'} style={styles.statsItem}>
-                        <ZodiacStatsItem title={Locales.get('success')} value={stats.success} color={Styles.successColor} />
+                        <ZodiacStatsItem size={signSize} title={Locales.get('success')} value={stats.success} color={Styles.successColor} />
                     </View>
                 </LinearGradient>
         }
@@ -71,7 +164,7 @@ export class ReportItem extends React.PureComponent<ReportItemProps, State> {
             signView =
                 <View style={styles.sign}>
                     <View style={styles.icon}>
-                        <ZodiacSignIcon signId={sign.id} />
+                        <ZodiacSignIcon signId={sign.id} size={widthPercentage('12%')} />
                     </View>
                     <Text style={styles.signTitle}>{sign.name}</Text>
                 </View>
@@ -83,7 +176,7 @@ export class ReportItem extends React.PureComponent<ReportItemProps, State> {
             numbersView = numbers.map(no => <View key={sign.id + '-' + no} style={styles.number}><Text style={styles.numberText}>{no}</Text></View>);
             numbersView =
                 <View style={styles.numbers}>
-                    <Icon name="md-flower" size={26} color={Styles.accentColor} />
+                    <Icon name="md-flower" size={numberSize} color={Styles.accentColor} />
                     <Text style={styles.numbersLabel} numberOfLines={1}>{Locales.get('numbers')}:</Text>
                     <View style={styles.numbersData}>{numbersView}</View>
                 </View>;
@@ -104,90 +197,3 @@ export class ReportItem extends React.PureComponent<ReportItemProps, State> {
     }
 }
 
-const styles = StyleSheet.create({
-    container: {
-        flexDirection: 'column',
-        // justifyContent: 'flex-start',
-        marginBottom: 8,
-        // alignItems: 'flex-start'
-        borderWidth: 2,
-        borderColor: Styles.darkLayoutColor,
-        borderRadius: Styles.borderRadius,
-    },
-    sign: {
-        paddingBottom: Styles.paddingSize,
-        // justifyContent: 'baseline',
-        flexDirection: 'column',
-        alignItems: 'center',
-        backgroundColor: Styles.darkLayoutColor
-    },
-    signTitle: {
-        // paddingTop: Styles.paddingSize,
-        color: Styles.textColor,
-        fontWeight: 'bold',
-    },
-    icon: {
-        padding: Styles.paddingSize
-    },
-    data: {
-        flexDirection: 'row',
-        justifyContent: 'flex-start',
-    },
-    info: {
-        flexDirection: 'column',
-        backgroundColor: Styles.whiteColor,
-        flex: 1,
-    },
-    text: {
-        padding: Styles.paddingSize,
-        color: Styles.textColor,
-        flex: 1,
-        fontSize: 16
-    },
-    numbers: {
-        flexDirection: 'row',
-        backgroundColor: Styles.layoutColor,
-        padding: Styles.paddingSize,
-        // flexWrap: 'wrap',
-        alignItems: 'center',
-        justifyContent: 'center',
-    },
-    numbersLabel: {
-        marginLeft: Styles.paddingSize,
-        textAlign: 'right',
-    },
-    numbersData: {
-        flexDirection: 'row',
-        // flex: 1,
-        justifyContent: 'center',
-        marginLeft: Styles.paddingSize,
-    },
-    number: {
-        marginLeft: Styles.paddingSize,
-        width: 26,
-        height: 26,
-        borderRadius: 26,
-        backgroundColor: Styles.whiteColor,
-        alignItems: 'center',
-        justifyContent: 'center',
-        borderWidth: 2,
-        borderColor: Styles.darkLayoutColor,
-    },
-    numberText: {
-        color: Styles.accentColor,
-        fontWeight: 'bold',
-        fontSize: 12,
-    },
-    stats: {
-        flexDirection: 'row',
-        padding: Styles.paddingSize,
-        justifyContent: 'center',
-        alignItems: 'center',
-        // borderBottomWidth: 2,
-        // borderBottomColor: Styles.darkLayoutColor,
-    },
-    statsItem: {
-        marginLeft: Styles.paddingSize,
-        marginRight: Styles.paddingSize,
-    },
-});

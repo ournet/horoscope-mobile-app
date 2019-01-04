@@ -21,6 +21,7 @@ import { ReportItem } from '../components/ReportItem';
 import { Message } from '../components/Message';
 import { TabMenu } from '../components/TabMenu';
 import { getMainReportStatsColor } from '../helpers';
+import { Sizes } from '../resources/styles';
 
 interface Props extends BaseScreenProps {
     user?: UserState
@@ -56,6 +57,24 @@ class SignScreen extends BaseScreen<Props> {
     }
 
     innerRender() {
+        const styles = StyleSheet.create({
+            content: {
+                flex: 1,
+                paddingLeft: Sizes.padding.small,
+                paddingRight: Sizes.padding.small,
+            },
+            report: {
+                flex: 1,
+                flexDirection: 'column',
+                marginTop: Sizes.padding.medium,
+            },
+            footer: {
+                paddingTop: Sizes.padding.medium,
+                paddingBottom: Sizes.padding.large,
+                // backgroundColor: Styles.primaryColor,
+            },
+        });
+
         const { user, reports } = this.props;
 
         const header = { title: Locales.get('horoscope') }
@@ -98,21 +117,3 @@ class SignScreen extends BaseScreen<Props> {
 }
 
 export default connect<Partial<Props>>(mapStateToProps)(SignScreen) as any;
-
-const styles = StyleSheet.create({
-    content: {
-        flex: 1,
-        paddingLeft: Styles.paddingSize,
-        paddingRight: Styles.paddingSize,
-    },
-    report: {
-        flex: 1,
-        flexDirection: 'column',
-        marginTop: Styles.paddingSize,
-    },
-    footer: {
-        paddingTop: Styles.paddingSize,
-        paddingBottom: Styles.paddingSize * 2,
-        // backgroundColor: Styles.primaryColor,
-    },
-});

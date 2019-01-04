@@ -1,7 +1,6 @@
 
 import * as React from 'react';
-import { connect } from 'react-redux';
-import { Text, View, StyleSheet, ScrollView, BackHandler } from 'react-native';
+import { View, StyleSheet, ScrollView, BackHandler } from 'react-native';
 import { State } from '../data/state';
 import { Config } from '../Config';
 
@@ -9,9 +8,7 @@ import { Header } from '../components/Header';
 
 import { Interactors } from '../interactors';
 import { Styles } from '../resources';
-import { Locales } from '../locales';
 import { convertDateToPeriod } from '../utils';
-import { Analytics } from '../analytics';
 import { NavigationRoute } from '../data/navigation/route';
 
 export interface BaseScreenProps {

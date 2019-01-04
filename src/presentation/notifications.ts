@@ -38,7 +38,10 @@ export class Notifications {
             });
         });
     }
-    static onNotificationOpened(handler: () => boolean) {
+    static addNotificationOpened(handler: () => boolean) {
         OneSignal.addEventListener('opened', handler);
+    }
+    static removeNotificationOpened(handler: () => boolean) {
+        OneSignal.removeEventListener('opened', handler);
     }
 }

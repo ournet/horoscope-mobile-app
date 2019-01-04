@@ -1,6 +1,6 @@
 
 // import { GoogleAnalyticsTracker } from 'react-native-google-analytics-bridge';
-import { Config } from './Config';
+// import { Config } from './Config';
 // const tracker = new GoogleAnalyticsTracker(Config.GoogleAnalyticsId);
 
 interface IAnalytics {

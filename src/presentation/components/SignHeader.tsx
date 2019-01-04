@@ -5,11 +5,10 @@ import { View, Text, StyleSheet } from 'react-native'
 // import { State } from '../../../data';
 import { ZodiacSignIcon } from './ZodiacSignIcon';
 import { Styles } from '../resources';
-import { convertDateToPeriod } from '../utils';
-import { Locales } from '../locales';
 import { TabMenu } from './TabMenu';
 import { ZodiacSign } from '../data/entities';
-import { formatHeaderDates, getMainReportStatsColor } from '../helpers';
+import { formatHeaderDates } from '../helpers';
+import { widthPercentage, Sizes } from '../resources/styles';
 
 interface Props {
     sign: ZodiacSign
@@ -20,6 +19,34 @@ interface Props {
 
 export class SignHeader extends React.PureComponent<Props> {
     render() {
+
+        const styles = StyleSheet.create({
+            container: {
+                flexDirection: 'column',
+                // paddingTop: Styles.paddingSize * 2,
+                // paddingBottom: Styles.paddingSize * 2,
+                alignItems: 'center',
+                justifyContent: 'center',
+                // borderBottomWidth: 3,
+                // borderBottomColor: Styles.darkLayoutColor,
+            },
+            menu: {
+                marginTop: Styles.paddingSize * 2,
+            },
+            signIcon: {
+                paddingBottom: Styles.paddingSize / 2,
+            },
+            signName: {
+                fontWeight: 'bold',
+                fontSize: Sizes.font.large,
+                color: Styles.textColor,
+            },
+            signDate: {
+                color: Styles.muteColor,
+                fontSize: Sizes.font.medium,
+            },
+        });
+
         const { sign, menuOnSelect, menuSelectedId, signBorgerColor } = this.props;
 
         const dateTabs = formatHeaderDates();
@@ -27,7 +54,7 @@ export class SignHeader extends React.PureComponent<Props> {
         return (
             <View style={styles.container}>
                 <View style={styles.signIcon}>
-                    <ZodiacSignIcon borderColor={signBorgerColor} signId={sign && sign.id || null} size={80} />
+                    <ZodiacSignIcon borderColor={signBorgerColor} signId={sign && sign.id || null} size={widthPercentage('20%')} />
                 </View>
                 <Text style={styles.signName}>{sign && sign.name && sign.name.toUpperCase() || '...'}</Text>
                 <Text style={styles.signDate}>{sign && sign.date.toString('long') || '...'}</Text>
@@ -38,30 +65,3 @@ export class SignHeader extends React.PureComponent<Props> {
         );
     }
 }
-
-const styles = StyleSheet.create({
-    container: {
-        flexDirection: 'column',
-        // paddingTop: Styles.paddingSize * 2,
-        // paddingBottom: Styles.paddingSize * 2,
-        alignItems: 'center',
-        justifyContent: 'center',
-        // borderBottomWidth: 3,
-        // borderBottomColor: Styles.darkLayoutColor,
-    },
-    menu: {
-        marginTop: Styles.paddingSize * 2,
-    },
-    signIcon: {
-        paddingBottom: Styles.paddingSize / 2,
-    },
-    signName: {
-        fontWeight: 'bold',
-        fontSize: 20,
-        color: Styles.textColor,
-    },
-    signDate: {
-        color: Styles.muteColor,
-        fontSize: 12
-    },
-});

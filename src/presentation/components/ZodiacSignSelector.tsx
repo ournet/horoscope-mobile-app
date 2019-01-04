@@ -1,9 +1,10 @@
 
 import * as React from 'react';
-import { View, Text, Modal, TouchableOpacity, StyleSheet, ScrollView } from 'react-native'
-import { ZodiacSign, createZodiacSign, ZodiacSignId } from '../data/entities';
+import { View, Text, TouchableOpacity, StyleSheet, Dimensions } from 'react-native'
+import { createZodiacSign, ZodiacSignId } from '../data/entities';
 import { Styles } from '../resources';
 import { ZodiacSignIcon } from './ZodiacSignIcon';
+import { widthPercentage, Sizes } from '../resources/styles';
 
 interface Props {
     selectedSign?: ZodiacSignId
@@ -11,8 +12,41 @@ interface Props {
 }
 
 export class ZodiacSignSelector extends React.PureComponent<Props> {
+
     render() {
-        const { selectedSign, onSelected } = this.props;
+        const styles = StyleSheet.create({
+            container: {
+                flex: 1,
+                flexWrap: 'wrap',
+                flexDirection: 'row',
+                alignItems: 'stretch',
+                justifyContent: 'space-around',
+                padding: Sizes.padding.medium,
+            },
+            signButtom: {
+                // flexBasis: '25%',
+                width: widthPercentage('30%'),
+                height: widthPercentage('30%'),
+                flexDirection: 'column',
+                alignItems: 'center',
+                justifyContent: 'center',
+                // paddingBottom: Styles.paddingSize,
+                flexGrow: 1,
+            },
+            signIcon: {
+                paddingBottom: Sizes.padding.small,
+            },
+            signName: {
+                fontWeight: 'bold',
+                fontSize: Sizes.font.medium,
+            },
+            signDate: {
+                color: Styles.muteColor,
+                fontSize: Sizes.font.small,
+            },
+        });
+
+        const { onSelected } = this.props;
 
         function callOnSelected(sign: ZodiacSignId) {
             if (onSelected) {
@@ -26,7 +60,7 @@ export class ZodiacSignSelector extends React.PureComponent<Props> {
                 <TouchableOpacity key={sign.id} onPress={() => callOnSelected(id)}>
                     <View style={styles.signButtom}>
                         <View style={styles.signIcon}>
-                            <ZodiacSignIcon size={40} signId={id} />
+                            <ZodiacSignIcon size={styles.signButtom.width / 2} signId={id} />
                         </View>
                         <Text style={styles.signName}>{sign.name}</Text>
                         <Text style={styles.signDate}>{sign.date.toString()}</Text>
@@ -41,33 +75,3 @@ export class ZodiacSignSelector extends React.PureComponent<Props> {
         );
     }
 }
-
-const styles = StyleSheet.create({
-    container: {
-        flex: 1,
-        flexWrap: 'wrap',
-        flexDirection: 'row',
-        alignItems: 'stretch',
-        justifyContent: 'space-around',
-        padding: Styles.paddingSize,
-    },
-    signButtom: {
-        width: 100,
-        height: 100,
-        flexDirection: 'column',
-        alignItems: 'center',
-        justifyContent: 'center',
-        // paddingBottom: Styles.paddingSize,
-        // flexGrow: 1,
-    },
-    signIcon: {
-        paddingBottom: Styles.paddingSize / 2,
-    },
-    signName: {
-        fontWeight: 'bold',
-    },
-    signDate: {
-        color: Styles.muteColor,
-        fontSize: 12
-    },
-});
