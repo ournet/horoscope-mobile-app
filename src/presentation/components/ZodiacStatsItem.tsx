@@ -43,7 +43,7 @@ export class ZodiacStatsItem extends React.PureComponent<Props> {
                         <Circle r={R} cx={size / 2} cy={size / 2} stroke={Styles.darkLayoutColor} strokeWidth={strokeWidth} fill={backgroundColor} />
                         <Circle originX={R + strokeWidth} originY={R + strokeWidth} rotate={90} strokeDasharray={[strokeValue, STROKE_MAX]} r={R} cx={size / 2} cy={size / 2} stroke={color} strokeWidth={strokeWidth} fill={backgroundColor} />
                     </Svg>
-                    <Text style={{ position: "absolute", top: size / 3.2, left: 0, right: 0, textAlign: "center", fontWeight: "bold", fontSize: Sizes.font.medium, }}>{value}</Text>
+                    <Text style={{ position: "absolute", top: size / 3.2, left: 0, right: 0, textAlign: "center", fontWeight: "bold", fontSize: Sizes.font.small, }}>{value}</Text>
                 </View>
                 {titleView}
             </View>

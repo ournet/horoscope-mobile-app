@@ -45,7 +45,8 @@ interface ReportItemProps {
 
 export class ReportItem extends React.PureComponent<ReportItemProps, State> {
     render() {
-        const numberSize = widthPercentage('6%');
+        const numberSize = widthPercentage('7%');
+        const signSize = widthPercentage('14%');
         const styles = StyleSheet.create({
             container: {
                 flexDirection: 'column',
@@ -61,7 +62,8 @@ export class ReportItem extends React.PureComponent<ReportItemProps, State> {
                 // justifyContent: 'baseline',
                 flexDirection: 'column',
                 alignItems: 'center',
-                backgroundColor: Styles.darkLayoutColor
+                backgroundColor: Styles.darkLayoutColor,
+                width: signSize + signSize,
             },
             signTitle: {
                 // paddingTop: Styles.paddingSize,
@@ -149,17 +151,17 @@ export class ReportItem extends React.PureComponent<ReportItemProps, State> {
         let statsView: any = null;
 
         if (stats && this.props.noStats !== true) {
-            const signSize = widthPercentage('12%');
+            const signStatSize = widthPercentage('12%');
             statsView =
                 <LinearGradient colors={[Styles.lightLayoutColor, Styles.darkLayoutColor]} style={styles.stats}>
                     <View key={sign.id + '-health'} style={styles.statsItem}>
-                        <ZodiacStatsItem size={signSize} title={Locales.get('health')} value={stats.health} color={Styles.healthColor} />
+                        <ZodiacStatsItem size={signStatSize} title={Locales.get('health')} value={stats.health} color={Styles.healthColor} />
                     </View>
                     <View key={sign.id + '-love'} style={styles.statsItem}>
-                        <ZodiacStatsItem size={signSize} title={Locales.get('love')} value={stats.love} color={Styles.loveColor} />
+                        <ZodiacStatsItem size={signStatSize} title={Locales.get('love')} value={stats.love} color={Styles.loveColor} />
                     </View>
                     <View key={sign.id + '-success'} style={styles.statsItem}>
-                        <ZodiacStatsItem size={signSize} title={Locales.get('success')} value={stats.success} color={Styles.successColor} />
+                        <ZodiacStatsItem size={signStatSize} title={Locales.get('success')} value={stats.success} color={Styles.successColor} />
                     </View>
                 </LinearGradient>
         }
@@ -169,7 +171,7 @@ export class ReportItem extends React.PureComponent<ReportItemProps, State> {
             signView =
                 <View style={styles.sign}>
                     <View style={styles.icon}>
-                        <ZodiacSignIcon signId={sign.id} size={widthPercentage('12%')} />
+                        <ZodiacSignIcon signId={sign.id} size={signSize} />
                     </View>
                     <Text style={styles.signTitle}>{sign.name}</Text>
                 </View>

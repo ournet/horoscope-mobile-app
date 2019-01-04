@@ -41,5 +41,5 @@ class StyleSizes implements IStyleSizes {
 
 export const Sizes: { readonly padding: IStyleSizes, readonly font: IStyleSizes } = {
     padding: new StyleSizes({ tiny: '1', small: '2', medium: '3', large: '4', huge: '5' }, widthPercentage),
-    font: new StyleSizes({ tiny: '1.2', small: '1.5', medium: '2', large: '2.3', huge: '3' }, heightPercentage),
+    font: new StyleSizes({ tiny: '1.6', small: '2', medium: '2.8', large: '3.6', huge: '4' }, heightPercentage),
 }

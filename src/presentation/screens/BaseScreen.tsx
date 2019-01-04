@@ -27,7 +27,7 @@ export abstract class BaseScreen<P extends BaseScreenProps> extends React.Compon
         this.handleBackButtonClick = this.handleBackButtonClick.bind(this);
     }
 
-    componentWillMount() {
+    componentDidMount() {
         BackHandler.addEventListener('hardwareBackPress', this.handleBackButtonClick);
     }
 
