@@ -18,10 +18,10 @@ let Instance: Interactors;
 
 export function configureInteractors(store: Store<State>) {
 
-    const cache = createCacheStorage(AsyncStorage);
+    const reportsCacheStorage = createCacheStorage(AsyncStorage, { size: 20 });
 
     const reportsGateway = createReduxReportsGateway({
-        cache: cache,
+        cache: reportsCacheStorage,
         apiConfig: { host: Config.ApiHost, client: Config.ApiClient },
         dispatch: store.dispatch,
         getState: store.getState,
@@ -30,8 +30,10 @@ export function configureInteractors(store: Store<State>) {
 
     const reportsInteractor = createHoroscopeReportsInteractor(reportsGateway);
 
+    const userCacheStorage = createCacheStorage(AsyncStorage, { size: 2 });
+
     const userGateway = createReduxUserGateway({
-        cache: cache,
+        cache: userCacheStorage,
         dispatch: store.dispatch,
         getState: store.getState
     });
