@@ -14,7 +14,6 @@
 	"dependencies": {
 		"cross-fetch": "^3.0.0",
 		"immutable": "^4.0.0-rc.12",
-		"lru-cache": "^5.1.1",
 		"moment": "^2.23.0",
 		"ms": "^2.1.1",
 		"react": "^16.7.0",
@@ -28,7 +27,6 @@
 		"redux": "^4.0.1"
 	},
 	"devDependencies": {
-		"@types/lru-cache": "^4.1.1",
 		"@types/ms": "^0.7.30",
 		"@types/react": "^16.7.18",
 		"@types/react-native": "^0.57.24",
