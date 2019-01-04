@@ -1,7 +1,6 @@
 
 import { Provider } from 'react-redux';
 import * as React from 'react';
-import { Config } from './Config';
 import { configureStore } from './data/store';
 // import { Analytics } from './analytics';
 import { configureInteractors } from './interactors';

@@ -1,11 +1,9 @@
 
 import * as React from 'react';
 import { connect } from 'react-redux';
-import { Text, View, StyleSheet } from 'react-native';
+import { DeviceEventEmitter } from 'react-native';
 import { State } from '../data/state';
 import { Config } from '../Config';
-
-import { Header } from '../components/Header';
 
 import ReportsScreen from './ReportsScreen';
 import StartScreen from './StartScreen';
@@ -13,13 +11,10 @@ import SelectSignScreen from './SelectSignScreen';
 import SignScreen from './SignScreen';
 
 import { Interactors } from '../interactors';
-import { Styles } from '../resources';
-import { Locales } from '../locales';
-import { convertDateToPeriod } from '../utils';
-import { Analytics } from '../analytics';
 import { BaseScreenProps } from './BaseScreen';
 import { NavigationRouteKey } from '../data/navigation/route';
 import { Notifications } from '../notifications';
+import { NavigationActionTypes } from '../data/navigation/actions';
 
 interface Props extends BaseScreenProps {
     interactors: Interactors
@@ -37,6 +32,15 @@ class MainScreen extends React.Component<Props, State> {
         super(props, state);
 
         Notifications.ensureTags({ lang: Config.CurrentLanguage });
+    }
+
+    componentWillMount() {
+        Notifications.onNotificationOpened(() => this.onNotificationOpened());
+    }
+
+    private onNotificationOpened() {
+        console.log(`got notification`);
+        return true;
     }
 
     getCurrentScreen() {

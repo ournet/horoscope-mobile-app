@@ -28,9 +28,9 @@ public class MainApplication extends Application implements ReactApplication {
     protected List<ReactPackage> getPackages() {
       return Arrays.<ReactPackage>asList(
           new MainReactPackage(),
-            new ReactNativeOneSignalPackage(),
-            new LinearGradientPackage(),
-            new VectorIconsPackage(),
+          new ReactNativeOneSignalPackage(),
+          new LinearGradientPackage(),
+          new VectorIconsPackage(),
           new SvgPackage()
       );
     }

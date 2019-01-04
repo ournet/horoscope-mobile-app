@@ -38,4 +38,7 @@ export class Notifications {
             });
         });
     }
+    static onNotificationOpened(handler: () => boolean) {
+        OneSignal.addEventListener('opened', handler);
+    }
 }
