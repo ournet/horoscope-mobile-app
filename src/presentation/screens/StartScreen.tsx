@@ -1,17 +1,10 @@
 
 import * as React from 'react';
-import { connect } from 'react-redux';
-import { Text, View, StyleSheet } from 'react-native';
+import { View, StyleSheet } from 'react-native';
 import { State } from '../data/state';
-import { Config } from '../Config';
-
 import { Message } from '../components/Message';
-
-import { Interactors } from '../interactors';
 import { Styles } from '../resources';
 import { Locales } from '../locales';
-import { convertDateToPeriod } from '../utils';
-import { Analytics } from '../analytics';
 import { BaseScreen, BaseScreenProps } from './BaseScreen';
 import { NavigationRouteKey } from '../data/navigation/route';
 

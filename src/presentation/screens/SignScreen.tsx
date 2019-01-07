@@ -70,7 +70,7 @@ class SignScreen extends BaseScreen<Props> {
             },
             footer: {
                 paddingTop: Sizes.padding.medium,
-                paddingBottom: Sizes.padding.large,
+                paddingBottom: Sizes.padding.huge,
                 // backgroundColor: Styles.primaryColor,
             },
         });

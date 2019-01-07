@@ -9,10 +9,14 @@ type ConfigType = {
     readonly CurrentDate: Date
     readonly CurrentLanguage: ValidLanguage
     readonly GoogleAnalyticsId: string
+    readonly AppName: string
+    readonly AppVersion: string
 }
 
 export const Config: ConfigType = {
-    ApiClient: 'com.ournet.horoscope_0.2.1',
+    AppName: 'Horoscope',
+    AppVersion: '0.2.4',
+    ApiClient: 'com.ournet.horoscope_0.2.4',
     DefaultLang: 'ro',
     SupportedLangs: ['ro'],
     ApiHost: 'https://horoscop.ournet.ro/api',

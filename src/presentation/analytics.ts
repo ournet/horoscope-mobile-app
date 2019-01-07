@@ -1,12 +1,24 @@
 
-// import { GoogleAnalyticsTracker } from 'react-native-google-analytics-bridge';
-// import { Config } from './Config';
+// import { GoogleAnalyticsTracker, GoogleAnalyticsSettings } from 'react-native-google-analytics-bridge';
+import { Config } from './Config';
+
+// GoogleAnalyticsSettings.setDispatchInterval(20);
+
 // const tracker = new GoogleAnalyticsTracker(Config.GoogleAnalyticsId);
+// tracker.setAppName(Config.AppName);
+// tracker.setAppVersion(Config.AppVersion);
+// tracker.setTrackUncaughtExceptions(true);
+
+export enum AnalyticsCategories {
+    NOTIFICATION = 'notification',
+    NAVIGATION = 'navigation',
+}
 
 interface IAnalytics {
     trackPageView(page: string): void
     trackException(message: string, fatal?: boolean): void
     trackEvent(category: string, action: string, value?: { label: string, value: number }): void
+    trackNavigation(value: { label: string, value: number }): void
 }
 
 export const Analytics: IAnalytics = {
@@ -18,5 +30,8 @@ export const Analytics: IAnalytics = {
     },
     trackEvent(category: string, action: string, value?: { label: string, value: number }) {
         // tracker.trackEvent(category, action, value);
-    }
+    },
+    trackNavigation(value: { label: string, value: number }) {
+        // tracker.trackEvent(AnalyticsCategories.NAVIGATION, 'navigate', value);
+    },
 }

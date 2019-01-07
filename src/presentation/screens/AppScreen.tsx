@@ -13,6 +13,7 @@ import { Interactors } from '../interactors';
 import { BaseScreenProps } from './BaseScreen';
 import { NavigationRouteKey } from '../data/navigation/route';
 import { Notifications } from '../notifications';
+import { Analytics, AnalyticsCategories } from '../analytics';
 // import {
 //     listenOrientationChange as lor,
 //     removeOrientationListener as rol
@@ -48,7 +49,7 @@ class MainScreen extends React.Component<Props, State> {
     }
 
     private onNotificationOpened() {
-        console.log(`got notification`);
+        Analytics.trackEvent(AnalyticsCategories.NOTIFICATION, 'opened');
         return true;
     }
 

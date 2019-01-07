@@ -29,7 +29,7 @@ export default class SelectSignScreen extends BaseScreen<Props> {
             .then(() => interactors.navigation.replace({ key: NavigationRouteKey.SIGN }));
 
         Notifications.ensureTags({ zodiacSign: sign.toString() });
-        Analytics.trackEvent('settings', 'set-zodiac-sign', { label: 'zodiacSign', value: sign });
+        Analytics.trackEvent('settings', 'set-zodiac-sign', { label: 'zodiac-sign', value: sign });
     }
 
     innerRender() {
