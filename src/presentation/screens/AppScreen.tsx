@@ -13,10 +13,10 @@ import { Interactors } from '../interactors';
 import { BaseScreenProps } from './BaseScreen';
 import { NavigationRouteKey } from '../data/navigation/route';
 import { Notifications } from '../notifications';
-import {
-    listenOrientationChange as lor,
-    removeOrientationListener as rol
-} from 'react-native-responsive-screen';
+// import {
+//     listenOrientationChange as lor,
+//     removeOrientationListener as rol
+// } from 'react-native-responsive-screen';
 
 interface Props extends BaseScreenProps {
     interactors: Interactors
@@ -38,12 +38,12 @@ class MainScreen extends React.Component<Props, State> {
 
     componentDidMount() {
         Notifications.ensureTags({ lang: Config.CurrentLanguage });
-        lor(this);
+        // lor(this);
         Notifications.addNotificationOpened(this.onNotificationOpened);
     }
 
     componentWillUnmount() {
-        rol();
+        // rol();
         Notifications.removeNotificationOpened(this.onNotificationOpened);
     }
 
