@@ -32,7 +32,9 @@ export class Notifications {
                 });
 
                 if (Object.keys(tagsToAdd).length) {
-                    OneSignal.sendTags(tags);
+                    try {
+                        OneSignal.sendTags(tags);
+                    } catch (e) { }
                 }
                 resolve(true);
             });
