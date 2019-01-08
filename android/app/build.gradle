@@ -92,12 +92,12 @@ apply from: "../../node_modules/react-native/react.gradle"
  * Upload all the APKs to the Play Store and people will download
  * the correct one based on the CPU architecture of their device.
  */
-def enableSeparateBuildPerCPUArchitecture = false
+def enableSeparateBuildPerCPUArchitecture = true
 
 /**
  * Run Proguard to shrink the Java bytecode in release builds.
  */
-def enableProguardInReleaseBuilds = false
+def enableProguardInReleaseBuilds = true
 
 android {
     compileSdkVersion 27
@@ -108,11 +108,11 @@ android {
         minSdkVersion 16
         targetSdkVersion 22
         
-        versionCode 5
-        versionName "0.2.2"
+        versionCode 6
+        versionName "0.2.4"
 
         ndk {
-            abiFilters "armeabi-v7a", "x86"
+            // abiFilters "armeabi-v7a", "x86"
         }
         manifestPlaceholders = [onesignal_app_id: "2f276d23-3644-4054-b323-debb0780ed1f",
                                 onesignal_google_project_number: "71795867639"]

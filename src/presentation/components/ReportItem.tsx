@@ -51,7 +51,7 @@ export class ReportItem extends React.PureComponent<ReportItemProps, State> {
             container: {
                 flexDirection: 'column',
                 // justifyContent: 'flex-start',
-                marginBottom: 8,
+                marginBottom: Sizes.padding.medium,
                 // alignItems: 'flex-start'
                 borderWidth: 2,
                 borderColor: Styles.darkLayoutColor,
@@ -62,7 +62,7 @@ export class ReportItem extends React.PureComponent<ReportItemProps, State> {
                 // justifyContent: 'baseline',
                 flexDirection: 'column',
                 alignItems: 'center',
-                backgroundColor: Styles.darkLayoutColor,
+                backgroundColor: Styles.layoutColor,
                 width: signSize + signSize,
             },
             signTitle: {
@@ -98,6 +98,8 @@ export class ReportItem extends React.PureComponent<ReportItemProps, State> {
                 // flexWrap: 'wrap',
                 alignItems: 'center',
                 justifyContent: 'center',
+                // borderTopWidth: 2,
+                // borderTopColor: Styles.darkLayoutColor,
             },
             numbersLabel: {
                 marginLeft: Styles.paddingSize,

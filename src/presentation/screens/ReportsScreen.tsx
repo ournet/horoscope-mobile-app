@@ -1,21 +1,15 @@
 
 import * as React from 'react';
 import { connect } from 'react-redux';
-import { Text, View, StyleSheet } from 'react-native';
+import { View, StyleSheet } from 'react-native';
 import { State } from '../data/state';
-import { Config } from '../Config';
-
 import { ReportsHeader } from '../components/ReportsHeader';
 import { Reports, ReportsViewData, createReportsViewData } from '../components/Reports';
-import { ZodiacSignSelector } from '../components/ZodiacSignSelector';
-import { TabMenu } from '../components/TabMenu';
-
-import { Interactors } from '../interactors';
 import { Styles } from '../resources';
 import { Locales } from '../locales';
-import { convertDateToPeriod } from '../utils';
 import { Analytics } from '../analytics';
 import { BaseScreen, BaseScreenProps } from './BaseScreen';
+
 
 interface Props extends BaseScreenProps {
     reports?: ReportsViewData
@@ -43,7 +37,7 @@ class ReportsScreen extends BaseScreen<Props> {
     }
 
     innerRender() {
-        const { interactors, reports } = this.props;
+        const { reports } = this.props;
         const reportsView = reports && <Reports items={reports.items} isLoading={reports.isLoading} error={reports.error} /> || null;
 
         const header = { title: Locales.get('horoscope') }

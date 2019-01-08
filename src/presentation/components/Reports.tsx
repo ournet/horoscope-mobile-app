@@ -39,7 +39,7 @@ export class Reports extends React.PureComponent<ReportsProps, State> {
             container: {
                 flex: 1,
                 // paddingTop: Styles.paddingSize,
-                // paddingBottom: Styles.paddingSize,
+                paddingBottom: Sizes.padding.huge,
             },
             no_data: {
                 margin: Styles.paddingSize * 2,
@@ -89,7 +89,7 @@ export class Reports extends React.PureComponent<ReportsProps, State> {
 
         return (
             <View style={styles.container}>
-                {items.map(item => <ReportItem truncate={true} noNumbers={true} noStats={true} key={item.id} report={item} />)}
+                {items.map(item => <ReportItem truncate={true} noNumbers={false} noStats={true} key={item.id} report={item} />)}
             </View>
         );
     }
