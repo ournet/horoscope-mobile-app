@@ -11,6 +11,7 @@ type ConfigType = {
     readonly GoogleAnalyticsId: string
     readonly AppName: string
     readonly AppVersion: string
+    readonly OneSignalAppId: string
 }
 
 export const Config: ConfigType = {
@@ -21,6 +22,7 @@ export const Config: ConfigType = {
     SupportedLangs: ['ro'],
     ApiHost: 'https://horoscop.ournet.ro/api',
     GoogleAnalyticsId: 'UA-110586923-1',
+    OneSignalAppId: '2f276d23-3644-4054-b323-debb0780ed1f',
 
     get CurrentDate() {
         return new Date();

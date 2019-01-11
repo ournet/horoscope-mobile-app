@@ -34,7 +34,7 @@ export class Notifications {
                 if (Object.keys(tagsToAdd).length) {
                     try {
                         OneSignal.sendTags(tags);
-                    } catch (e) { }
+                    } catch (e) { console.error(e); }
                 }
                 resolve(true);
             });

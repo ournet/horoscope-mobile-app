@@ -2,7 +2,6 @@
 import * as React from 'react';
 import { connect } from 'react-redux';
 import { State } from '../data/state';
-import { Config } from '../Config';
 
 import ReportsScreen from './ReportsScreen';
 import StartScreen from './StartScreen';
@@ -12,8 +11,6 @@ import SignScreen from './SignScreen';
 import { Interactors } from '../interactors';
 import { BaseScreenProps } from './BaseScreen';
 import { NavigationRouteKey } from '../data/navigation/route';
-import { Notifications } from '../notifications';
-import { Analytics, AnalyticsCategories } from '../analytics';
 // import {
 //     listenOrientationChange as lor,
 //     removeOrientationListener as rol
@@ -33,24 +30,6 @@ const mapStateToProps = (state: State, props: Props): Partial<Props> => {
 class MainScreen extends React.Component<Props, State> {
     constructor(props: Props, state: State) {
         super(props, state);
-
-        this.onNotificationOpened = this.onNotificationOpened.bind(this);
-    }
-
-    componentDidMount() {
-        Notifications.ensureTags({ lang: Config.CurrentLanguage });
-        // lor(this);
-        Notifications.addNotificationOpened(this.onNotificationOpened);
-    }
-
-    componentWillUnmount() {
-        // rol();
-        Notifications.removeNotificationOpened(this.onNotificationOpened);
-    }
-
-    private onNotificationOpened() {
-        Analytics.trackEvent(AnalyticsCategories.NOTIFICATION, 'opened');
-        return true;
     }
 
     getCurrentScreen() {
