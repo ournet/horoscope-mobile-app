@@ -3,7 +3,7 @@ import * as moment from 'moment';
 import 'moment/locale/ro';
 import 'moment/locale/ru';
 
-import { Config } from './Config';
+import { Config } from './config';
 
 moment.locale(Config.CurrentLanguage);
 

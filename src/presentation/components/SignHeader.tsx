@@ -6,12 +6,12 @@ import { View, Text, StyleSheet } from 'react-native'
 import { ZodiacSignIcon } from './ZodiacSignIcon';
 import { Styles } from '../resources';
 import { TabMenu } from './TabMenu';
-import { ZodiacSign } from '../data/entities';
+import { ViewZodiacSign } from '../data/zodiac-sign';
 import { formatHeaderDates } from '../helpers';
 import { widthPercentage, Sizes } from '../resources/styles';
 
 interface Props {
-    sign: ZodiacSign
+    sign: ViewZodiacSign
     menuOnSelect: (selectedId: string) => void
     menuSelectedId?: string
     signBorgerColor?: string

@@ -1,6 +1,5 @@
 
 // import { GoogleAnalyticsTracker, GoogleAnalyticsSettings } from 'react-native-google-analytics-bridge';
-import { Config } from './Config';
 
 // GoogleAnalyticsSettings.setDispatchInterval(20);
 

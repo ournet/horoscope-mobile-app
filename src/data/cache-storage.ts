@@ -12,7 +12,7 @@ export function createCacheStorage(storageBackend: any, props: { size: number, d
     const memCache = new MemoryCache({ max: props.size, ttl: props.defaultExpires });
 
     return {
-        put<T>(key: string, data: T, ttl: number): Promise<T> {
+        async put<T>(key: string, data: T, ttl: number): Promise<T> {
             memCache.set(key, data, ttl);
             return storage.save({
                 key: key, data: data, expires: ttl

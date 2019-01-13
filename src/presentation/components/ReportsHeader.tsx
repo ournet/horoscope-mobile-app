@@ -1,12 +1,7 @@
 
 import * as React from 'react';
-// import { connect } from 'react-redux';
-import { View, Text, StyleSheet } from 'react-native'
-// import { State } from '../../../data';
-import { ZodiacSignIcon } from './ZodiacSignIcon';
+import { View, StyleSheet } from 'react-native'
 import { Styles } from '../resources';
-import { convertDateToPeriod } from '../utils';
-import { Locales } from '../locales';
 import { TabMenu } from './TabMenu';
 import { formatHeaderDates } from '../helpers';
 

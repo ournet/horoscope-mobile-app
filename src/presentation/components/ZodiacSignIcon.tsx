@@ -1,7 +1,6 @@
 
 import * as React from 'react';
-import { State } from '../data/state';
-import { ZodiacSignId } from '../data/entities';
+import { ZodiacSignId } from '../data/zodiac-sign';
 import { Images, Styles } from '../resources';
 import { View } from 'react-native';
 
@@ -17,7 +16,7 @@ interface ZodiacSignProps {
     backgroundColor?: string
 }
 
-export class ZodiacSignIcon extends React.PureComponent<ZodiacSignProps, State> {
+export class ZodiacSignIcon extends React.PureComponent<ZodiacSignProps> {
     render() {
         let { size, color, signId, borderColor, backgroundColor } = this.props;
         size = size || 50;

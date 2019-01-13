@@ -1,14 +1,16 @@
 
 import * as React from 'react';
 import { View, Text, TouchableOpacity, StyleSheet, Dimensions } from 'react-native'
-import { createZodiacSign, ZodiacSignId } from '../data/entities';
+import { createViewZodiacSign, ZodiacSignId } from '../data/zodiac-sign';
 import { Styles } from '../resources';
 import { ZodiacSignIcon } from './ZodiacSignIcon';
 import { widthPercentage, Sizes } from '../resources/styles';
+import { ValidLanguage } from '../config';
 
 interface Props {
     selectedSign?: ZodiacSignId
     onSelected?: (sign: ZodiacSignId) => void
+    lang: ValidLanguage
 }
 
 export class ZodiacSignSelector extends React.PureComponent<Props> {
@@ -46,7 +48,7 @@ export class ZodiacSignSelector extends React.PureComponent<Props> {
             },
         });
 
-        const { onSelected } = this.props;
+        const { onSelected, lang } = this.props;
 
         function callOnSelected(sign: ZodiacSignId) {
             if (onSelected) {
@@ -55,7 +57,7 @@ export class ZodiacSignSelector extends React.PureComponent<Props> {
         }
 
         const buttons = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12].map((id: ZodiacSignId) => {
-            const sign = createZodiacSign(id);
+            const sign = createViewZodiacSign(id, lang);
             return (
                 <TouchableOpacity key={sign.id} onPress={() => callOnSelected(id)}>
                     <View style={styles.signButtom}>

@@ -1,6 +1,6 @@
 
 import { UserGateway, User } from '../../domain';
-import { CacheStorage } from '../CacheStorage';
+import { CacheStorage } from '../cache-storage';
 
 function formatKey() {
     return `user`;

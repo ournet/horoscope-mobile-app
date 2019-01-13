@@ -1,49 +1,25 @@
 
 import * as React from 'react';
 import { View, Text, StyleSheet } from 'react-native'
-import { State } from '../data/state';
 import { ZodiacSignIcon } from './ZodiacSignIcon';
 import { ZodiacStatsItem } from './ZodiacStatsItem';
 import { Styles } from '../resources';
-import { createZodiacSign, ZodiacSign } from '../data/entities';
-import { HoroscopeReport } from '../../domain';
 import { Locales } from '../locales';
 import { truncateReport } from '../helpers';
 import Icon from 'react-native-vector-icons/Ionicons';
 import LinearGradient from 'react-native-linear-gradient';
 import { Sizes, widthPercentage } from '../resources/styles';
-
-export interface ReportItemViewData {
-    id: string
-    text: string
-    sign: ZodiacSign
-    numbers: number[]
-    stats: {
-        health: number
-        love: number
-        success: number
-    }
-}
-
-export function createReportItemViewData(report: HoroscopeReport): ReportItemViewData {
-    return {
-        id: report.id,
-        text: report.text,
-        sign: createZodiacSign(report.sign),
-        numbers: report.numbers,
-        stats: report.stats
-    }
-}
+import { ViewHoroscopeReport } from '../data/report';
 
 interface ReportItemProps {
-    report: ReportItemViewData
+    report: ViewHoroscopeReport
     noSign?: boolean
     noStats?: boolean
     noNumbers?: boolean
     truncate?: boolean
 }
 
-export class ReportItem extends React.PureComponent<ReportItemProps, State> {
+export class ReportItem extends React.PureComponent<ReportItemProps> {
     render() {
         const numberSize = widthPercentage('7%');
         const signSize = widthPercentage('14%');

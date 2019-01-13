@@ -1,32 +1,31 @@
 
 import * as React from 'react';
-import { connect } from 'react-redux';
-import { Text, View, StyleSheet } from 'react-native';
-import { State } from '../data/state';
-import { Config } from '../Config';
-
 import { ZodiacSignSelector } from '../components/ZodiacSignSelector';
-
-import { Interactors } from '../interactors';
-import { Styles } from '../resources';
 import { Locales } from '../locales';
-import { convertDateToPeriod } from '../utils';
 import { Analytics } from '../analytics';
-import { BaseScreen, BaseScreenProps } from './BaseScreen';
+import { BaseScreen, BaseScreenProps, BaseScreenState } from './BaseScreen';
 import { NavigationRouteKey } from '../data/navigation/route';
-import { ZodiacSignId } from '../data/entities';
+import { ZodiacSignId } from '../data/zodiac-sign';
 import { Notifications } from '../notifications';
 
 interface Props extends BaseScreenProps {
 
 }
 
-export default class SelectSignScreen extends BaseScreen<Props> {
+export default class SelectSignScreen extends BaseScreen<Props, BaseScreenState> {
+    constructor(props: Props) {
+        super(props, {});
+
+        this.onSelectSign = this.onSelectSign.bind(this);
+    }
 
     onSelectSign(sign: ZodiacSignId) {
         const { interactors } = this.props;
         interactors.user.save({ zodiacSign: sign })
-            .then(() => interactors.navigation.replace({ key: NavigationRouteKey.SIGN }));
+            .then(() => {
+                this.userUpdated();
+                this.props.navigator.replace({ key: NavigationRouteKey.SIGN });
+            });
 
         Notifications.ensureTags({ zodiacSign: sign.toString() });
         Analytics.trackEvent('settings', 'set-zodiac-sign', { label: 'zodiac-sign', value: sign });
@@ -36,7 +35,7 @@ export default class SelectSignScreen extends BaseScreen<Props> {
         const header = { title: Locales.get('select_your_sign') };
 
         const body =
-            <ZodiacSignSelector onSelected={this.onSelectSign.bind(this)} />
+            <ZodiacSignSelector onSelected={this.onSelectSign} lang={this.props.lang} />
 
         return { header, body };
     }
