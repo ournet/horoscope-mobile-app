@@ -6,24 +6,32 @@ import Reports from '../components/Reports';
 import { Styles } from '../resources';
 import { Locales } from '../locales';
 import { Analytics } from '../analytics';
-import { BaseScreen, BaseScreenProps, BaseScreenState } from './BaseScreen';
+import { BaseScreen, ScreenProps, BaseScreenState, BaseScreenProps } from './BaseScreen';
 import { ViewHoroscopeReportsMapper } from '../data/report';
 import { HoroscopeReports } from '../../domain/entities/HoroscopeReport';
 import PromiseComponent, { PromiseComponentResult } from '../components/PromiseComponent';
 import { Message } from '../components/Message';
 import { convertDateToPeriod } from '../utils';
+import { NavigationScreenProp } from 'react-navigation';
 
 
-interface Props extends BaseScreenProps {
+interface ReportsScreenProps extends BaseScreenProps {
 
 }
 
-interface State extends BaseScreenState {
+interface ReportsScreenState extends BaseScreenState {
     period: string
 }
 
-export default class ReportsScreen extends BaseScreen<Props, State> {
-    constructor(props: Props) {
+export default class ReportsScreen extends BaseScreen<ReportsScreenProps, ReportsScreenState> {
+    static navigationOptions = ({ navigation, screenProps }: { navigation: NavigationScreenProp<{}>, screenProps: ScreenProps }) => {
+        return {
+            title: Locales.get('all_signs', screenProps.lang),
+        };
+    };
+
+
+    constructor(props: ReportsScreenProps) {
         super(props, {
             period: convertDateToPeriod(new Date()),
         });
@@ -38,15 +46,12 @@ export default class ReportsScreen extends BaseScreen<Props, State> {
         }
     }
 
-    innerRender() {
-        const { lang } = this.props;
+    renderScreen() {
+        const { lang, interactors } = this.props.screenProps;
         const { period } = this.state;
-    
 
-        const header = { title: Locales.get('horoscope') }
-
-        const body = (
-            <PromiseComponent<HoroscopeReports> promise={this.props.interactors.reports.get({ period, lang })}>
+        return (
+            <PromiseComponent<HoroscopeReports> promise={interactors.reports.get({ period, lang })}>
                 {({ loading, error, data }: PromiseComponentResult<HoroscopeReports>) => {
                     if (loading) {
                         return <Message type='info' message={Locales.get('loading', lang)}></Message>
@@ -66,8 +71,6 @@ export default class ReportsScreen extends BaseScreen<Props, State> {
                 }}
             </PromiseComponent>
         );
-
-        return { header, body };
     }
 }
 

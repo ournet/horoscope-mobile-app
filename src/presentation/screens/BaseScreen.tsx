@@ -1,30 +1,24 @@
 
 import * as React from 'react';
-import { View, StyleSheet, ScrollView, BackHandler } from 'react-native';
-
-import { Header } from '../components/Header';
-
 import { Interactors } from '../interactors';
-import { Styles } from '../resources';
-import { NavigationRoute } from '../data/navigation/route';
 import { ViewUser } from '../data/user';
-import { INavigator } from '../data/navigation/navigator';
+import { NavigationScreenProp } from 'react-navigation';
 import { ValidLanguage } from '../config';
+import { StyleSheet, View, ScrollView, StatusBar, SafeAreaView } from 'react-native';
+import { Styles } from '../resources';
 
-export type UpdateUserCallback = () => void
+export type UserUpdatedCallback = (nextUser: ViewUser) => void
 
 export interface BaseScreenProps {
-    currentRoute: NavigationRoute
-    interactors: Interactors
-    user: ViewUser
-    onUserUpdated: UpdateUserCallback
-    navigator: INavigator
-    lang: ValidLanguage
+    navigation: NavigationScreenProp<{}>
+    screenProps: ScreenProps
 }
 
-export interface HeaderOptions {
-    title?: string
-    visible?: boolean
+export interface ScreenProps {
+    interactors: Interactors
+    user: ViewUser
+    lang: ValidLanguage
+    onUserUpdated: UserUpdatedCallback
 }
 
 export interface BaseScreenState {
@@ -35,75 +29,21 @@ export abstract class BaseScreen<P extends BaseScreenProps, S extends BaseScreen
     constructor(props: P, state: S) {
         super(props)
         this.state = state;
-        this.handleBackButtonClick = this.handleBackButtonClick.bind(this);
-    }
-
-    componentDidMount() {
-        BackHandler.addEventListener('hardwareBackPress', this.handleBackButtonClick);
-    }
-
-    componentWillUnmount() {
-        BackHandler.removeEventListener('hardwareBackPress', this.handleBackButtonClick);
-    }
-
-    handleBackButtonClick() {
-        const { currentRoute, navigator } = this.props;
-
-        if (currentRoute.previous) {
-            navigator.goBack();
-        } else {
-            BackHandler.exitApp()
-        }
-
-        return true;
-    }
-
-    onNavigate(route: NavigationRoute) {
-        const currentKey = this.props.currentRoute.key;
-        const prevKey = this.props.currentRoute.previous && this.props.currentRoute.previous.key;
-        if (route.key === currentKey) {
-            return;
-        }
-        if (route.key === prevKey) {
-            return this.props.navigator.goBack();
-        }
-        this.props.navigator.navigate(route);
     }
 
     render() {
-        const content = this.innerRender();
-        const body = content.body;
-        let header: any = null;
-        if (content.header && content.header.visible !== false) {
-            header = <Header route={this.props.currentRoute} onNavigate={this.onNavigate.bind(this)} title={content.header.title} />;
-        }
+        const content = this.renderScreen();
         return (
-            <View style={styles.container}>
-                {header}
-                <View style={styles.content}>
-                    <ScrollView>
-                        {body}
-                    </ScrollView>
-                </View>
-            </View>
-        );
+            <SafeAreaView style={styles.container}>
+                <StatusBar backgroundColor={Styles.accentColor} barStyle="light-content" translucent={false} />
+                <ScrollView>
+                    {content}
+                </ScrollView>
+            </SafeAreaView>
+        )
     }
 
-    abstract innerRender(): { header: HeaderOptions, body: any }
-
-    // protected actionGetReports(period?: string) {
-    //     period = period || convertDateToPeriod(new Date());
-    //     const lang = this.props.lang;
-    //     return this.props.interactors.reports.get({ period: period, lang: lang });
-    // }
-
-    // protected actionGetUser() {
-    //     return this.props.interactors.user.load();
-    // }
-
-    protected userUpdated() {
-        this.props.onUserUpdated();
-    }
+    abstract renderScreen(): React.ReactNode
 }
 
 const styles = StyleSheet.create({
@@ -115,16 +55,4 @@ const styles = StyleSheet.create({
         marginTop: Styles.paddingSize,
         flex: 1,
     },
-    // tabBar: {
-    //     flexDirection: 'row',
-    //     height: 50
-    // },
-    // tabBarButton: {
-    //     flex: 1
-    // },
-    // button1: { backgroundColor: '#8BC051' },
-    // button2: { backgroundColor: '#CCD948' },
-    // button3: { backgroundColor: '#FDE84D' },
-    // button4: { backgroundColor: '#FCBF2E' },
-    // button5: { backgroundColor: '#FC9626' }
 });

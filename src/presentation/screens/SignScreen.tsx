@@ -4,8 +4,7 @@ import { View, StyleSheet } from 'react-native';
 import { SignHeader } from '../components/SignHeader';;
 import { Locales } from '../locales';
 import { Analytics } from '../analytics';
-import { BaseScreen, BaseScreenProps, BaseScreenState } from './BaseScreen';
-import { NavigationRouteKey } from '../data/navigation/route';
+import { BaseScreen, BaseScreenProps, BaseScreenState, ScreenProps } from './BaseScreen';
 import { ReportItem } from '../components/ReportItem';
 import { Message } from '../components/Message';
 import { TabMenu } from '../components/TabMenu';
@@ -14,6 +13,7 @@ import { convertDateToPeriod } from '../utils';
 import PromiseComponent, { PromiseComponentResult } from '../components/PromiseComponent';
 import { HoroscopeReports } from '../../domain/entities/HoroscopeReport';
 import { ViewHoroscopeReportsMapper } from '../data/report';
+import { NavigationRouteName } from '../navigation';
 
 interface SignScreenProps extends BaseScreenProps {
 
@@ -24,6 +24,10 @@ interface SignScreenState extends BaseScreenState {
 }
 
 export default class SignScreen extends BaseScreen<SignScreenProps, SignScreenState> {
+    static navigationOptions: any = {
+        header: null,
+    }
+
     constructor(props: SignScreenProps) {
         super(props, {
             period: convertDateToPeriod(new Date()),
@@ -32,8 +36,10 @@ export default class SignScreen extends BaseScreen<SignScreenProps, SignScreenSt
         this.onSelectMenuTab = this.onSelectMenuTab.bind(this);
         this.onSelectNavTab = this.onSelectNavTab.bind(this);
 
-        if (!props.user || !props.user.zodiacSign) {
-            props.navigator.replace({ key: NavigationRouteKey.SELECT_SIGN });
+        const { user } = props.screenProps;
+
+        if (!user || !user.zodiacSign) {
+            props.navigation.replace(NavigationRouteName.SELECT_SIGN);
         }
     }
 
@@ -46,27 +52,25 @@ export default class SignScreen extends BaseScreen<SignScreenProps, SignScreenSt
             })
         }
     }
-    onSelectNavTab(key: NavigationRouteKey) {
+    onSelectNavTab(key: NavigationRouteName) {
         Analytics.trackEvent('click', 'route', { label: key, value: 1 });
-        this.props.navigator.navigate({ key });
+        this.props.navigation.navigate(key);
     }
 
-    innerRender() {
-        const { user } = this.props;
+    renderScreen() {
+        const { user } = this.props.screenProps;
 
         if (!user || !user.zodiacSign) {
             return null;
         }
 
-        const header = { title: Locales.get('horoscope') }
+        // const header = { title: Locales.get('horoscope') }
 
-        const body = this.renderSignBody();
-
-        return { header, body };
+        return this.renderSignBody();
     }
 
     renderSignBody() {
-        const { lang, user } = this.props;
+        const { lang, user, interactors } = this.props.screenProps;
         const { period } = this.state;
         const sign = user.zodiacSign;
 
@@ -91,13 +95,13 @@ export default class SignScreen extends BaseScreen<SignScreenProps, SignScreenSt
         // const signBorgerColor = reportItem && getMainReportStatsColor(reportItem.stats);
 
         const navTabs = [
-            { text: Locales.get('all_signs'), id: NavigationRouteKey.REPORTS },
-            { text: Locales.get('change_sign'), id: NavigationRouteKey.SELECT_SIGN }
+            { text: Locales.get('all_signs'), id: NavigationRouteName.ALL_DAILY_REPORTS },
+            { text: Locales.get('change_sign'), id: NavigationRouteName.SELECT_SIGN },
         ]
 
         // console.log('redering sign ' + sign.id + ' ' + period);
 
-        const promise = this.props.interactors.reports.get({ period, lang });
+        const promise = interactors.reports.get({ period, lang });
 
         return (
             <PromiseComponent<HoroscopeReports> promise={promise}>

@@ -3,40 +3,47 @@ import * as React from 'react';
 import { ZodiacSignSelector } from '../components/ZodiacSignSelector';
 import { Locales } from '../locales';
 import { Analytics } from '../analytics';
-import { BaseScreen, BaseScreenProps, BaseScreenState } from './BaseScreen';
-import { NavigationRouteKey } from '../data/navigation/route';
+import { BaseScreen, BaseScreenProps, BaseScreenState, ScreenProps } from './BaseScreen';
 import { ZodiacSignId } from '../data/zodiac-sign';
 import { Notifications } from '../notifications';
+import { NavigationRouteName } from '../navigation';
+import { ViewUserMapper } from '../data/user';
+import { NavigationScreenProp } from 'react-navigation';
 
-interface Props extends BaseScreenProps {
+interface SelectSignScreenProps extends BaseScreenProps {
 
 }
 
-export default class SelectSignScreen extends BaseScreen<Props, BaseScreenState> {
-    constructor(props: Props) {
+export default class SelectSignScreen extends BaseScreen<SelectSignScreenProps, BaseScreenState> {
+    static navigationOptions = ({ navigation, screenProps }: { navigation: NavigationScreenProp<{}>, screenProps: ScreenProps }) => {
+        return {
+            title: Locales.get('select_your_sign', screenProps.lang),
+        };
+    };
+
+    
+    constructor(props: SelectSignScreenProps) {
         super(props, {});
 
         this.onSelectSign = this.onSelectSign.bind(this);
     }
 
     onSelectSign(sign: ZodiacSignId) {
-        const { interactors } = this.props;
+        const { interactors, onUserUpdated, lang } = this.props.screenProps;
         interactors.user.save({ zodiacSign: sign })
-            .then(() => {
-                this.userUpdated();
-                this.props.navigator.replace({ key: NavigationRouteKey.SIGN });
+            .then((user) => {
+                onUserUpdated(ViewUserMapper.fromDataUser(user));
+                this.props.navigation.popToTop();
             });
 
-        Notifications.ensureTags({ zodiacSign: sign.toString() });
+        Notifications.ensureTags({ zodiacSign: sign.toString(), lang: lang });
         Analytics.trackEvent('settings', 'set-zodiac-sign', { label: 'zodiac-sign', value: sign });
     }
 
-    innerRender() {
-        const header = { title: Locales.get('select_your_sign') };
+    renderScreen() {
+        // const header = { title: Locales.get('select_your_sign') };
+        const { lang } = this.props.screenProps;
 
-        const body =
-            <ZodiacSignSelector onSelected={this.onSelectSign} lang={this.props.lang} />
-
-        return { header, body };
+        return <ZodiacSignSelector onSelected={this.onSelectSign} lang={lang} />
     }
 }

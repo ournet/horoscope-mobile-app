@@ -18,18 +18,21 @@
 		"ms": "^2.1.1",
 		"react": "^16.7.0",
 		"react-native": "^0.57.8",
+		"react-native-gesture-handler": "^1.0.12",
 		"react-native-linear-gradient": "^2.5.3",
 		"react-native-onesignal": "^3.2.12",
 		"react-native-responsive-screen": "^1.2.0",
 		"react-native-storage": "^1.0.0-beta.1",
 		"react-native-svg": "^8.0.10",
-		"react-native-vector-icons": "^6.1.0"
+		"react-native-vector-icons": "^6.1.0",
+		"react-navigation": "^3.0.9"
 	},
 	"devDependencies": {
 		"@types/ms": "^0.7.30",
 		"@types/react": "^16.7.18",
 		"@types/react-native": "^0.57.25",
 		"@types/react-native-vector-icons": "^4.6.4",
+		"@types/react-navigation": "^3.0.1",
 		"babel-preset-react-native": "4.0.1",
 		"copy": "^0.3.2",
 		"typescript": "^3.2.2"
