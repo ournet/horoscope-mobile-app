@@ -3,7 +3,7 @@ import { convertDateToPeriod } from './utils';
 import { Locales } from './locales';
 import { Styles } from './resources';
 
-export function formatHeaderDates(startDate?: Date) {
+export function formatHeaderDates(lang: string, startDate?: Date) {
     startDate = startDate || new Date();
     const currentDate = startDate;
     const tomorrowDate = new Date(startDate.getFullYear(), startDate.getMonth(), startDate.getDate());
@@ -11,11 +11,11 @@ export function formatHeaderDates(startDate?: Date) {
     const dateTabs = [
         {
             id: convertDateToPeriod(currentDate),
-            text: Locales.get('today')
+            text: Locales.lang(lang).today(),
         },
         {
             id: convertDateToPeriod(tomorrowDate),
-            text: Locales.get('tomorrow')
+            text: Locales.lang(lang).tomorrow(),
         },
         // {
         //     id: convertDateToPeriod(tomorrowDate, 'W'),

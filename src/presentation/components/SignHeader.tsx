@@ -15,6 +15,7 @@ interface Props {
     menuOnSelect: (selectedId: string) => void
     menuSelectedId?: string
     signBorgerColor?: string
+    lang: string
 }
 
 export class SignHeader extends React.PureComponent<Props> {
@@ -47,9 +48,9 @@ export class SignHeader extends React.PureComponent<Props> {
             },
         });
 
-        const { sign, menuOnSelect, menuSelectedId, signBorgerColor } = this.props;
+        const { sign, menuOnSelect, menuSelectedId, signBorgerColor, lang } = this.props;
 
-        const dateTabs = formatHeaderDates();
+        const dateTabs = formatHeaderDates(lang);
 
         return (
             <View style={styles.container}>

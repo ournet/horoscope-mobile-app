@@ -1,6 +1,8 @@
 
 export type ValidLanguage = 'ro';
 
+export const SUPPORTED_LANGUAGES: ReadonlyArray<string> = ['ro'];
+
 type ConfigType = {
     readonly ApiClient: string
     readonly DefaultLang: ValidLanguage

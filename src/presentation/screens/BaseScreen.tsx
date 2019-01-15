@@ -4,7 +4,7 @@ import { Interactors } from '../interactors';
 import { ViewUser } from '../data/user';
 import { NavigationScreenProp } from 'react-navigation';
 import { ValidLanguage } from '../config';
-import { StyleSheet, View, ScrollView, StatusBar, SafeAreaView } from 'react-native';
+import { ScrollView, SafeAreaView } from 'react-native';
 import { Styles } from '../resources';
 
 export type UserUpdatedCallback = (nextUser: ViewUser) => void

@@ -7,7 +7,7 @@ import { Message } from '../components/Message';
 import { Locales } from '../locales';
 import { ValidLanguage } from '../config';
 import { ViewUser, ViewUserMapper } from '../data/user';
-import { View, SafeAreaView, StatusBar } from 'react-native';
+import { SafeAreaView } from 'react-native';
 import { Styles } from '../resources';
 
 interface Props {
@@ -35,7 +35,7 @@ export default class MainScreen extends React.Component<Props, MainScreenState> 
                 <PromiseComponent<User> promise={this.props.interactors.user.load()}>
                     {({ loading, error, data }: PromiseComponentResult<User>) => {
                         if (loading) {
-                            return <Message type='info' message={Locales.get('loading', lang)}></Message>
+                            return <Message type='info' message={Locales.lang(lang).loading()}></Message>
                         }
                         if (error) {
                             return <Message type='danger' message={error.message}></Message>

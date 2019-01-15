@@ -17,6 +17,7 @@ interface ReportItemProps {
     noStats?: boolean
     noNumbers?: boolean
     truncate?: boolean
+    lang: string
 }
 
 export class ReportItem extends React.PureComponent<ReportItemProps> {
@@ -119,6 +120,7 @@ export class ReportItem extends React.PureComponent<ReportItemProps> {
         });
 
         const { sign, numbers, stats, id } = this.props.report;
+        const { lang } = this.props;
         const text = this.props.truncate ? truncateReport(this.props.report.text) : this.props.report.text;
         const phrases = text.split(/\s*\n\s*/g);
 
@@ -133,13 +135,13 @@ export class ReportItem extends React.PureComponent<ReportItemProps> {
             statsView =
                 <LinearGradient colors={[Styles.lightLayoutColor, Styles.darkLayoutColor]} style={styles.stats}>
                     <View key={sign.id + '-health'} style={styles.statsItem}>
-                        <ZodiacStatsItem size={signStatSize} title={Locales.get('health')} value={stats.health} color={Styles.healthColor} />
+                        <ZodiacStatsItem size={signStatSize} title={Locales.lang(lang).health()} value={stats.health} color={Styles.healthColor} />
                     </View>
                     <View key={sign.id + '-love'} style={styles.statsItem}>
-                        <ZodiacStatsItem size={signStatSize} title={Locales.get('love')} value={stats.love} color={Styles.loveColor} />
+                        <ZodiacStatsItem size={signStatSize} title={Locales.lang(lang).love()} value={stats.love} color={Styles.loveColor} />
                     </View>
                     <View key={sign.id + '-success'} style={styles.statsItem}>
-                        <ZodiacStatsItem size={signStatSize} title={Locales.get('success')} value={stats.success} color={Styles.successColor} />
+                        <ZodiacStatsItem size={signStatSize} title={Locales.lang(lang).success()} value={stats.success} color={Styles.successColor} />
                     </View>
                 </LinearGradient>
         }
@@ -162,7 +164,7 @@ export class ReportItem extends React.PureComponent<ReportItemProps> {
             numbersView =
                 <View style={styles.numbers}>
                     <Icon name="md-flower" size={numberSize} color={Styles.accentColor} />
-                    <Text style={styles.numbersLabel} numberOfLines={1}>{Locales.get('numbers')}:</Text>
+                    <Text style={styles.numbersLabel} numberOfLines={1}>{Locales.lang(lang).numbers()}:</Text>
                     <View style={styles.numbersData}>{numbersView}</View>
                 </View>;
         }

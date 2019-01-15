@@ -10,13 +10,14 @@ interface Props {
     // period: string
     menuOnSelect: (selectedId: string) => void
     menuSelectedId?: string
+    lang: string
 }
 
 export class ReportsHeader extends React.PureComponent<Props> {
     render() {
-        const { menuOnSelect, menuSelectedId } = this.props;
+        const { menuOnSelect, menuSelectedId, lang } = this.props;
 
-        const dateTabs = formatHeaderDates();
+        const dateTabs = formatHeaderDates(lang);
 
         return (
             <View style={styles.container}>

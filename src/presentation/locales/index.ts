@@ -1,5 +1,4 @@
 
-import { LocalesClass } from './locales-class';
-import { Config, ValidLanguage } from '../config';
+import { HoroscopeLocalesProvider } from './locales';
 
-export const Locales = new LocalesClass<ValidLanguage>(Config.CurrentLanguage);
+export const Locales = new HoroscopeLocalesProvider();

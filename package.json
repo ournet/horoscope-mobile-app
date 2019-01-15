@@ -9,11 +9,13 @@
 		"wtsc": "tsc --watch",
 		"android": "react-native run-android",
 		"ios": "react-native run-ios",
-		"release": "cd android && ./gradlew assembleRelease"
+		"release": "cd android && ./gradlew assembleRelease",
+		"locales": "localizy -d src/presentation/locales -o src/presentation/locales/generated-locales.ts"
 	},
 	"dependencies": {
 		"cross-fetch": "^3.0.0",
 		"immutable": "^4.0.0-rc.12",
+		"localizy": "^0.1.6",
 		"moment": "^2.23.0",
 		"ms": "^2.1.1",
 		"react": "^16.7.0",

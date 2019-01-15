@@ -97,8 +97,8 @@ export default class SignScreen extends BaseScreen<SignScreenProps, SignScreenSt
         // const signBorgerColor = reportItem && getMainReportStatsColor(reportItem.stats);
 
         const navTabs = [
-            { text: Locales.get('all_signs'), id: NavigationRouteName.ALL_DAILY_REPORTS },
-            { text: Locales.get('change_sign'), id: NavigationRouteName.SELECT_SIGN },
+            { text: Locales.lang(lang).all_signs(), id: NavigationRouteName.ALL_DAILY_REPORTS },
+            { text: Locales.lang(lang).change_sign(), id: NavigationRouteName.SELECT_SIGN },
         ]
 
         // console.log('redering sign ' + sign.id + ' ' + period);
@@ -109,10 +109,10 @@ export default class SignScreen extends BaseScreen<SignScreenProps, SignScreenSt
             <PromiseComponent<HoroscopeReports> promise={promise}>
                 {({ loading, error, data }: PromiseComponentResult<HoroscopeReports>) => {
                     if (loading) {
-                        return <Message type='info' message={Locales.get('loading', lang)}></Message>
+                        return <Message type='info' message={Locales.lang(lang).loading()}></Message>
                     }
                     if (error) {
-                        return <Message type='danger' message={Locales.get('no_data_error', lang)}></Message>
+                        return <Message type='danger' message={Locales.lang(lang).no_data_error()}></Message>
                     }
                     const reports = ViewHoroscopeReportsMapper.fromData(data, lang);
 
@@ -120,15 +120,15 @@ export default class SignScreen extends BaseScreen<SignScreenProps, SignScreenSt
 
                     const reportItem = sign && reports && reports.reports && reports.reports.find(item => item.sign.id === sign.id)
 
-                    const report = reportItem && <ReportItem noSign={true} report={reportItem} />
+                    const report = reportItem && <ReportItem noSign={true} report={reportItem} lang={lang} />
                     let message = null;
                     if (!report) {
-                        message = <Message type="danger" message={Locales.get('no_data_error')} />
+                        message = <Message type="danger" message={Locales.lang(lang).no_data_error()} />
                     }
 
                     return (
                         <View style={styles.content}>
-                            <SignHeader sign={sign} menuOnSelect={this.onSelectMenuTab} menuSelectedId={period} />
+                            <SignHeader sign={sign} menuOnSelect={this.onSelectMenuTab} menuSelectedId={period} lang={lang} />
                             <View style={styles.report}>
                                 {message}
                                 {report}

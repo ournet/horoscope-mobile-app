@@ -16,7 +16,7 @@ export function createViewZodiacSign(id: ZodiacSignId, lang: ValidLanguage): Vie
     const date = getZodiacSignDate(id);
     return {
         id,
-        name: Locales.signName(id, lang),
+        name: Locales.lang(lang).signNameById(id),
         date,
     };
 }

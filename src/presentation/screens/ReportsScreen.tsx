@@ -26,7 +26,7 @@ interface ReportsScreenState extends BaseScreenState {
 export default class ReportsScreen extends BaseScreen<ReportsScreenProps, ReportsScreenState> {
     static navigationOptions = ({ navigation, screenProps }: { navigation: NavigationScreenProp<{}>, screenProps: ScreenProps }) => {
         return {
-            title: Locales.get('all_signs', screenProps.lang),
+            title: Locales.lang(screenProps.lang).all_signs(),
         };
     };
 
@@ -54,18 +54,18 @@ export default class ReportsScreen extends BaseScreen<ReportsScreenProps, Report
             <PromiseComponent<HoroscopeReports> promise={interactors.reports.get({ period, lang })}>
                 {({ loading, error, data }: PromiseComponentResult<HoroscopeReports>) => {
                     if (loading) {
-                        return <Message type='info' message={Locales.get('loading', lang)}></Message>
+                        return <Message type='info' message={Locales.lang(lang).loading()}></Message>
                     }
                     if (error) {
-                        return <Message type='danger' message={Locales.get('no_data_error', lang)}></Message>
+                        return <Message type='danger' message={Locales.lang(lang).no_data_error()}></Message>
                     }
 
                     const reports = ViewHoroscopeReportsMapper.fromData(data, lang);
 
                     return (
                         <View style={styles.content}>
-                            <ReportsHeader menuOnSelect={this.onSelectPeriod} menuSelectedId={period} />
-                            <Reports items={reports.reports} />
+                            <ReportsHeader menuOnSelect={this.onSelectPeriod} menuSelectedId={period} lang={lang} />
+                            <Reports items={reports.reports} lang={lang} />
                         </View>
                     )
                 }}

@@ -17,7 +17,7 @@ interface SelectSignScreenProps extends BaseScreenProps {
 export default class SelectSignScreen extends BaseScreen<SelectSignScreenProps, BaseScreenState> {
     static navigationOptions = ({ navigation, screenProps }: { navigation: NavigationScreenProp<{}>, screenProps: ScreenProps }) => {
         return {
-            title: Locales.get('select_your_sign', screenProps.lang),
+            title: Locales.lang(screenProps.lang).select_your_sign(),
         };
     };
 
