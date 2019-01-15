@@ -34,8 +34,7 @@ export abstract class BaseScreen<P extends BaseScreenProps, S extends BaseScreen
     render() {
         const content = this.renderScreen();
         return (
-            <SafeAreaView style={styles.container}>
-                <StatusBar backgroundColor={Styles.accentColor} barStyle="light-content" translucent={false} />
+            <SafeAreaView style={{ backgroundColor: Styles.layoutColor, flex: 1 }}>
                 <ScrollView>
                     {content}
                 </ScrollView>
@@ -45,14 +44,3 @@ export abstract class BaseScreen<P extends BaseScreenProps, S extends BaseScreen
 
     abstract renderScreen(): React.ReactNode
 }
-
-const styles = StyleSheet.create({
-    container: {
-        flex: 1,
-        backgroundColor: Styles.layoutColor
-    },
-    content: {
-        marginTop: Styles.paddingSize,
-        flex: 1,
-    },
-});

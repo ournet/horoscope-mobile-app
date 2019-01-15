@@ -21,7 +21,7 @@ export default class SelectSignScreen extends BaseScreen<SelectSignScreenProps, 
         };
     };
 
-    
+
     constructor(props: SelectSignScreenProps) {
         super(props, {});
 
@@ -30,10 +30,13 @@ export default class SelectSignScreen extends BaseScreen<SelectSignScreenProps, 
 
     onSelectSign(sign: ZodiacSignId) {
         const { interactors, onUserUpdated, lang } = this.props.screenProps;
+        const { navigation } = this.props;
         interactors.user.save({ zodiacSign: sign })
             .then((user) => {
                 onUserUpdated(ViewUserMapper.fromDataUser(user));
-                this.props.navigation.popToTop();
+                if (!navigation.goBack()) {
+                    navigation.replace(NavigationRouteName.SIGN);
+                }
             });
 
         Notifications.ensureTags({ zodiacSign: sign.toString(), lang: lang });

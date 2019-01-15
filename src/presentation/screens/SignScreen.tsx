@@ -79,6 +79,8 @@ export default class SignScreen extends BaseScreen<SignScreenProps, SignScreenSt
                 flex: 1,
                 paddingLeft: Sizes.padding.small,
                 paddingRight: Sizes.padding.small,
+                paddingTop: Sizes.padding.large,
+                paddingBottom: Sizes.padding.large,
             },
             report: {
                 flex: 1,
@@ -86,8 +88,8 @@ export default class SignScreen extends BaseScreen<SignScreenProps, SignScreenSt
                 marginTop: Sizes.padding.medium,
             },
             footer: {
-                paddingTop: Sizes.padding.medium,
-                paddingBottom: Sizes.padding.huge,
+                marginTop: Sizes.padding.huge,
+                marginBottom: Sizes.padding.huge,
                 // backgroundColor: Styles.primaryColor,
             },
         });

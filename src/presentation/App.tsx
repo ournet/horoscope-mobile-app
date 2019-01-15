@@ -13,6 +13,7 @@ import SelectSignScreen from './screens/SelectSignScreen';
 import { ViewUser } from './data/user';
 import InitScreen from './screens/InitScreen';
 import { Styles } from './resources';
+import { StyleSheet, SafeAreaView, StatusBar } from 'react-native';
 // import { Notifications } from './notifications';
 
 const AppNavigator = createStackNavigator({
@@ -104,11 +105,25 @@ export default class App extends React.Component<{}, AppState> {
 
   render() {
     const { user, lang } = this.state;
-    if (!user) {
-      return <InitScreen lang={lang} interactors={interactors} onInited={this.onInitedData}></InitScreen>
-    }
+    const content = user
+      ? <AppContainer screenProps={{ interactors, lang, user, onUserUpdated: this.onUserUpdated }}></AppContainer>
+      : <InitScreen lang={lang} interactors={interactors} onInited={this.onInitedData}></InitScreen>;
     return (
-      <AppContainer screenProps={{ interactors, lang, user, onUserUpdated: this.onUserUpdated }}></AppContainer>
+      <SafeAreaView style={styles.container}>
+        <StatusBar backgroundColor={Styles.accentColor} barStyle="light-content" translucent={false} />
+        {content}
+      </SafeAreaView>
     );
   }
 }
+
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    backgroundColor: Styles.accentColor,
+  },
+  content: {
+    marginTop: Styles.paddingSize,
+    flex: 1,
+  },
+});

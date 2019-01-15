@@ -30,10 +30,10 @@ export class TabMenu extends React.PureComponent<Props> {
                 // borderColor: Styles.accentColor
             },
             item: {
-                paddingTop: Sizes.padding.tiny,
-                paddingBottom: Sizes.padding.tiny,
-                paddingLeft: Sizes.padding.medium,
-                paddingRight: Sizes.padding.medium,
+                paddingTop: Sizes.padding.small,
+                paddingBottom: Sizes.padding.small,
+                paddingLeft: Sizes.padding.large,
+                paddingRight: Sizes.padding.large,
                 // borderRightColor: Styles.layoutColor,
                 // borderRightWidth: 1,
                 backgroundColor: Styles.darkLayoutColor,
