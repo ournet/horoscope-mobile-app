@@ -1,8 +1,8 @@
 // import DeviceInfo from 'react-native-device-info';
 import RNLanguages from 'react-native-languages';
 
-export type ValidLanguage = 'en' | 'ro' | 'ru';
-const VALID_LANGUAGES: ReadonlyArray<ValidLanguage> = ['en', 'ro', 'ru'];
+export type ValidLanguage = 'en' | 'ro' | 'ru' | 'bg';
+const VALID_LANGUAGES: ReadonlyArray<ValidLanguage> = ['en', 'ro', 'ru', 'bg'];
 
 export function getValidLanguages() {
     return VALID_LANGUAGES;
