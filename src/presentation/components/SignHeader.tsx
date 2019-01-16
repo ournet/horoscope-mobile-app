@@ -56,7 +56,7 @@ export class SignHeader extends React.PureComponent<Props> {
         return (
             <View style={styles.container}>
                 <View style={styles.signIcon}>
-                    <ZodiacSignIcon borderColor={signBorgerColor} signId={sign && sign.id || null} size={widthPercentage('20%')} />
+                    <ZodiacSignIcon borderColor={signBorgerColor} signId={sign && sign.id || null} size={widthPercentage('23%')} />
                 </View>
                 <Text style={styles.signName}>{sign && sign.name && sign.name.toUpperCase() || '...'}</Text>
                 <Text style={styles.signDate}>{sign && sign.date.toString(lang, 'long') || '...'}</Text>

@@ -131,7 +131,7 @@ export class ReportItem extends React.PureComponent<ReportItemProps> {
         let statsView: any = null;
 
         if (stats && this.props.noStats !== true) {
-            const signStatSize = widthPercentage('12%');
+            const signStatSize = widthPercentage('15%');
             statsView =
                 <LinearGradient colors={[Styles.lightLayoutColor, Styles.darkLayoutColor]} style={styles.stats}>
                     <View key={sign.id + '-health'} style={styles.statsItem}>

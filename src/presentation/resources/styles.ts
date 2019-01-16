@@ -15,7 +15,7 @@ export const whiteColor = '#ffffff';
 export const muteColor = '#888';
 export const dangerColor = accentColor;
 export const healthColor = '#96c557';
-export const loveColor = '#ed69da';
+export const loveColor = accentColor;//'#ed69da';
 export const successColor = '#2199e8';//'#e8d657';
 
 export const paddingSize = 10;
