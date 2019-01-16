@@ -7,6 +7,7 @@ const translations = {
     ru: parseTranslationData(require('./ru.json')),
     bg: parseTranslationData(require('./bg.json')),
     hu: parseTranslationData(require('./hu.json')),
+    cs: parseTranslationData(require('./cs.json')),
 }
 
 export class HoroscopeLocalesProvider extends LocalizyLocalesProvider<HoroscopeLocales> {
