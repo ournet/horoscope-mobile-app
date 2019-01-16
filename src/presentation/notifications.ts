@@ -1,3 +1,5 @@
+import { ZodiacSignId } from "../domain";
+import { ValidLanguage } from "./languages";
 
 const OneSignal = require('react-native-onesignal').default;
 
@@ -20,20 +22,21 @@ export class Notifications {
             OneSignal.getPermissionSubscriptionState(resolve);
         });
     }
-    static ensureTags(tags: IndexObject): Promise<boolean> {
+    static ensureTags(tags: { zodiacSign?: ZodiacSignId, lang?: ValidLanguage }): Promise<boolean> {
+        const localTags = tags as { [key: string]: string }
         return new Promise((resolve, reject) => {
             OneSignal.getTags((receivedTags: IndexObject) => {
                 receivedTags = receivedTags || {};
                 const tagsToAdd: IndexObject = {};
-                Object.keys(tags).forEach(tag => {
-                    if (receivedTags[tag] !== tags[tag]) {
-                        tagsToAdd[tag] = tags[tag];
+                Object.keys(localTags).forEach(tag => {
+                    if (receivedTags[tag] !== localTags[tag]) {
+                        tagsToAdd[tag] = localTags[tag];
                     }
                 });
 
                 if (Object.keys(tagsToAdd).length) {
                     try {
-                        OneSignal.sendTags(tags);
+                        OneSignal.sendTags(localTags);
                     } catch (e) { console.error(e); }
                 }
                 resolve(true);

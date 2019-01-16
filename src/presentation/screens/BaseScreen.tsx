@@ -3,9 +3,9 @@ import * as React from 'react';
 import { Interactors } from '../interactors';
 import { ViewUser } from '../data/user';
 import { NavigationScreenProp } from 'react-navigation';
-import { ValidLanguage } from '../config';
 import { ScrollView, SafeAreaView } from 'react-native';
 import { Styles } from '../resources';
+import { ValidLanguage } from '../languages';
 
 export type UserUpdatedCallback = (nextUser: ViewUser) => void
 

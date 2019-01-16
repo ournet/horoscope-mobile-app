@@ -1,6 +1,7 @@
 import { User as DataUser } from '../../domain/entities/User';
 import { ViewZodiacSign, createViewZodiacSign } from "./zodiac-sign";
-import { ValidLanguage, Config } from '../config';
+import { Config } from '../config';
+import { ValidLanguage } from '../languages';
 
 export class ViewUser {
     private _hash: string;

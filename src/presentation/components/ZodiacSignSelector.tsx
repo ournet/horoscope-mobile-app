@@ -5,7 +5,7 @@ import { createViewZodiacSign, ZodiacSignId } from '../data/zodiac-sign';
 import { Styles } from '../resources';
 import { ZodiacSignIcon } from './ZodiacSignIcon';
 import { widthPercentage, Sizes } from '../resources/styles';
-import { ValidLanguage } from '../config';
+import { ValidLanguage } from '../languages';
 
 interface Props {
     selectedSign?: ZodiacSignId
@@ -65,7 +65,7 @@ export class ZodiacSignSelector extends React.PureComponent<Props> {
                             <ZodiacSignIcon size={styles.signButtom.width / 2} signId={id} />
                         </View>
                         <Text style={styles.signName}>{sign.name}</Text>
-                        <Text style={styles.signDate}>{sign.date.toString()}</Text>
+                        <Text style={styles.signDate}>{sign.date.toString(lang)}</Text>
                     </View>
                 </TouchableOpacity>)
         });

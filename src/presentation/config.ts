@@ -1,12 +1,9 @@
-
-export type ValidLanguage = 'ro';
-
-export const SUPPORTED_LANGUAGES: ReadonlyArray<string> = ['ro'];
+import { ValidLanguage, getCurrentLanguage, DEFAULT_LANGUAGE, getValidLanguages } from './languages';
 
 type ConfigType = {
     readonly ApiClient: string
     readonly DefaultLang: ValidLanguage
-    readonly SupportedLangs: ValidLanguage[]
+    readonly SupportedLangs: ReadonlyArray<ValidLanguage>
     readonly ApiHost: string
     readonly CurrentDate: Date
     readonly CurrentLanguage: ValidLanguage
@@ -20,8 +17,6 @@ export const Config: ConfigType = {
     AppName: 'Horoscope',
     AppVersion: '0.2.5',
     ApiClient: 'com.ournet.horoscope_0.2.5',
-    DefaultLang: 'ro',
-    SupportedLangs: ['ro'],
     ApiHost: 'https://horoscop.ournet.ro/api',
     GoogleAnalyticsId: 'UA-110586923-1',
     OneSignalAppId: '2f276d23-3644-4054-b323-debb0780ed1f',
@@ -31,6 +26,14 @@ export const Config: ConfigType = {
     },
 
     get CurrentLanguage() {
-        return Config.DefaultLang;
+        return getCurrentLanguage();
+    },
+
+    get DefaultLang() {
+        return DEFAULT_LANGUAGE;
+    },
+
+    get SupportedLangs() {
+        return getValidLanguages();
     }
 }

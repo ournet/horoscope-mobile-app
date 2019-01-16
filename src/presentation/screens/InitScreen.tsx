@@ -5,10 +5,10 @@ import { User } from '../../domain';
 import PromiseComponent, { PromiseComponentResult } from '../components/PromiseComponent';
 import { Message } from '../components/Message';
 import { Locales } from '../locales';
-import { ValidLanguage } from '../config';
 import { ViewUser, ViewUserMapper } from '../data/user';
 import { SafeAreaView } from 'react-native';
 import { Styles } from '../resources';
+import { ValidLanguage } from '../languages';
 
 interface Props {
     interactors: Interactors

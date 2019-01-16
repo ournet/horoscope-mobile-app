@@ -2,7 +2,7 @@
 import { ZodiacSignId, HoroscopeReportStats } from '../../domain';
 import { Locales } from '../locales';
 import { ZodiacSignDate, getZodiacSignDate } from '../resources';
-import { ValidLanguage } from '../config';
+import { ValidLanguage } from '../languages';
 
 export { ZodiacSignId, HoroscopeReportStats }
 

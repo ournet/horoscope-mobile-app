@@ -39,7 +39,7 @@ export default class SelectSignScreen extends BaseScreen<SelectSignScreenProps, 
                 }
             });
 
-        Notifications.ensureTags({ zodiacSign: sign.toString(), lang: lang });
+        Notifications.ensureTags({ zodiacSign: sign, lang: lang });
         Analytics.trackEvent('settings', 'set-zodiac-sign', { label: 'zodiac-sign', value: sign });
     }
 

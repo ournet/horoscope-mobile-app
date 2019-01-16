@@ -2,7 +2,9 @@ import { LocalizyLocalesProvider, LocalizyLocales, LocalesKey } from './generate
 import { Locales, parseTranslationData } from 'localizy';
 
 const translations = {
+    en: parseTranslationData(require('./en.json')),
     ro: parseTranslationData(require('./ro.json')),
+    ru: parseTranslationData(require('./ru.json')),
 }
 
 export class HoroscopeLocalesProvider extends LocalizyLocalesProvider<HoroscopeLocales> {

@@ -3,6 +3,7 @@ package com.ournet.horoscope;
 import android.app.Application;
 
 import com.facebook.react.ReactApplication;
+import com.reactcommunity.rnlanguages.RNLanguagesPackage;
 import com.swmansion.gesturehandler.react.RNGestureHandlerPackage;
 import com.geektime.rnonesignalandroid.ReactNativeOneSignalPackage;
 import com.BV.LinearGradient.LinearGradientPackage;
@@ -28,12 +29,13 @@ public class MainApplication extends Application implements ReactApplication {
     @Override
     protected List<ReactPackage> getPackages() {
       return Arrays.<ReactPackage>asList(
-          new MainReactPackage(),
+            new MainReactPackage(),
+            new RNLanguagesPackage(),
             new RNGestureHandlerPackage(),
-          new ReactNativeOneSignalPackage(),
-          new LinearGradientPackage(),
-          new VectorIconsPackage(),
-          new SvgPackage()
+            new ReactNativeOneSignalPackage(),
+            new LinearGradientPackage(),
+            new VectorIconsPackage(),
+            new SvgPackage()
       );
     }
 

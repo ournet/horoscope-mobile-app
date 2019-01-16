@@ -1,6 +1,6 @@
 import { HoroscopeReport as DataHoroscopeReport, HoroscopeReports as DataHoroscopeReports } from '../../domain/entities/HoroscopeReport';
 import { ViewZodiacSign, createViewZodiacSign } from "./zodiac-sign";
-import { ValidLanguage } from '../config';
+import { ValidLanguage } from '../languages';
 
 export type ViewHoroscopeReport = {
     id: string

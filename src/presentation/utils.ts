@@ -2,6 +2,10 @@
 import * as moment from 'moment';
 import 'moment/locale/ro';
 import 'moment/locale/ru';
+import 'moment/locale/hu';
+import 'moment/locale/bg';
+import 'moment/locale/cs';
+import 'moment/locale/it';
 
 import { Config } from './config';
 

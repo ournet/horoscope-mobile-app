@@ -4,22 +4,26 @@ const OneSignal = require('react-native-onesignal').default;
 import { configureInteractors } from './interactors';
 
 const interactors = configureInteractors();
-import { Config, ValidLanguage } from './config';
+import { Config } from './config';
 import { createStackNavigator, createAppContainer } from 'react-navigation';
 import { NavigationRouteName } from './navigation';
 import SignScreen from './screens/SignScreen';
 import ReportsScreen from './screens/ReportsScreen';
 import SelectSignScreen from './screens/SelectSignScreen';
+// import SettingsScreen from './screens/SettingsScreen';
 import { ViewUser } from './data/user';
 import InitScreen from './screens/InitScreen';
 import { Styles } from './resources';
 import { StyleSheet, SafeAreaView, StatusBar } from 'react-native';
+import { ValidLanguage, addEventSystemLanguageChanged, removeEventSystemLanguageChanged } from './languages';
+import { Notifications } from './notifications';
 // import { Notifications } from './notifications';
 
 const AppNavigator = createStackNavigator({
   [NavigationRouteName.SIGN]: SignScreen,
   [NavigationRouteName.ALL_DAILY_REPORTS]: ReportsScreen,
   [NavigationRouteName.SELECT_SIGN]: SelectSignScreen,
+  // [NavigationRouteName.SETTINGS]: SettingsScreen,
 }, {
     initialRouteKey: NavigationRouteName.SIGN,
     cardStyle: {
@@ -57,22 +61,32 @@ export default class App extends React.Component<{}, AppState> {
 
     this.onInitedData = this.onInitedData.bind(this);
     this.onUserUpdated = this.onUserUpdated.bind(this);
+    this.onLanguageChanged = this.onLanguageChanged.bind(this);
 
     OneSignal.init(Config.OneSignalAppId);
     // OneSignal.setLogLevel(5, 0);
 
     // OneSignal.addEventListener('received', this.onReceived);
-    OneSignal.addEventListener('opened', this.onOpened);
+    // OneSignal.addEventListener('opened', this.onOpened);
     // OneSignal.addEventListener('ids', this.onIds);
   }
   componentDidMount() {
     // Notifications.ensureTags({ lang: Config.CurrentLanguage });
     // OneSignal.getPermissionSubscriptionState((state: any) => console.log(state))
+    addEventSystemLanguageChanged(this.onLanguageChanged);
   }
   componentWillUnmount() {
     // OneSignal.removeEventListener('received', this.onReceived);
-    OneSignal.removeEventListener('opened', this.onOpened);
+    // OneSignal.removeEventListener('opened', this.onOpened);
     // OneSignal.removeEventListener('ids', this.onIds);
+    removeEventSystemLanguageChanged(this.onLanguageChanged);
+  }
+
+  onLanguageChanged(lang: ValidLanguage) {
+    Notifications.ensureTags({
+      zodiacSign: this.state.user && this.state.user.zodiacSign && this.state.user.zodiacSign.id || undefined,
+      lang,
+    });
   }
 
   // onReceived(notification: any) {
@@ -82,10 +96,10 @@ export default class App extends React.Component<{}, AppState> {
   onOpened(openResult: any) {
     // console.log('Message: ', openResult.notification.payload.body);
     // console.log('Data: ', openResult.notification.payload.additionalData);
-    console.log('isActive: ', openResult.notification.isAppInFocus);
+    // console.log('isActive: ', openResult.notification.isAppInFocus);
     // console.log('openResult: ', openResult);
 
-    return false;
+    // return false;
   }
 
   private onInitedData(user: ViewUser) {
