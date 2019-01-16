@@ -97,7 +97,7 @@ export default class SignScreen extends BaseScreen<SignScreenProps, SignScreenSt
         // const signBorgerColor = reportItem && getMainReportStatsColor(reportItem.stats);
 
         const navTabs = [
-            { text: Locales.lang(lang).all_signs(), id: NavigationRouteName.ALL_DAILY_REPORTS },
+            // { text: Locales.lang(lang).all_signs(), id: NavigationRouteName.ALL_DAILY_REPORTS },
             { text: Locales.lang(lang).change_sign(), id: NavigationRouteName.SELECT_SIGN },
         ]
 

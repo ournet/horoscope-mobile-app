@@ -8,7 +8,7 @@ import { Config } from './config';
 import { createStackNavigator, createAppContainer } from 'react-navigation';
 import { NavigationRouteName } from './navigation';
 import SignScreen from './screens/SignScreen';
-import ReportsScreen from './screens/ReportsScreen';
+// import ReportsScreen from './screens/ReportsScreen';
 import SelectSignScreen from './screens/SelectSignScreen';
 // import SettingsScreen from './screens/SettingsScreen';
 import { ViewUser } from './data/user';
@@ -21,7 +21,7 @@ import { Notifications } from './notifications';
 
 const AppNavigator = createStackNavigator({
   [NavigationRouteName.SIGN]: SignScreen,
-  [NavigationRouteName.ALL_DAILY_REPORTS]: ReportsScreen,
+  // [NavigationRouteName.ALL_DAILY_REPORTS]: ReportsScreen,
   [NavigationRouteName.SELECT_SIGN]: SelectSignScreen,
   // [NavigationRouteName.SETTINGS]: SettingsScreen,
 }, {
