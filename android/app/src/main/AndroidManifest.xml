@@ -1,8 +1,8 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     package="com.ournet.horoscope"
-    android:versionCode="7"
-    android:versionName="0.2.5">
+    android:versionCode="8"
+    android:versionName="0.3.0">
 
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.READ_PHONE_STATE" tools:node="remove" />

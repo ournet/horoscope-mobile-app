@@ -15,8 +15,8 @@ type ConfigType = {
 
 export const Config: ConfigType = {
     AppName: 'Horoscope',
-    AppVersion: '0.2.5',
-    ApiClient: 'com.ournet.horoscope_0.2.5',
+    AppVersion: '0.3.0',
+    ApiClient: 'com.ournet.horoscope_0.3.0',
     ApiHost: 'https://horoscop.ournet.ro/api',
     GoogleAnalyticsId: 'UA-110586923-1',
     OneSignalAppId: '2f276d23-3644-4054-b323-debb0780ed1f',
