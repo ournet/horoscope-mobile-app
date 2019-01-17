@@ -41,5 +41,8 @@ function formatSignDate(date: { startDay: number, startMonth: number, endDay: nu
 function removeYear(date: string) {
     return date.replace(/\d{4}/, '').trim()
         .replace(/,$/, '').trim()
-        .replace(/\sг.$/, '').trim()
+        .replace(/\sг\.$/, '').trim()
+        .replace(/\.\s/, '').trim()
+        .replace(/\.$/, '').trim()
+        .replace(/^\./, '').trim()
 }
