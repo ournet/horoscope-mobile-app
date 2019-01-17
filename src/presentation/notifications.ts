@@ -10,8 +10,6 @@ export type NotificationStatus = {
     userSubscriptionEnabled: boolean
 }
 
-type IndexObject = { [index: string]: string }
-
 // export interface INotifications {
 //     getStatus():Promise<NotificationStatus>
 // }
@@ -23,24 +21,17 @@ export class Notifications {
         });
     }
     static ensureTags(tags: { zodiacSign?: ZodiacSignId, lang?: ValidLanguage }): Promise<boolean> {
-        const localTags = tags as { [key: string]: string }
-        return new Promise((resolve, reject) => {
-            OneSignal.getTags((receivedTags: IndexObject) => {
-                receivedTags = receivedTags || {};
-                const tagsToAdd: IndexObject = {};
-                Object.keys(localTags).forEach(tag => {
-                    if (receivedTags[tag] !== localTags[tag]) {
-                        tagsToAdd[tag] = localTags[tag];
-                    }
-                });
-
-                if (Object.keys(tagsToAdd).length) {
-                    try {
-                        OneSignal.sendTags(localTags);
-                    } catch (e) { console.error(e); }
-                }
-                resolve(true);
-            });
+        const localTags = { ...tags } as { [key: string]: string }
+        for (let prop in localTags) {
+            if ([undefined, null].includes(localTags[prop])) {
+                delete localTags[prop];
+            }
+        }
+        return new Promise((resolve) => {
+            try {
+                OneSignal.sendTags(localTags);
+            } catch (e) { console.error(e); }
+            resolve(true);
         });
     }
     static addNotificationOpened(handler: () => boolean) {
